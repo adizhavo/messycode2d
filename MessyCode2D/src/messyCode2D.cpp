@@ -21,8 +21,10 @@ namespace MessyCode2D_Engine {
         {
             if (ShoulFeed())
             {
-                this->scene->Feed();
-                this->editor->Feed();
+                float elapseTime = this->timer->getTime();
+                
+                this->scene->Feed(elapseTime);
+                this->editor->Feed(elapseTime);
                 
                 this->timer->reset();
             }

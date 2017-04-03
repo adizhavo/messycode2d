@@ -19,8 +19,8 @@ namespace MessyCode2D_Engine {
         std::cout << "Scene booted\n";
     }
     
-    void Scene::Feed()
+    void Scene::Feed(float elapseTime)
     {
-        std::cout << "Scene feeded\n";
+        std::cout << "Scene feeded, elapse time: " << elapseTime << "\n";
     }
 }
