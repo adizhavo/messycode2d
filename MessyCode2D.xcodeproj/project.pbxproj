@@ -12,6 +12,7 @@
 		8990CA181E92C791007FD25C /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA161E92C791007FD25C /* scene.cpp */; };
 		8990CA1F1E92C7A5007FD25C /* messyCode2DEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA1D1E92C7A5007FD25C /* messyCode2DEditor.cpp */; };
 		8990CA221E92C7AF007FD25C /* messyCode2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA201E92C7AF007FD25C /* messyCode2D.cpp */; };
+		8990CA261E92D1FB007FD25C /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA241E92D1FB007FD25C /* timer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +43,8 @@
 		8990CA1E1E92C7A5007FD25C /* messyCode2DEditor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = messyCode2DEditor.hpp; path = src/editor/messyCode2DEditor.hpp; sourceTree = "<group>"; };
 		8990CA201E92C7AF007FD25C /* messyCode2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = messyCode2D.cpp; path = src/messyCode2D.cpp; sourceTree = "<group>"; };
 		8990CA211E92C7AF007FD25C /* messyCode2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = messyCode2D.hpp; path = src/messyCode2D.hpp; sourceTree = "<group>"; };
+		8990CA241E92D1FB007FD25C /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = timer.cpp; path = src/timer/timer.cpp; sourceTree = "<group>"; };
+		8990CA251E92D1FB007FD25C /* timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = timer.hpp; path = src/timer/timer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 			children = (
 				8990C9F81E92BE51007FD25C /* src */,
 				8990C9F11E92BD3A007FD25C /* main.cpp */,
+				8990CA0D1E92C666007FD25C /* ecs */,
+				8990CA231E92D1D8007FD25C /* timer */,
 			);
 			path = MessyCode2D;
 			sourceTree = "<group>";
@@ -86,7 +91,6 @@
 			children = (
 				8990CA201E92C7AF007FD25C /* messyCode2D.cpp */,
 				8990CA211E92C7AF007FD25C /* messyCode2D.hpp */,
-				8990CA0D1E92C666007FD25C /* ecs */,
 				8990CA061E92C320007FD25C /* scene */,
 				8990CA021E92C2E1007FD25C /* editor */,
 			);
@@ -123,6 +127,15 @@
 				8990CA141E92C698007FD25C /* systemObserver.hpp */,
 			);
 			name = ecs;
+			sourceTree = "<group>";
+		};
+		8990CA231E92D1D8007FD25C /* timer */ = {
+			isa = PBXGroup;
+			children = (
+				8990CA241E92D1FB007FD25C /* timer.cpp */,
+				8990CA251E92D1FB007FD25C /* timer.hpp */,
+			);
+			name = timer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8990CA181E92C791007FD25C /* scene.cpp in Sources */,
+				8990CA261E92D1FB007FD25C /* timer.cpp in Sources */,
 				8990C9F21E92BD3A007FD25C /* main.cpp in Sources */,
 				8990CA221E92C7AF007FD25C /* messyCode2D.cpp in Sources */,
 				8990CA1F1E92C7A5007FD25C /* messyCode2DEditor.cpp in Sources */,
