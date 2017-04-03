@@ -3,16 +3,27 @@
 
 #include "scene.hpp"
 #include "messyCode2DEditor.hpp"
+#include "timer.hpp"
 
 namespace MessyCode2D_Engine {
+    class MessyCodeConfig
+    {
+    public:
+        float framePerSec = 30;
+    };
+    
     class MessyCode2D
     {
     private:
-        Scene *scene;
+        MessyCodeConfig* config;
+        Scene* scene;
         MessyCode2DEditor* editor;
+        Timer* timer;
+        
+        bool ShoulFeed();
         
     public:
-        MessyCode2D(Scene* scene, MessyCode2DEditor* editor);
+        MessyCode2D(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor);
         void Boot();
         void Loop();
     };
