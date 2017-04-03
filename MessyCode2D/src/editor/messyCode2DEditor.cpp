@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace MessyCode2D_Engine {
-    void MessyCode2DEditor::Feed(float elapseTime)
+    void MessyCode2DEditor::Update(float elapseTime)
     {
         std::cout << "Editor feeded\n";
     }

@@ -22,16 +22,16 @@ namespace MessyCode2D_Engine {
         this->gameEntities.push_back(&ent3);
     }
     
-    void Scene::Boot()
+    void Scene::Start()
     {
         for (GameEntity* ge : this->gameEntities)
             ge->Start();
     }
     
-    void Scene::Feed(float elapseTime)
+    void Scene::Update(float elapseTime)
     {
         for (GameEntity* ge : this->gameEntities)
-            ge->Feed(elapseTime);
+            ge->Update(elapseTime);
         
         std::cout << "Scene feeded, elapse time: " << elapseTime << "\n";
     }

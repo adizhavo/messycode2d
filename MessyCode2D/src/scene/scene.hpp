@@ -10,8 +10,8 @@ namespace MessyCode2D_Engine {
     {
     public:
         void Build();
-        void Boot();
-        void Feed(float elapseTime);
+        void Start();
+        void Update(float elapseTime);
     private:
         std::vector<GameEntity*> gameEntities;
     };

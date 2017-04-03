@@ -9,12 +9,12 @@ namespace MessyCode2D_Engine {
     public:
         float xPos, yPos, xAngle, yAngle, xScale, yScale;
         void Start();
-        void Feed(float elapseTime);
+        void Update(float elapseTime);
     };
     
     void Transform::Start() { }
     
-    void Transform::Feed(float elapseTime) { }
+    void Transform::Update(float elapseTime) { }
 }
 
 #endif

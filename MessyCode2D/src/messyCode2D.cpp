@@ -9,9 +9,9 @@ namespace MessyCode2D_Engine {
         this->timer = new Timer();
     }
     
-    void MessyCode2D::Boot()
+    void MessyCode2D::Start()
     {
-        this->scene->Boot();
+        this->scene->Start();
     }
     
     void MessyCode2D::Loop()
@@ -23,8 +23,8 @@ namespace MessyCode2D_Engine {
             {
                 float elapseTime = this->timer->getTime();
                 
-                this->scene->Feed(elapseTime);
-                this->editor->Feed(elapseTime);
+                this->scene->Update(elapseTime);
+                this->editor->Update(elapseTime);
                 
                 this->timer->reset();
             }

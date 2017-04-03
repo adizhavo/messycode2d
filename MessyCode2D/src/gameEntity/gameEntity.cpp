@@ -19,7 +19,7 @@ namespace MessyCode2D_Engine {
         }
     }
     
-    void GameEntity::Feed(float elapseTime)
+    void GameEntity::Update(float elapseTime)
     {
         for (Component* cmp : this->GetComponents()) {
             GameComponent* gcmp = dynamic_cast<GameComponent*>(cmp);
@@ -31,7 +31,7 @@ namespace MessyCode2D_Engine {
                     gcmp->hasStarted = true;
                 }
                 
-                gcmp->Feed(elapseTime);
+                gcmp->Update(elapseTime);
             }
         }
     }

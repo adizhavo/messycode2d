@@ -9,7 +9,7 @@ namespace MessyCode2D_Engine {
         bool hasStarted = false;
     
         virtual void Start() = 0;
-        virtual void Feed(float elapseTime) = 0;
+        virtual void Update(float elapseTime) = 0;
     ENDCOMP
 }
 

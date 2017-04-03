@@ -7,7 +7,7 @@ namespace MessyCode2D_Engine {
     class GameEntity : public ECS::Entity {
     public:
         void Start();
-        void Feed(float elapseTime);
+        void Update(float elapseTime);
     };
 }
 
