@@ -2,11 +2,10 @@
 #define scene_hpp
 
 #include <vector>
-#include "entity.hpp"
-
-using namespace ECS;
 
 namespace MessyCode2D_Engine {
+    class GameEntity;
+    
     class Scene
     {
     public:
@@ -14,7 +13,7 @@ namespace MessyCode2D_Engine {
         void Boot();
         void Feed(float elapseTime);
     private:
-        std::vector<Entity*> gameEntities;
+        std::vector<GameEntity*> gameEntities;
     };
 }
 #endif
