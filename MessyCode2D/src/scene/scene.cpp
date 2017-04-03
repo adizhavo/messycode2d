@@ -1,13 +1,21 @@
 #include "scene.hpp"
 #include <iostream>
 
+#include "gameEntity.hpp"
+#include "transform.hpp"
+
 namespace MessyCode2D_Engine {
     void Scene::Build()
     {
         // Load sample entities to get the system started
-        Entity ent1;
-        Entity ent2;
-        Entity ent3;
+        GameEntity ent1;
+        GameEntity ent2;
+        GameEntity ent3;
+        
+        Transform tr;
+        ent1.AddComponent(&tr);
+        ent2.AddComponent(&tr);
+        ent3.AddComponent(&tr);
         
         this->gameEntities.push_back(&ent1);
         this->gameEntities.push_back(&ent2);
@@ -16,11 +24,15 @@ namespace MessyCode2D_Engine {
     
     void Scene::Boot()
     {
-        std::cout << "Scene booted\n";
+        for (GameEntity* ge : this->gameEntities)
+            ge->Start();
     }
     
     void Scene::Feed(float elapseTime)
     {
+        for (GameEntity* ge : this->gameEntities)
+            ge->Feed(elapseTime);
+        
         std::cout << "Scene feeded, elapse time: " << elapseTime << "\n";
     }
 }
