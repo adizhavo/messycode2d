@@ -13,6 +13,7 @@
 		8990CA1F1E92C7A5007FD25C /* messyCode2DEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA1D1E92C7A5007FD25C /* messyCode2DEditor.cpp */; };
 		8990CA221E92C7AF007FD25C /* messyCode2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA201E92C7AF007FD25C /* messyCode2D.cpp */; };
 		8990CA261E92D1FB007FD25C /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA241E92D1FB007FD25C /* timer.cpp */; };
+		8990CA2C1E92D8CE007FD25C /* gameEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA2A1E92D8CE007FD25C /* gameEntity.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,10 @@
 		8990CA211E92C7AF007FD25C /* messyCode2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = messyCode2D.hpp; path = src/messyCode2D.hpp; sourceTree = "<group>"; };
 		8990CA241E92D1FB007FD25C /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = timer.cpp; path = src/timer/timer.cpp; sourceTree = "<group>"; };
 		8990CA251E92D1FB007FD25C /* timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = timer.hpp; path = src/timer/timer.hpp; sourceTree = "<group>"; };
+		8990CA2A1E92D8CE007FD25C /* gameEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gameEntity.cpp; path = src/gameEntity/gameEntity.cpp; sourceTree = "<group>"; };
+		8990CA2B1E92D8CE007FD25C /* gameEntity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = gameEntity.hpp; path = src/gameEntity/gameEntity.hpp; sourceTree = "<group>"; };
+		8990CA311E92DA07007FD25C /* gameComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = gameComponent.hpp; path = src/gameEntity/gameComponent.hpp; sourceTree = "<group>"; };
+		8990CA351E92E10F007FD25C /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = transform.hpp; path = src/gameEntity/components/transform.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +96,7 @@
 			children = (
 				8990CA201E92C7AF007FD25C /* messyCode2D.cpp */,
 				8990CA211E92C7AF007FD25C /* messyCode2D.hpp */,
+				8990CA291E92D8B4007FD25C /* gameEntity */,
 				8990CA061E92C320007FD25C /* scene */,
 				8990CA021E92C2E1007FD25C /* editor */,
 			);
@@ -136,6 +142,25 @@
 				8990CA251E92D1FB007FD25C /* timer.hpp */,
 			);
 			name = timer;
+			sourceTree = "<group>";
+		};
+		8990CA291E92D8B4007FD25C /* gameEntity */ = {
+			isa = PBXGroup;
+			children = (
+				8990CA331E92E0F5007FD25C /* components */,
+				8990CA2A1E92D8CE007FD25C /* gameEntity.cpp */,
+				8990CA2B1E92D8CE007FD25C /* gameEntity.hpp */,
+				8990CA311E92DA07007FD25C /* gameComponent.hpp */,
+			);
+			name = gameEntity;
+			sourceTree = "<group>";
+		};
+		8990CA331E92E0F5007FD25C /* components */ = {
+			isa = PBXGroup;
+			children = (
+				8990CA351E92E10F007FD25C /* transform.hpp */,
+			);
+			name = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +224,7 @@
 				8990CA261E92D1FB007FD25C /* timer.cpp in Sources */,
 				8990C9F21E92BD3A007FD25C /* main.cpp in Sources */,
 				8990CA221E92C7AF007FD25C /* messyCode2D.cpp in Sources */,
+				8990CA2C1E92D8CE007FD25C /* gameEntity.cpp in Sources */,
 				8990CA1F1E92C7A5007FD25C /* messyCode2DEditor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
