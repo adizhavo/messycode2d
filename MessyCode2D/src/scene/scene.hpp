@@ -1,6 +1,11 @@
 #ifndef scene_hpp
 #define scene_hpp
 
+#include <vector>
+#include "entity.hpp"
+
+using namespace ECS;
+
 namespace MessyCode2D_Engine {
     class Scene
     {
@@ -8,6 +13,8 @@ namespace MessyCode2D_Engine {
         void Build();
         void Boot();
         void Feed();
+    private:
+        std::vector<Entity*> gameEntities;
     };
 }
 #endif
