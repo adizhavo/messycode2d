@@ -2,7 +2,6 @@
 #define scene_hpp
 
 #include <vector>
-#include "gameEntity.hpp"
 
 namespace MessyCode2D_Engine {
     class GameEntity;

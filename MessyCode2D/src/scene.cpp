@@ -3,6 +3,7 @@
 
 // Temp code
 #include "transform.hpp"
+#include "gameEntity.hpp"
 
 namespace MessyCode2D_Engine {
     Scene*Scene::instance;
