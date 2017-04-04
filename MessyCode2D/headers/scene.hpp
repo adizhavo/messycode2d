@@ -9,9 +9,13 @@ namespace MessyCode2D_Engine {
     class Scene
     {
     public:
+        static Scene* instance;
+        
         void Build();
         void Start();
         void Update(float elapseTime);
+        void AddGameEntity(GameEntity* ge);
+        void RemoveGameEntity(GameEntity* ge);
     private:
         std::vector<GameEntity*> gameEntities;
     };

@@ -1,14 +1,18 @@
 #include "scene.hpp"
 #include <iostream>
 
-#include "gameEntity.hpp"
+// Temp code
 #include "transform.hpp"
-
-#include <iostream>
+#include "gameEntity.hpp"
 
 namespace MessyCode2D_Engine {
+    Scene*Scene::instance;
+    
     void Scene::Build()
     {
+        Scene::instance = this;
+        
+        // Temp code
         // Load sample entities to get the system started
         GameEntity* ent1 = new GameEntity();
         GameEntity* ent2 = new GameEntity();
@@ -21,9 +25,9 @@ namespace MessyCode2D_Engine {
         ent2->AddComponent(tr2);
         ent3->AddComponent(tr3);
         
-        this->gameEntities.push_back(ent1);
-        this->gameEntities.push_back(ent2);
-        this->gameEntities.push_back(ent3);
+        AddGameEntity(ent1);
+        AddGameEntity(ent2);
+        AddGameEntity(ent3);
     }
     
     void Scene::Start()
@@ -36,5 +40,16 @@ namespace MessyCode2D_Engine {
     {
         for (GameEntity* ge : this->gameEntities)
             ge->Update(elapseTime);
+    }
+    
+    void Scene::AddGameEntity(GameEntity* ge)
+    {
+        this->gameEntities.push_back(ge);
+    }
+    
+    void Scene::RemoveGameEntity(GameEntity* ge)
+    {
+        this->gameEntities.erase(std::remove(this->gameEntities.begin(), this->gameEntities.end(), ge), this->gameEntities.end());
+        ge->Destroy();
     }
 }

@@ -1,10 +1,5 @@
 #include "gameEntity.hpp"
-#include "component.hpp"
 #include "gameComponent.hpp"
-
-using namespace ECS;
-
-#include <iostream>
 
 namespace MessyCode2D_Engine {
     void GameEntity::Start()
@@ -26,5 +21,13 @@ namespace MessyCode2D_Engine {
                 
             gcmp->Update(elapseTime);
         }
+    }
+    
+    void GameEntity::Destroy()
+    {
+        for (GameComponent* gcmp : GetComponents<GameComponent>())
+            gcmp->Destroy();
+        
+        RemoveAllComponents();
     }
 }
