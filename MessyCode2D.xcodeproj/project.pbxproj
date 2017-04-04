@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		8990C9F21E92BD3A007FD25C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990C9F11E92BD3A007FD25C /* main.cpp */; };
-		8990CA151E92C698007FD25C /* libecs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8990CA121E92C698007FD25C /* libecs.a */; };
-		8990CA181E92C791007FD25C /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA161E92C791007FD25C /* scene.cpp */; };
-		8990CA1F1E92C7A5007FD25C /* messyCode2DEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA1D1E92C7A5007FD25C /* messyCode2DEditor.cpp */; };
-		8990CA221E92C7AF007FD25C /* messyCode2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA201E92C7AF007FD25C /* messyCode2D.cpp */; };
-		8990CA261E92D1FB007FD25C /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA241E92D1FB007FD25C /* timer.cpp */; };
-		8990CA2C1E92D8CE007FD25C /* gameEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8990CA2A1E92D8CE007FD25C /* gameEntity.cpp */; };
+		89E85C891E93F6AB00DA4F59 /* gameEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E85C831E93F6AB00DA4F59 /* gameEntity.cpp */; };
+		89E85C8A1E93F6AB00DA4F59 /* messyCode2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E85C841E93F6AB00DA4F59 /* messyCode2D.cpp */; };
+		89E85C8B1E93F6AB00DA4F59 /* messyCode2DEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E85C861E93F6AB00DA4F59 /* messyCode2DEditor.cpp */; };
+		89E85C8C1E93F6AB00DA4F59 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E85C871E93F6AB00DA4F59 /* scene.cpp */; };
+		89E85C8D1E93F6AB00DA4F59 /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89E85C881E93F6AB00DA4F59 /* timer.cpp */; };
+		89E85C9D1E93F6CC00DA4F59 /* libecs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E85C9A1E93F6CC00DA4F59 /* libecs.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,25 +31,25 @@
 /* Begin PBXFileReference section */
 		8990C9EE1E92BD3A007FD25C /* MessyCode2D */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MessyCode2D; sourceTree = BUILT_PRODUCTS_DIR; };
 		8990C9F11E92BD3A007FD25C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		8990CA0E1E92C698007FD25C /* component.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = component.hpp; path = src/ecs/component.hpp; sourceTree = "<group>"; };
-		8990CA0F1E92C698007FD25C /* entity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = entity.hpp; path = src/ecs/entity.hpp; sourceTree = "<group>"; };
-		8990CA101E92C698007FD25C /* entityMatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = entityMatcher.hpp; path = src/ecs/entityMatcher.hpp; sourceTree = "<group>"; };
-		8990CA111E92C698007FD25C /* filter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = filter.hpp; path = src/ecs/filter.hpp; sourceTree = "<group>"; };
-		8990CA121E92C698007FD25C /* libecs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libecs.a; path = src/ecs/libecs.a; sourceTree = "<group>"; };
-		8990CA131E92C698007FD25C /* reactiveSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = reactiveSystem.hpp; path = src/ecs/reactiveSystem.hpp; sourceTree = "<group>"; };
-		8990CA141E92C698007FD25C /* systemObserver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = systemObserver.hpp; path = src/ecs/systemObserver.hpp; sourceTree = "<group>"; };
-		8990CA161E92C791007FD25C /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = src/scene/scene.cpp; sourceTree = "<group>"; };
-		8990CA171E92C791007FD25C /* scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = scene.hpp; path = src/scene/scene.hpp; sourceTree = "<group>"; };
-		8990CA1D1E92C7A5007FD25C /* messyCode2DEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = messyCode2DEditor.cpp; path = src/editor/messyCode2DEditor.cpp; sourceTree = "<group>"; };
-		8990CA1E1E92C7A5007FD25C /* messyCode2DEditor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = messyCode2DEditor.hpp; path = src/editor/messyCode2DEditor.hpp; sourceTree = "<group>"; };
-		8990CA201E92C7AF007FD25C /* messyCode2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = messyCode2D.cpp; path = src/messyCode2D.cpp; sourceTree = "<group>"; };
-		8990CA211E92C7AF007FD25C /* messyCode2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = messyCode2D.hpp; path = src/messyCode2D.hpp; sourceTree = "<group>"; };
-		8990CA241E92D1FB007FD25C /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = timer.cpp; path = src/timer/timer.cpp; sourceTree = "<group>"; };
-		8990CA251E92D1FB007FD25C /* timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = timer.hpp; path = src/timer/timer.hpp; sourceTree = "<group>"; };
-		8990CA2A1E92D8CE007FD25C /* gameEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gameEntity.cpp; path = src/gameEntity/gameEntity.cpp; sourceTree = "<group>"; };
-		8990CA2B1E92D8CE007FD25C /* gameEntity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = gameEntity.hpp; path = src/gameEntity/gameEntity.hpp; sourceTree = "<group>"; };
-		8990CA311E92DA07007FD25C /* gameComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = gameComponent.hpp; path = src/gameEntity/gameComponent.hpp; sourceTree = "<group>"; };
-		8990CA351E92E10F007FD25C /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = transform.hpp; path = src/gameEntity/components/transform.hpp; sourceTree = "<group>"; };
+		89E85C831E93F6AB00DA4F59 /* gameEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gameEntity.cpp; path = src/gameEntity.cpp; sourceTree = "<group>"; };
+		89E85C841E93F6AB00DA4F59 /* messyCode2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = messyCode2D.cpp; path = src/messyCode2D.cpp; sourceTree = "<group>"; };
+		89E85C861E93F6AB00DA4F59 /* messyCode2DEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = messyCode2DEditor.cpp; path = src/messyCode2DEditor.cpp; sourceTree = "<group>"; };
+		89E85C871E93F6AB00DA4F59 /* scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = scene.cpp; path = src/scene.cpp; sourceTree = "<group>"; };
+		89E85C881E93F6AB00DA4F59 /* timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = timer.cpp; path = src/timer.cpp; sourceTree = "<group>"; };
+		89E85C8E1E93F6B400DA4F59 /* gameComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = gameComponent.hpp; path = headers/gameComponent.hpp; sourceTree = "<group>"; };
+		89E85C8F1E93F6B400DA4F59 /* gameEntity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = gameEntity.hpp; path = headers/gameEntity.hpp; sourceTree = "<group>"; };
+		89E85C901E93F6B400DA4F59 /* messyCode2DEditor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = messyCode2DEditor.hpp; path = headers/messyCode2DEditor.hpp; sourceTree = "<group>"; };
+		89E85C911E93F6B400DA4F59 /* scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = scene.hpp; path = headers/scene.hpp; sourceTree = "<group>"; };
+		89E85C921E93F6B400DA4F59 /* timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = timer.hpp; path = headers/timer.hpp; sourceTree = "<group>"; };
+		89E85C931E93F6B400DA4F59 /* transform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = transform.hpp; path = headers/transform.hpp; sourceTree = "<group>"; };
+		89E85C961E93F6CC00DA4F59 /* component.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = component.hpp; path = libs/ecs/component.hpp; sourceTree = "<group>"; };
+		89E85C971E93F6CC00DA4F59 /* entity.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = entity.hpp; path = libs/ecs/entity.hpp; sourceTree = "<group>"; };
+		89E85C981E93F6CC00DA4F59 /* entityMatcher.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = entityMatcher.hpp; path = libs/ecs/entityMatcher.hpp; sourceTree = "<group>"; };
+		89E85C991E93F6CC00DA4F59 /* filter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = filter.hpp; path = libs/ecs/filter.hpp; sourceTree = "<group>"; };
+		89E85C9A1E93F6CC00DA4F59 /* libecs.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libecs.a; path = libs/ecs/libecs.a; sourceTree = "<group>"; };
+		89E85C9B1E93F6CC00DA4F59 /* reactiveSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = reactiveSystem.hpp; path = libs/ecs/reactiveSystem.hpp; sourceTree = "<group>"; };
+		89E85C9C1E93F6CC00DA4F59 /* systemObserver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = systemObserver.hpp; path = libs/ecs/systemObserver.hpp; sourceTree = "<group>"; };
+		89E85C9E1E93F6FF00DA4F59 /* messyCode2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = messyCode2D.hpp; path = headers/messyCode2D.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8990CA151E92C698007FD25C /* libecs.a in Frameworks */,
+				89E85C9D1E93F6CC00DA4F59 /* libecs.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,84 +83,60 @@
 		8990C9F01E92BD3A007FD25C /* MessyCode2D */ = {
 			isa = PBXGroup;
 			children = (
-				8990C9F81E92BE51007FD25C /* src */,
+				89E85C941E93F6B700DA4F59 /* libs */,
+				89E85C821E93F6A000DA4F59 /* src */,
+				89E85C811E93F69C00DA4F59 /* headers */,
 				8990C9F11E92BD3A007FD25C /* main.cpp */,
-				8990CA0D1E92C666007FD25C /* ecs */,
-				8990CA231E92D1D8007FD25C /* timer */,
 			);
 			path = MessyCode2D;
 			sourceTree = "<group>";
 		};
-		8990C9F81E92BE51007FD25C /* src */ = {
+		89E85C811E93F69C00DA4F59 /* headers */ = {
 			isa = PBXGroup;
 			children = (
-				8990CA201E92C7AF007FD25C /* messyCode2D.cpp */,
-				8990CA211E92C7AF007FD25C /* messyCode2D.hpp */,
-				8990CA291E92D8B4007FD25C /* gameEntity */,
-				8990CA061E92C320007FD25C /* scene */,
-				8990CA021E92C2E1007FD25C /* editor */,
+				89E85C9E1E93F6FF00DA4F59 /* messyCode2D.hpp */,
+				89E85C8E1E93F6B400DA4F59 /* gameComponent.hpp */,
+				89E85C8F1E93F6B400DA4F59 /* gameEntity.hpp */,
+				89E85C901E93F6B400DA4F59 /* messyCode2DEditor.hpp */,
+				89E85C911E93F6B400DA4F59 /* scene.hpp */,
+				89E85C921E93F6B400DA4F59 /* timer.hpp */,
+				89E85C931E93F6B400DA4F59 /* transform.hpp */,
+			);
+			name = headers;
+			sourceTree = "<group>";
+		};
+		89E85C821E93F6A000DA4F59 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				89E85C831E93F6AB00DA4F59 /* gameEntity.cpp */,
+				89E85C841E93F6AB00DA4F59 /* messyCode2D.cpp */,
+				89E85C861E93F6AB00DA4F59 /* messyCode2DEditor.cpp */,
+				89E85C871E93F6AB00DA4F59 /* scene.cpp */,
+				89E85C881E93F6AB00DA4F59 /* timer.cpp */,
 			);
 			name = src;
 			sourceTree = "<group>";
 		};
-		8990CA021E92C2E1007FD25C /* editor */ = {
+		89E85C941E93F6B700DA4F59 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				8990CA1D1E92C7A5007FD25C /* messyCode2DEditor.cpp */,
-				8990CA1E1E92C7A5007FD25C /* messyCode2DEditor.hpp */,
+				89E85C951E93F6C300DA4F59 /* ecs */,
 			);
-			name = editor;
+			name = libs;
 			sourceTree = "<group>";
 		};
-		8990CA061E92C320007FD25C /* scene */ = {
+		89E85C951E93F6C300DA4F59 /* ecs */ = {
 			isa = PBXGroup;
 			children = (
-				8990CA161E92C791007FD25C /* scene.cpp */,
-				8990CA171E92C791007FD25C /* scene.hpp */,
-			);
-			name = scene;
-			sourceTree = "<group>";
-		};
-		8990CA0D1E92C666007FD25C /* ecs */ = {
-			isa = PBXGroup;
-			children = (
-				8990CA0E1E92C698007FD25C /* component.hpp */,
-				8990CA0F1E92C698007FD25C /* entity.hpp */,
-				8990CA101E92C698007FD25C /* entityMatcher.hpp */,
-				8990CA111E92C698007FD25C /* filter.hpp */,
-				8990CA121E92C698007FD25C /* libecs.a */,
-				8990CA131E92C698007FD25C /* reactiveSystem.hpp */,
-				8990CA141E92C698007FD25C /* systemObserver.hpp */,
+				89E85C961E93F6CC00DA4F59 /* component.hpp */,
+				89E85C971E93F6CC00DA4F59 /* entity.hpp */,
+				89E85C981E93F6CC00DA4F59 /* entityMatcher.hpp */,
+				89E85C991E93F6CC00DA4F59 /* filter.hpp */,
+				89E85C9A1E93F6CC00DA4F59 /* libecs.a */,
+				89E85C9B1E93F6CC00DA4F59 /* reactiveSystem.hpp */,
+				89E85C9C1E93F6CC00DA4F59 /* systemObserver.hpp */,
 			);
 			name = ecs;
-			sourceTree = "<group>";
-		};
-		8990CA231E92D1D8007FD25C /* timer */ = {
-			isa = PBXGroup;
-			children = (
-				8990CA241E92D1FB007FD25C /* timer.cpp */,
-				8990CA251E92D1FB007FD25C /* timer.hpp */,
-			);
-			name = timer;
-			sourceTree = "<group>";
-		};
-		8990CA291E92D8B4007FD25C /* gameEntity */ = {
-			isa = PBXGroup;
-			children = (
-				8990CA331E92E0F5007FD25C /* components */,
-				8990CA2A1E92D8CE007FD25C /* gameEntity.cpp */,
-				8990CA2B1E92D8CE007FD25C /* gameEntity.hpp */,
-				8990CA311E92DA07007FD25C /* gameComponent.hpp */,
-			);
-			name = gameEntity;
-			sourceTree = "<group>";
-		};
-		8990CA331E92E0F5007FD25C /* components */ = {
-			isa = PBXGroup;
-			children = (
-				8990CA351E92E10F007FD25C /* transform.hpp */,
-			);
-			name = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,12 +196,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8990CA181E92C791007FD25C /* scene.cpp in Sources */,
-				8990CA261E92D1FB007FD25C /* timer.cpp in Sources */,
+				89E85C8C1E93F6AB00DA4F59 /* scene.cpp in Sources */,
+				89E85C891E93F6AB00DA4F59 /* gameEntity.cpp in Sources */,
 				8990C9F21E92BD3A007FD25C /* main.cpp in Sources */,
-				8990CA221E92C7AF007FD25C /* messyCode2D.cpp in Sources */,
-				8990CA2C1E92D8CE007FD25C /* gameEntity.cpp in Sources */,
-				8990CA1F1E92C7A5007FD25C /* messyCode2DEditor.cpp in Sources */,
+				89E85C8A1E93F6AB00DA4F59 /* messyCode2D.cpp in Sources */,
+				89E85C8B1E93F6AB00DA4F59 /* messyCode2DEditor.cpp in Sources */,
+				89E85C8D1E93F6AB00DA4F59 /* timer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +302,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MessyCode2D/libs",
 					"$(PROJECT_DIR)/MessyCode2D/src/ecs",
+					"$(PROJECT_DIR)/MessyCode2D/libs/ecs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -338,6 +315,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MessyCode2D/libs",
 					"$(PROJECT_DIR)/MessyCode2D/src/ecs",
+					"$(PROJECT_DIR)/MessyCode2D/libs/ecs",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
