@@ -1,5 +1,7 @@
 #include "transform.hpp"
 
+#include <iostream>
+
 namespace MessyCode2D_Engine {
     void Transform::Start() { }
 
