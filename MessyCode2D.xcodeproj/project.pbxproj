@@ -50,6 +50,7 @@
 		89E85C9B1E93F6CC00DA4F59 /* reactiveSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = reactiveSystem.hpp; path = libs/ecs/reactiveSystem.hpp; sourceTree = "<group>"; };
 		89E85C9C1E93F6CC00DA4F59 /* systemObserver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = systemObserver.hpp; path = libs/ecs/systemObserver.hpp; sourceTree = "<group>"; };
 		89E85C9E1E93F6FF00DA4F59 /* messyCode2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = messyCode2D.hpp; path = headers/messyCode2D.hpp; sourceTree = "<group>"; };
+		89E85CA01E93FABC00DA4F59 /* messyCode2DConfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = messyCode2DConfig.hpp; path = headers/messyCode2DConfig.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +102,7 @@
 				89E85C911E93F6B400DA4F59 /* scene.hpp */,
 				89E85C921E93F6B400DA4F59 /* timer.hpp */,
 				89E85C931E93F6B400DA4F59 /* transform.hpp */,
+				89E85CA01E93FABC00DA4F59 /* messyCode2DConfig.hpp */,
 			);
 			name = headers;
 			sourceTree = "<group>";
