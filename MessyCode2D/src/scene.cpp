@@ -1,14 +1,14 @@
 #include "scene.hpp"
 #include <iostream>
 
+// Temp code
 #include "gameEntity.hpp"
 #include "transform.hpp"
-
-#include <iostream>
 
 namespace MessyCode2D_Engine {
     void Scene::Build()
     {
+        // Temp code
         // Load sample entities to get the system started
         GameEntity* ent1 = new GameEntity();
         GameEntity* ent2 = new GameEntity();

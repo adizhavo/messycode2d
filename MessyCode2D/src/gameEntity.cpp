@@ -1,10 +1,5 @@
 #include "gameEntity.hpp"
-#include "component.hpp"
 #include "gameComponent.hpp"
-
-using namespace ECS;
-
-#include <iostream>
 
 namespace MessyCode2D_Engine {
     void GameEntity::Start()

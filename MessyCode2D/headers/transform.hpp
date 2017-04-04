@@ -1,7 +1,6 @@
 #ifndef transform_hpp
 #define transform_hpp
 
-#include "component.hpp"
 #include "gameComponent.hpp"
 #include <iostream>
 
