@@ -22,4 +22,12 @@ namespace MessyCode2D_Engine {
             gcmp->Update(elapseTime);
         }
     }
+    
+    void GameEntity::Destroy()
+    {
+        for (GameComponent* gcmp : GetComponents<GameComponent>())
+            gcmp->Destroy();
+        
+        RemoveAllComponents();
+    }
 }

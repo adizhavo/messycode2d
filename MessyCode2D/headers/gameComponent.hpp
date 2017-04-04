@@ -2,6 +2,7 @@
 #define gameComponent_hpp
 
 #include "component.hpp"
+#include "gameEntity.hpp"
 
 namespace MessyCode2D_Engine {
     CREATE_COMPONENT(GameComponent)
@@ -10,6 +11,12 @@ namespace MessyCode2D_Engine {
     
         virtual void Start() = 0;
         virtual void Update(float elapseTime) = 0;
+        virtual void Destroy() = 0;
+    
+        GameEntity* GetGameEntity()
+        {
+            return static_cast<GameEntity*>(entity);
+        }
     ENDCOMP
 }
 

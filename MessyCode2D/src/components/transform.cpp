@@ -5,6 +5,21 @@ namespace MessyCode2D_Engine {
 
     void Transform::Update(float elapseTime) { }
     
+    void Transform::Destroy()
+    {
+        if (this->parent != NULL)
+        {
+            this->parent->RemoveChild(this);
+            this->parent = 0;
+        }
+        
+        for (Transform* tr : this->childs)
+        {
+            tr->GetGameEntity()->Destroy();
+            tr->Destroy();
+        }
+    }
+    
     void Transform::SetParent(Transform* parent)
     {
         if (this->parent != NULL)

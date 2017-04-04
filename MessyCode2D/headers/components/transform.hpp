@@ -11,6 +11,7 @@ namespace MessyCode2D_Engine {
         float xPos, yPos, xAngle, yAngle, xScale, yScale;
         void Start();
         void Update(float elapseTime);
+        void Destroy();
         void SetParent(Transform* parent);
         Transform* GetParent();
         void AddChild(Transform* child);
