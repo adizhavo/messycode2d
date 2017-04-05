@@ -33,7 +33,7 @@
 		8990C9EE1E92BD3A007FD25C /* MessyCode2D */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MessyCode2D; sourceTree = BUILT_PRODUCTS_DIR; };
 		8990C9F11E92BD3A007FD25C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		89A2728B1E94FF6E00A96B8A /* gameComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = gameComponent.hpp; path = headers/components/gameComponent.hpp; sourceTree = "<group>"; };
-		89A2728E1E94FFAC00A96B8A /* transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transform.cpp; sourceTree = "<group>"; };
+		89A2728E1E94FFAC00A96B8A /* transform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = transform.cpp; path = src/components/transform.cpp; sourceTree = "<group>"; };
 		89E85C831E93F6AB00DA4F59 /* gameEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gameEntity.cpp; path = src/gameEntity.cpp; sourceTree = "<group>"; };
 		89E85C841E93F6AB00DA4F59 /* messyCode2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = messyCode2D.cpp; path = src/messyCode2D.cpp; sourceTree = "<group>"; };
 		89E85C861E93F6AB00DA4F59 /* messyCode2DEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = messyCode2DEditor.cpp; path = src/messyCode2DEditor.cpp; sourceTree = "<group>"; };
@@ -92,15 +92,6 @@
 				8990C9F11E92BD3A007FD25C /* main.cpp */,
 			);
 			path = MessyCode2D;
-			sourceTree = "<group>";
-		};
-		89A2728D1E94FFAC00A96B8A /* components */ = {
-			isa = PBXGroup;
-			children = (
-				89A2728E1E94FFAC00A96B8A /* transform.cpp */,
-			);
-			name = components;
-			path = src/components;
 			sourceTree = "<group>";
 		};
 		89E85C811E93F69C00DA4F59 /* headers */ = {
@@ -164,7 +155,7 @@
 		89E85CA31E940E9E00DA4F59 /* components */ = {
 			isa = PBXGroup;
 			children = (
-				89A2728D1E94FFAC00A96B8A /* components */,
+				89A2728E1E94FFAC00A96B8A /* transform.cpp */,
 			);
 			name = components;
 			sourceTree = "<group>";
