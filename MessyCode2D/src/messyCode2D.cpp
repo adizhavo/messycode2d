@@ -23,19 +23,19 @@ namespace MessyCode2D_Engine {
         this->timer->start();
         while(true)
         {
-            if (ShoulFeed())
+            if (ShouldUpdate())
             {
-                float elapseTime = this->timer->getTime();
+                float deltaTime = this->timer->getTime();
                 
-                this->scene->Update(elapseTime);
-                this->editor->Update(elapseTime);
+                this->scene->Update(deltaTime);
+                this->editor->Update(deltaTime);
                 
                 this->timer->reset();
             }
         }
     }
     
-    bool MessyCode2D::ShoulFeed()
+    bool MessyCode2D::ShouldUpdate()
     {
         return this->timer->getTime() > (1.0 / this->config->framePerSec);
     }

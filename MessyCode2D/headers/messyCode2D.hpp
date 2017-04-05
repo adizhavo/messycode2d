@@ -15,7 +15,7 @@ namespace MessyCode2D_Engine {
         Scene* scene;
         Timer* timer;
         
-        bool ShoulFeed();
+        bool ShouldUpdate();
         
     public:
         MessyCode2D(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor);

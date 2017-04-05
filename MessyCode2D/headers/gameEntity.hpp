@@ -9,17 +9,8 @@ namespace MessyCode2D_Engine {
     public:
         std::string name = "anonymous_game_entity";
         void Start();
-        void Update(float elapseTime);
+        void Update(float deltaTime);
         void Destroy();
-        
-        template<typename T> void RemoveGameComponent() {
-            T* gcomps = GetComponent<T>();
-            for (T* gcomp : gcomps)
-            {
-                gcomp->Destroy();
-                RemoveComponent(COMP_ID(T));
-            }
-        }
     };
 }
 

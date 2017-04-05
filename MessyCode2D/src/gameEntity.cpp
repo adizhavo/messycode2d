@@ -10,7 +10,7 @@ namespace MessyCode2D_Engine {
         }
     }
     
-    void GameEntity::Update(float elapseTime)
+    void GameEntity::Update(float deltaTime)
     {
         for (GameComponent* gcmp : GetComponents<GameComponent>()) {
             if (!gcmp->hasStarted)
@@ -19,7 +19,7 @@ namespace MessyCode2D_Engine {
                 gcmp->hasStarted = true;
             }
                 
-            gcmp->Update(elapseTime);
+            gcmp->Update(deltaTime);
         }
     }
     

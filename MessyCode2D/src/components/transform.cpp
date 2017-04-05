@@ -5,7 +5,7 @@
 namespace MessyCode2D_Engine {
     void Transform::Start() { }
 
-    void Transform::Update(float elapseTime) { }
+    void Transform::Update(float deltaTime) { }
     
     void Transform::Destroy()
     {
@@ -17,9 +17,10 @@ namespace MessyCode2D_Engine {
         
         for (Transform* tr : this->childs)
         {
-            tr->GetGameEntity()->Destroy();
             tr->Destroy();
         }
+        
+        this->entity->RemoveComponent<Transform>();
     }
     
     void Transform::SetParent(Transform* parent)
@@ -28,7 +29,9 @@ namespace MessyCode2D_Engine {
             this->parent->RemoveChild(this);
         
         this->parent = parent;
-        this->parent->AddChild(this);
+        
+        if (this->parent != NULL)
+            this->parent->AddChild(this);
     }
     
     Transform* Transform::GetParent()
@@ -44,6 +47,7 @@ namespace MessyCode2D_Engine {
     void Transform::RemoveChild(Transform* child)
     {
         this->childs.erase(std::remove(this->childs.begin(), this->childs.end(), child), this->childs.end());
+        child->SetParent(NULL);
     }
     
     std::vector<Transform*> Transform::GetChildren()

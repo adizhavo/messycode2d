@@ -13,7 +13,7 @@ namespace MessyCode2D_Engine {
         
         void Build();
         void Start();
-        void Update(float elapseTime);
+        void Update(float deltaTime);
         void AddGameEntity(GameEntity* ge);
         void RemoveGameEntity(GameEntity* ge);
     private:
