@@ -2,6 +2,7 @@
 #include "messyCode2D.hpp"
 #include "scene.hpp"
 #include "messyCode2DEditor.hpp"
+#include "messyCode2DConfig.hpp"
 
 using namespace MessyCode2D_Engine;
 
