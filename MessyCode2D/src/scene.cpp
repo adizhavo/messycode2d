@@ -51,5 +51,6 @@ namespace MessyCode2D_Engine {
     {
         this->gameEntities.erase(std::remove(this->gameEntities.begin(), this->gameEntities.end(), ge), this->gameEntities.end());
         ge->Destroy();
+        delete ge;
     }
 }

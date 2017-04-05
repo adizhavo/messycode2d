@@ -17,8 +17,8 @@ namespace MessyCode2D_Engine {
         
         for (Transform* tr : this->childs)
         {
-            tr->GetGameEntity()->Destroy();
             tr->Destroy();
+            delete tr;
         }
     }
     
