@@ -36,10 +36,10 @@ namespace MessyCode2D_Engine {
             ge->Start();
     }
     
-    void Scene::Update(float elapseTime)
+    void Scene::Update(float deltaTime)
     {
         for (GameEntity* ge : this->gameEntities)
-            ge->Update(elapseTime);
+            ge->Update(deltaTime);
     }
     
     void Scene::AddGameEntity(GameEntity* ge)

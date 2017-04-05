@@ -5,7 +5,7 @@
 namespace MessyCode2D_Engine {
     void Transform::Start() { }
 
-    void Transform::Update(float elapseTime) { }
+    void Transform::Update(float deltaTime) { }
     
     void Transform::Destroy()
     {

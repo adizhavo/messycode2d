@@ -5,7 +5,7 @@ namespace MessyCode2D_Engine {
     class MessyCode2DEditor
     {
     public:
-        void Update(float elapseTime);
+        void Update(float deltaTime);
     };
 }
 

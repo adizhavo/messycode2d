@@ -9,7 +9,7 @@ namespace MessyCode2D_Engine {
     public:
         std::string name = "anonymous_game_entity";
         void Start();
-        void Update(float elapseTime);
+        void Update(float deltaTime);
         void Destroy();
     };
 }
