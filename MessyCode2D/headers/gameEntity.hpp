@@ -11,15 +11,6 @@ namespace MessyCode2D_Engine {
         void Start();
         void Update(float elapseTime);
         void Destroy();
-        
-        template<typename T> void RemoveGameComponent() {
-            T* gcomps = GetComponent<T>();
-            for (T* gcomp : gcomps)
-            {
-                gcomp->Destroy();
-                RemoveComponent(COMP_ID(T));
-            }
-        }
     };
 }
 
