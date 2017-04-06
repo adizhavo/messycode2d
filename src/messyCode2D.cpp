@@ -1,8 +1,8 @@
-#include "messyCode2D.hpp"
-#include "messyCode2DEditor.hpp"
-#include "messyCode2DConfig.hpp"
-#include "scene.hpp"
-#include "timer.hpp"
+#include "headers/messyCode2D.hpp"
+#include "headers/messyCode2DEditor.hpp"
+#include "headers/messyCode2DConfig.hpp"
+#include "headers/scene.hpp"
+#include "headers/timer.hpp"
 
 namespace MessyCode2D_Engine {
     MessyCode2D::MessyCode2D(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor)

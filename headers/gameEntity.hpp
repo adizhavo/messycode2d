@@ -1,7 +1,7 @@
 #ifndef gameEntity_hpp
 #define gameEntity_hpp
 
-#include "entity.hpp"
+#include "libs/ecs/entity.hpp"
 #include <string>
 
 namespace MessyCode2D_Engine {
