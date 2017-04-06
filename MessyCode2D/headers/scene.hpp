@@ -18,6 +18,7 @@ namespace MessyCode2D_Engine {
         void RemoveGameEntity(GameEntity* ge);
     private:
         std::vector<GameEntity*> gameEntities;
+        int lastEntityId;
     };
 }
 #endif

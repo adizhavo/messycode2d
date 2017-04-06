@@ -7,6 +7,7 @@
 namespace MessyCode2D_Engine {
     class GameEntity : public ECS::Entity {
     public:
+        int id;
         std::string name = "anonymous_game_entity";
         void Start();
         void Update(float deltaTime);
