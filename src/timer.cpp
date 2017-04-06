@@ -1,6 +1,6 @@
 #include <iostream>
 #include <time.h>
-#include "timer.hpp"
+#include "headers/timer.hpp"
 
 namespace MessyCode2D_Engine {
     Timer::Timer() {

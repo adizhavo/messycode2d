@@ -1,5 +1,5 @@
-#include "gameEntity.hpp"
-#include "gameComponent.hpp"
+#include "headers/gameEntity.hpp"
+#include "headers/components/gameComponent.hpp"
 
 namespace MessyCode2D_Engine {
     void GameEntity::Start()
