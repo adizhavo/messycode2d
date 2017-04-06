@@ -45,6 +45,8 @@ namespace MessyCode2D_Engine {
     void Scene::AddGameEntity(GameEntity* ge)
     {
         this->gameEntities.push_back(ge);
+        this->lastEntityId ++;
+        ge->id = this->lastEntityId;
     }
     
     void Scene::RemoveGameEntity(GameEntity* ge)
