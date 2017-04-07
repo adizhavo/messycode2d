@@ -1,25 +1,31 @@
 #ifndef messyCode2D_hpp
 #define messyCode2D_hpp
 
+#include <QObject>
+#include <QTimer>
+#include <QElapsedTimer>
+
 namespace MessyCode2D_Engine {
     class MessyCodeConfig;
     class MessyCode2DEditor;
     class Scene;
-    class Timer;
     
-    class MessyCode2D
+    class MessyCode2D : public QObject
     {
+        Q_OBJECT
+
     private:
         MessyCodeConfig* config;
         MessyCode2DEditor* editor;
         Scene* scene;
-        Timer* timer;
-        
-        bool ShouldUpdate();
+        QTimer* timer;
+        QElapsedTimer* elapseTimer;
         
     public:
-        MessyCode2D(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor);
+        void Boot(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor);
         void Start();
+
+    public slots:
         void Loop();
     };
 }
