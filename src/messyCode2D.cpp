@@ -13,6 +13,7 @@ namespace MessyCode2D_Engine {
         this->timer = new QTimer();
         this->connect(timer, SIGNAL(timeout()), this, SLOT(Loop()));
 
+        scene->Build();
         timer->start((1.0 /config->framePerSec));
         elapseTimer->start();
     }
