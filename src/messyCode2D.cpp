@@ -1,16 +1,21 @@
-#include "headers/messyCode2D.hpp"
-#include "headers/messyCode2DEditor.hpp"
+#include "headers/editor/messyCode2DEditor.hpp"
 #include "headers/messyCode2DConfig.hpp"
 #include "headers/scene.hpp"
-#include "headers/timer.hpp"
+#include "headers/messyCode2D.hpp"
 
 namespace MessyCode2D_Engine {
-    MessyCode2D::MessyCode2D(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor)
+    void MessyCode2D::Boot(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor)
     {
         this->config = config;
         this->scene = scene;
         this->editor = editor;
-        this->timer = new Timer();
+        this->elapseTimer = new QElapsedTimer();
+        this->timer = new QTimer();
+        this->connect(timer, SIGNAL(timeout()), this, SLOT(Loop()));
+
+        scene->Build();
+        timer->start((1.0 /config->framePerSec));
+        elapseTimer->start();
     }
     
     void MessyCode2D::Start()
@@ -20,23 +25,8 @@ namespace MessyCode2D_Engine {
     
     void MessyCode2D::Loop()
     {
-        this->timer->start();
-        while(true)
-        {
-            if (ShouldUpdate())
-            {
-                float deltaTime = this->timer->getTime();
-                
-                this->scene->Update(deltaTime);
-                this->editor->Update(deltaTime);
-                
-                this->timer->reset();
-            }
-        }
-    }
-    
-    bool MessyCode2D::ShouldUpdate()
-    {
-        return this->timer->getTime() > (1.0 / this->config->framePerSec);
+        this->scene->Update(elapseTimer->elapsed());
+        this->editor->Update(elapseTimer->elapsed());
+        elapseTimer->restart();
     }
 }

@@ -1,7 +1,7 @@
 #ifndef gameComponent_hpp
 #define gameComponent_hpp
 
-#include "headers/gameEntity.hpp"
+#include "../gameEntity.hpp"
 
 namespace MessyCode2D_Engine {
     CREATE_COMPONENT(GameComponent)
