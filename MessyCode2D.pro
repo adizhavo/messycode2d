@@ -27,20 +27,20 @@ SOURCES += \
     src/components/transform.cpp \
     src/gameEntity.cpp \
     src/messyCode2D.cpp \
-    src/messyCode2DEditor.cpp \
     src/scene.cpp \
-    src/timer.cpp \
-    main.cpp
+    main.cpp \
+    src/editor/messyCode2DEditor.cpp \
+    src/editor/sceneHierarchy.cpp
 
 HEADERS  += \
-    headers/components/gameComponent.hpp \
-    headers/components/transform.hpp \
-    headers/gameEntity.hpp \
+    headers/components/gameComponent.hpp\
+    headers/components/transform.hpp\
+    headers/gameEntity.hpp\
     headers/messyCode2D.hpp \
     headers/messyCode2DConfig.hpp \
-    headers/messyCode2DEditor.hpp \
     headers/scene.hpp \
-    headers/timer.hpp \
+    headers/editor/messyCode2DEditor.hpp \
+    headers/editor/sceneHierarchy.hpp
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/ecs/release/ -lecs
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/ecs/debug/ -lecs
