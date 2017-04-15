@@ -1,4 +1,5 @@
 #include "headers/components/transform.hpp"
+#include "headers/scene.hpp"
 
 namespace MessyCode2D_Engine {
     Transform::Transform()
@@ -26,6 +27,7 @@ namespace MessyCode2D_Engine {
         }
 
         this->entity->RemoveComponent<Transform>();
+        Scene::instance->Refresh();
     }
 
     void Transform::Start() { }
@@ -41,6 +43,8 @@ namespace MessyCode2D_Engine {
         
         if (this->parent != NULL)
             this->parent->AddChild(this);
+
+        Scene::instance->Refresh();
     }
     
     Transform* Transform::GetParent()

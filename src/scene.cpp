@@ -28,14 +28,15 @@ namespace MessyCode2D_Engine {
         GameEntity* ent2 = new GameEntity();
         GameEntity* ent3 = new GameEntity();
         
-        Transform* tr = new Transform();
+        Transform* tr1 = new Transform();
         Transform* tr2 = new Transform();
         Transform* tr3 = new Transform();
-        ent1->AddComponent(tr);
+        ent1->AddComponent(tr1);
         ent2->AddComponent(tr2);
         ent3->AddComponent(tr3);
 
         tr3->SetParent(tr2);
+        tr2->SetParent(tr1);
         
         AddGameEntity(ent1);
         AddGameEntity(ent2);
@@ -48,6 +49,11 @@ namespace MessyCode2D_Engine {
             ge->Start();
     }
     
+    void Scene::Refresh()
+    {
+        emit UpdateScene();
+    }
+
     void Scene::Update(float deltaTime)
     {
         for (GameEntity* ge : this->gameEntities)
@@ -59,6 +65,8 @@ namespace MessyCode2D_Engine {
         this->gameEntities.push_back(ge);
         this->lastEntityId ++;
         ge->id = this->lastEntityId;
+
+        Refresh();
     }
     
     void Scene::RemoveGameEntity(GameEntity* ge)
@@ -67,5 +75,7 @@ namespace MessyCode2D_Engine {
         ge->Destroy();
         delete ge;
         ge = NULL;
+
+        Refresh();
     }
 }
