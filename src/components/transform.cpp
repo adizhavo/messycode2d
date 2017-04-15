@@ -1,27 +1,36 @@
 #include "headers/components/transform.hpp"
 
-#include <iostream>
-
 namespace MessyCode2D_Engine {
-    void Transform::Start() { }
+    Transform::Transform()
+    {
+        this->xPos = 0;
+        this->yPos = 0;
+        this->xAngle = 0;
+        this->yAngle = 0;
+        this->xScale = 0;
+        this->yScale = 0;
+    }
 
-    void Transform::Update(float deltaTime) { }
-    
-    void Transform::Destroy()
+    Transform::~Transform()
     {
         if (this->parent != NULL)
         {
             this->parent->RemoveChild(this);
             this->parent = 0;
         }
-        
+
         for (Transform* tr : this->childs)
         {
-            tr->Destroy();
+            delete tr;
+            tr = NULL;
         }
-        
+
         this->entity->RemoveComponent<Transform>();
     }
+
+    void Transform::Start() { }
+
+    void Transform::Update(float deltaTime) { }
     
     void Transform::SetParent(Transform* parent)
     {

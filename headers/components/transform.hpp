@@ -9,9 +9,12 @@ namespace MessyCode2D_Engine {
     {
     public:
         float xPos, yPos, xAngle, yAngle, xScale, yScale;
+
+        Transform();
+        ~Transform();
+
         void Start();
         void Update(float deltaTime);
-        void Destroy();
         void SetParent(Transform* parent);
         Transform* GetParent();
         void AddChild(Transform* child);

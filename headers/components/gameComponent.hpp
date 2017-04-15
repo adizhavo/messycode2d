@@ -6,22 +6,17 @@
 namespace MessyCode2D_Engine {
     CREATE_COMPONENT(GameComponent)
 public:
-    bool isEnabled = true;
-    bool hasStarted = false;
-    
+    bool isEnabled;
+    bool hasStarted;
+
+    GameComponent() {
+        isEnabled = true;
+        hasStarted = true;
+    }
+
     virtual void Start() = 0;
     virtual void Update(float deltaTime) = 0;
-    virtual void Destroy() = 0;
-    
-    void Cleanup()
-    {
-        this->Destroy();
-    }
-    
-    ~GameComponent()
-    {
-        this->Cleanup();
-    }
+    virtual ~GameComponent() { }
     ENDCOMP
 }
 
