@@ -15,7 +15,6 @@ namespace MessyCode2D_Engine {
 
         void Start();
         void Update(float deltaTime);
-        void Destroy();
     };
 }
 

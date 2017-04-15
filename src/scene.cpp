@@ -15,7 +15,7 @@ namespace MessyCode2D_Engine {
     Scene::~Scene()
     {
         for (GameEntity* ge : this->gameEntities)
-            RemoveGameEntity(ge);
+            delete ge;
 
         this->gameEntities.clear();
     }
@@ -72,9 +72,7 @@ namespace MessyCode2D_Engine {
     void Scene::RemoveGameEntity(GameEntity* ge)
     {
         this->gameEntities.erase(std::remove(this->gameEntities.begin(), this->gameEntities.end(), ge), this->gameEntities.end());
-        ge->Destroy();
         delete ge;
-        ge = NULL;
 
         Refresh();
     }

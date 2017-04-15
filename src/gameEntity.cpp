@@ -34,15 +34,4 @@ namespace MessyCode2D_Engine {
             gcmp->Update(deltaTime);
         }
     }
-    
-    void GameEntity::Destroy()
-    {
-        for (GameComponent* gcmp : GetComponents<GameComponent>())
-        {
-            delete gcmp;
-            gcmp = NULL;
-        }
-        
-        RemoveAllComponents();
-    }
 }
