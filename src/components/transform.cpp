@@ -23,10 +23,10 @@ namespace MessyCode2D_Engine {
         for (Transform* tr : this->childs)
         {
             delete tr;
-            tr = NULL;
         }
 
-        this->entity->RemoveComponent<Transform>();
+        this->childs.clear();
+        this->entity->RemoveComponent(unique_id());
         Scene::instance->Refresh();
     }
 
