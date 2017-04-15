@@ -4,7 +4,7 @@
 #include "../gameEntity.hpp"
 
 namespace MessyCode2D_Engine {
-    CREATE_COMPONENT(GameComponent)
+    CREATE_ABSTRACT_COMPONENT(GameComponent)
 public:
     bool isEnabled;
     bool hasStarted;
