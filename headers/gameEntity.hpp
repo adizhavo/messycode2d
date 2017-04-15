@@ -9,6 +9,10 @@ namespace MessyCode2D_Engine {
     public:
         int id;
         std::string name = "anonymous_game_entity";
+
+        GameEntity();
+        GameEntity(std::string name);
+
         void Start();
         void Update(float deltaTime);
         void Destroy();
