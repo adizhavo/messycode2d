@@ -12,7 +12,7 @@ namespace MessyCode2D_Engine {
     public:
         SceneHierarchy();
         ~SceneHierarchy();
-        void Update(float deltaTime);
+        void Update();
     private:
         QTreeWidget *treeWidget;
         ECS::Filter* gameEntityFilter;

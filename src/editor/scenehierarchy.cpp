@@ -21,7 +21,7 @@ namespace MessyCode2D_Engine {
         this->gameEntityFilter = NULL;
     }
 
-    void SceneHierarchy::Update(float deltaTime)
+    void SceneHierarchy::Update()
     {
         treeWidget->clear();
         treeWidget->setColumnCount(1);

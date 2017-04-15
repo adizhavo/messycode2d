@@ -13,8 +13,8 @@ namespace MessyCode2D_Engine {
         hierarchy = NULL;
     }
 
-    void MessyCode2DEditor::Update(float deltaTime)
+    void MessyCode2DEditor::Update()
     {
-        hierarchy->Update(deltaTime);
+        hierarchy->Update();
     }
 }
