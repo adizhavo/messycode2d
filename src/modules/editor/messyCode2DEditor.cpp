@@ -1,5 +1,5 @@
-#include "headers/editor/messyCode2DEditor.hpp"
-#include "headers/editor/scenehierarchy.hpp"
+#include "messyCode2DEditor.hpp"
+#include "scenehierarchy.hpp"
 
 namespace MessyCode2D_Engine {
     MessyCode2DEditor::MessyCode2DEditor()

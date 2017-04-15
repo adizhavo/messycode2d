@@ -1,5 +1,5 @@
-#include "headers/editor/scenehierarchy.hpp"
-#include "headers/components/transform.hpp"
+#include "scenehierarchy.hpp"
+#include "transform.hpp"
 #include "entityMatcher.hpp"
 
 using namespace ECS;

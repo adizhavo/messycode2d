@@ -1,7 +1,7 @@
-#include "headers/messyCode2D.hpp"
-#include "headers/scene.hpp"
-#include "headers/editor/messyCode2DEditor.hpp"
-#include "headers/messyCode2DConfig.hpp"
+#include "messyCode2D.hpp"
+#include "scene.hpp"
+#include "messyCode2DEditor.hpp"
+#include "messyCode2DConfig.hpp"
 #include <QApplication>
 #include <QObject>
 

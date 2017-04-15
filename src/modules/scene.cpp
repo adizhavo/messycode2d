@@ -1,8 +1,8 @@
-#include "headers/scene.hpp"
+#include "scene.hpp"
 
 // Temp code
-#include "headers/components/transform.hpp"
-#include "headers/gameEntity.hpp"
+#include "transform.hpp"
+#include "gameEntity.hpp"
 
 namespace MessyCode2D_Engine {
     Scene*Scene::instance;

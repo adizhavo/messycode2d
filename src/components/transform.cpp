@@ -1,5 +1,5 @@
-#include "headers/components/transform.hpp"
-#include "headers/scene.hpp"
+#include "transform.hpp"
+#include "scene.hpp"
 
 namespace MessyCode2D_Engine {
     Transform::Transform()

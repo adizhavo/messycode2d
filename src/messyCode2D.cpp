@@ -1,7 +1,7 @@
-#include "headers/editor/messyCode2DEditor.hpp"
-#include "headers/messyCode2DConfig.hpp"
-#include "headers/scene.hpp"
-#include "headers/messyCode2D.hpp"
+#include "messyCode2DEditor.hpp"
+#include "messyCode2DConfig.hpp"
+#include "scene.hpp"
+#include "messyCode2D.hpp"
 
 namespace MessyCode2D_Engine {
     MessyCode2D::~MessyCode2D()

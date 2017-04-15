@@ -27,10 +27,10 @@ SOURCES += \
     src/components/transform.cpp \
     src/gameEntity.cpp \
     src/messyCode2D.cpp \
-    src/scene.cpp \
     main.cpp \
-    src/editor/messyCode2DEditor.cpp \
-    src/editor/sceneHierarchy.cpp
+    src/modules/scene.cpp \
+    src/modules/editor/messyCode2DEditor.cpp \
+    src/modules/editor/scenehierarchy.cpp
 
 HEADERS  += \
     headers/components/gameComponent.hpp\
@@ -38,15 +38,20 @@ HEADERS  += \
     headers/gameEntity.hpp\
     headers/messyCode2D.hpp \
     headers/messyCode2DConfig.hpp \
-    headers/scene.hpp \
-    headers/editor/messyCode2DEditor.hpp \
-    headers/editor/sceneHierarchy.hpp
+    headers/modules/scene.hpp \
+    headers/modules/editor/messyCode2DEditor.hpp \
+    headers/modules/editor/scenehierarchy.hpp
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/ecs/release/ -lecs
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/ecs/debug/ -lecs
 else:unix: LIBS += -L$$PWD/libs/ecs/ -lecs
 
-INCLUDEPATH += $$PWD/libs/ecs
+INCLUDEPATH += \
+    $$PWD/libs/ecs\
+    headers/components\
+    headers\
+    headers/modules\
+    headers/modules/editor/\
 DEPENDPATH += $$PWD/libs/ecs
 
 win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/libs/ecs/release/libecs.a
