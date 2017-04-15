@@ -6,11 +6,22 @@
 
 namespace MessyCode2D_Engine {
     Scene*Scene::instance;
+
+    Scene::Scene()
+    {
+        Scene::instance = this;
+    }
+
+    Scene::~Scene()
+    {
+        for (GameEntity* ge : this->gameEntities)
+            RemoveGameEntity(ge);
+
+        this->gameEntities.clear();
+    }
     
     void Scene::Build()
     {
-        Scene::instance = this;
-        
         // Temp code
         // Load sample entities to get the system started
         GameEntity* ent1 = new GameEntity();
@@ -23,6 +34,8 @@ namespace MessyCode2D_Engine {
         ent1->AddComponent(tr);
         ent2->AddComponent(tr2);
         ent3->AddComponent(tr3);
+
+        tr3->SetParent(tr2);
         
         AddGameEntity(ent1);
         AddGameEntity(ent2);

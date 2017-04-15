@@ -16,6 +16,10 @@ namespace MessyCode2D_Engine {
         void Update(float deltaTime);
         void AddGameEntity(GameEntity* ge);
         void RemoveGameEntity(GameEntity* ge);
+
+        Scene();
+        ~Scene();
+
     private:
         std::vector<GameEntity*> gameEntities;
         int lastEntityId;
