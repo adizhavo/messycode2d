@@ -3,6 +3,7 @@
 #include "headers/editor/messyCode2DEditor.hpp"
 #include "headers/messyCode2DConfig.hpp"
 #include <QApplication>
+#include <QObject>
 
 using namespace MessyCode2D_Engine;
 
@@ -14,7 +15,9 @@ int main(int argc, char * argv[]) {
     MessyCode2DEditor editor;
     MessyCode2D engine;
 
-    engine.Boot(&config, &scene, &editor);
+    QObject::connect(&scene, SIGNAL(UpdateScene()), &editor, SLOT(Update()));
+
+    engine.Boot(&config, &scene);
     engine.Start();
 
     return a.exec();

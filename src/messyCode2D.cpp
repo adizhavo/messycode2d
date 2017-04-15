@@ -8,16 +8,14 @@ namespace MessyCode2D_Engine {
     {
         delete config;
         delete scene;
-        delete editor;
         delete elapseTimer;
         delete timer;
     }
 
-    void MessyCode2D::Boot(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor)
+    void MessyCode2D::Boot(MessyCodeConfig* config, Scene* scene)
     {
         this->config = config;
         this->scene = scene;
-        this->editor = editor;
         this->elapseTimer = new QElapsedTimer();
         this->timer = new QTimer();
         this->connect(timer, SIGNAL(timeout()), this, SLOT(Loop()));
@@ -35,7 +33,6 @@ namespace MessyCode2D_Engine {
     void MessyCode2D::Loop()
     {
         this->scene->Update(elapseTimer->elapsed());
-        this->editor->Update(elapseTimer->elapsed());
         elapseTimer->restart();
     }
 }

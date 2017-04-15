@@ -16,13 +16,12 @@ namespace MessyCode2D_Engine {
 
     private:
         MessyCodeConfig* config;
-        MessyCode2DEditor* editor;
         Scene* scene;
         QTimer* timer;
         QElapsedTimer* elapseTimer;
         
     public:
-        void Boot(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor);
+        void Boot(MessyCodeConfig* config, Scene* scene);
         void Start();
 
         ~MessyCode2D();
