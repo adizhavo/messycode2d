@@ -25,6 +25,8 @@ namespace MessyCode2D_Engine {
         void Boot(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor);
         void Start();
 
+        ~MessyCode2D();
+
     public slots:
         void Loop();
     };

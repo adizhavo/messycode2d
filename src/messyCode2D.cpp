@@ -4,6 +4,15 @@
 #include "headers/messyCode2D.hpp"
 
 namespace MessyCode2D_Engine {
+    MessyCode2D::~MessyCode2D()
+    {
+        delete config;
+        delete scene;
+        delete editor;
+        delete elapseTimer;
+        delete timer;
+    }
+
     void MessyCode2D::Boot(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor)
     {
         this->config = config;
