@@ -5,11 +5,16 @@
 using namespace ECS;
 
 namespace MessyCode2D_Engine {
-    SceneHierarchy::SceneHierarchy()
+    void SceneHierarchy::Boot()
     {
         this->treeWidget = new QTreeWidget();
-        gameEntityFilter = new Filter();
-        gameEntityFilter->AnyOf(1, COMP_ID(Transform));
+        this->gameEntityFilter = new Filter();
+        this->gameEntityFilter->AnyOf(1, COMP_ID(Transform));
+    }
+
+    void SceneHierarchy::Start()
+    {
+        Refresh();
     }
 
     SceneHierarchy::~SceneHierarchy()
@@ -21,10 +26,10 @@ namespace MessyCode2D_Engine {
         this->gameEntityFilter = NULL;
     }
 
-    void SceneHierarchy::Update()
+    void SceneHierarchy::Refresh()
     {
-        treeWidget->clear();
-        treeWidget->setColumnCount(1);
+        this->treeWidget->clear();
+        this->treeWidget->setColumnCount(1);
 
         QList<QTreeWidgetItem *> items;
         std::vector<Entity*> gameEntities = EntityMatcher::FilterGroup(*gameEntityFilter);
@@ -35,8 +40,8 @@ namespace MessyCode2D_Engine {
                 items.append(item);
         }
 
-        treeWidget->insertTopLevelItems(0, items);
-        treeWidget->show();
+        this->treeWidget->insertTopLevelItems(0, items);
+        this->treeWidget->show();
     }
 
     QTreeWidgetItem* SceneHierarchy::BuildTree(Entity* entity, bool blockIfParented)
