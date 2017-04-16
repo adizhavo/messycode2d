@@ -29,7 +29,7 @@ namespace MessyCode2D_Engine {
         this->childs.clear();
         this->entity->RemoveComponent(unique_id());
 
-        MessyCode2D::instance->GetModule<Hierarchy>()->Refresh();
+        MessyCode2D::GetModule<Hierarchy>()->Refresh();
     }
 
     void Transform::Start() { }
@@ -46,7 +46,7 @@ namespace MessyCode2D_Engine {
         if (this->parent != NULL)
             this->parent->AddChild(this);
 
-        MessyCode2D::instance->GetModule<Hierarchy>()->Refresh();
+        MessyCode2D::GetModule<Hierarchy>()->Refresh();
     }
     
     Transform* Transform::GetParent()

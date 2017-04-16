@@ -3,11 +3,10 @@
 #include "messyCode2DConfig.hpp"
 
 namespace MessyCode2D_Engine {
-    MessyCode2D*MessyCode2D::instance;
+    std::vector<MessyModule*>MessyCode2D::modules;
 
     MessyCode2D::MessyCode2D()
     {
-        instance = this;
         this->timer = new QTimer();
         this->elapseTimer = new QElapsedTimer();
         AddModule(new MessyCodeConfig());
@@ -15,7 +14,7 @@ namespace MessyCode2D_Engine {
 
     void MessyCode2D::AddModule(MessyModule *module)
     {
-        this->modules.push_back(module);
+        modules.push_back(module);
     }
 
     MessyCode2D::~MessyCode2D()

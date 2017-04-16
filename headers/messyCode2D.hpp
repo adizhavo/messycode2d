@@ -13,20 +13,19 @@ namespace MessyCode2D_Engine {
         Q_OBJECT
 
     private:
-        std::vector<MessyModule*> modules;
+        static std::vector<MessyModule*> modules;
         QElapsedTimer* elapseTimer;
         QTimer* timer;
-        
+
     public:
-        static MessyCode2D* instance;
-        void AddModule(MessyModule* module);
         void Boot();
         void Start();
 
         MessyCode2D();
         ~MessyCode2D();
 
-        template<typename T> T* GetModule() {
+        static void AddModule(MessyModule* module);
+        template<typename T> static T* GetModule() {
             for (MessyModule* module : modules) {
                T* m = dynamic_cast<T*>(module);
                if (m != NULL)
