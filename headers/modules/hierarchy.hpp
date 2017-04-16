@@ -19,6 +19,7 @@ namespace MessyCode2D_Engine {
         void Refresh();
         void AddMessyEntity(MessyEntity* ge);
         void RemoveMessyEntity(MessyEntity* ge);
+        void RemoveMessyEntity(int id);
         ~Hierarchy();
 
     private:

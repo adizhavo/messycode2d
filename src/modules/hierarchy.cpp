@@ -64,6 +64,16 @@ namespace MessyCode2D_Engine {
         Refresh();
     }
 
+    void Hierarchy::RemoveMessyEntity(int id)
+    {
+        for (MessyEntity* me : messyEntities)
+            if (me->id == id)
+            {
+                RemoveMessyEntity(me);
+                break;
+            }
+    }
+
     void Hierarchy::Refresh()
     {
         emit UpdateSignal();
