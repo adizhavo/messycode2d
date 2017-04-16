@@ -17,7 +17,12 @@ namespace MessyCode2D_Engine {
     EditorInspector::~EditorInspector()
     {
         delete inspector;
+        delete header;
+        delete layout;
+
         inspector = NULL;
+        header = NULL;
+        layout = NULL;
     }
 
     void EditorInspector::Boot()
