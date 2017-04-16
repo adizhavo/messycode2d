@@ -4,6 +4,8 @@
 #include <string>
 #include <map>
 #include <QTreeWidget>
+#include <QHBoxLayout>
+#include <QLabel>
 #include "messyModule.hpp"
 
 #define EDITOR_SERIALIZABLE                     \
@@ -89,6 +91,8 @@ namespace MessyCode2D_Engine {
 
     private:
         QWidget* inspector;
+        QLabel* header;
+        QHBoxLayout* layout;
     };
 }
 

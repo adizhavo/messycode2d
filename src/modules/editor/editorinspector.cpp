@@ -1,8 +1,6 @@
 #include "editorinspector.hpp"
 #include "editorHierarchy.hpp"
 #include "messyCode2D.hpp"
-#include <QHBoxLayout>
-#include <QLabel>
 #include <string>
 #include <sstream>
 
@@ -10,6 +8,10 @@ namespace MessyCode2D_Engine {
     EditorInspector::EditorInspector()
     {
         inspector = new QWidget();
+        header = new QLabel(inspector);
+        layout = new QHBoxLayout();
+        layout->addWidget(header);
+        inspector->setLayout(layout);
     }
 
     EditorInspector::~EditorInspector()
@@ -33,10 +35,8 @@ namespace MessyCode2D_Engine {
 
     void EditorInspector::Refresh(QTreeWidgetItem *item, int column)
     {
-        QLabel *label = new QLabel(inspector);
-        QHBoxLayout *layout = new QHBoxLayout();
-        label->setText("Selected entity, will show all entity properties");
-        layout->addWidget(label);
-        inspector->setLayout(layout);
+        HierarchyTreeWidget* hierarchyWidget = static_cast<HierarchyTreeWidget*>(item);
+        QString headerText = QString::fromStdString(hierarchyWidget->messyEntity->name);
+        header->setText(headerText);
     }
 }
