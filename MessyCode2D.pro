@@ -29,7 +29,6 @@ SOURCES += \
     src/messyCode2D.cpp \
     main.cpp \
     src/modules/scene.cpp \
-    src/modules/editor/messyCode2DEditor.cpp \
     src/modules/editor/scenehierarchy.cpp
 
 HEADERS  += \
@@ -39,8 +38,9 @@ HEADERS  += \
     headers/messyCode2D.hpp \
     headers/messyCode2DConfig.hpp \
     headers/modules/scene.hpp \
-    headers/modules/editor/messyCode2DEditor.hpp \
+    headers/modules/messyModule.hpp \
     headers/modules/editor/scenehierarchy.hpp
+
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/ecs/release/ -lecs
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/ecs/debug/ -lecs
