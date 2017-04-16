@@ -1,6 +1,7 @@
 #include "editorHierarchy.hpp"
 #include "transform.hpp"
 #include "entityMatcher.hpp"
+#include "messyEntity.hpp"
 
 using namespace ECS;
 

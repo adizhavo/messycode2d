@@ -1,7 +1,7 @@
 #ifndef gameComponent_hpp
 #define gameComponent_hpp
 
-#include "messyEntity.hpp"
+#include "component.hpp"
 
 namespace MessyCode2D_Engine {
     CREATE_ABSTRACT_COMPONENT(MessyComponent)
