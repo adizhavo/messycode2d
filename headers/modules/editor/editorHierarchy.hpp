@@ -2,10 +2,24 @@
 #define SCENEHIERARCHY_HPP
 
 #include <QTreeWidget>
+#include <string>
 #include "filter.hpp"
 #include "messyModule.hpp"
+#include "messyEntity.hpp"
 
 namespace MessyCode2D_Engine {
+    class HierarchyTreeWidget : public QTreeWidgetItem
+    {
+    public :
+        MessyEntity* messyEntity;
+
+        HierarchyTreeWidget(MessyEntity* me, const QString& string)
+        {
+            messyEntity = me;
+            this->setText(0, string);
+        }
+    };
+
     class EditorHierarchy : public QObject, public MessyModule
     {
         Q_OBJECT

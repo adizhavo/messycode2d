@@ -1,7 +1,6 @@
 #include "editorHierarchy.hpp"
 #include "transform.hpp"
 #include "entityMatcher.hpp"
-#include "messyEntity.hpp"
 
 using namespace ECS;
 
@@ -55,8 +54,9 @@ namespace MessyCode2D_Engine {
         if (blockIfParented && tr->GetParent() != NULL)
             return NULL;
 
-        QString entityName = QString::fromStdString(static_cast<MessyEntity*>(entity)->name);
-        QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(entityName));
+        MessyEntity* messyEntity = static_cast<MessyEntity*>(entity);
+        QString entityName = QString::fromStdString(messyEntity->name);
+        HierarchyTreeWidget* item = new HierarchyTreeWidget(messyEntity, entityName);
 
         for (Transform* children : tr->GetChildren())
         {
