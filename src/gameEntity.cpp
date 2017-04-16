@@ -1,7 +1,19 @@
-#include "headers/gameEntity.hpp"
-#include "headers/components/gameComponent.hpp"
+#include "gameEntity.hpp"
+#include "gameComponent.hpp"
 
 namespace MessyCode2D_Engine {
+    GameEntity::GameEntity()
+    {
+        this->id = 0;
+        this->name = "anonymous_game_entity";
+    }
+
+    GameEntity::GameEntity(std::string name)
+    {
+        this->id = 0;
+        this->name = name;
+    }
+
     void GameEntity::Start()
     {
         for (GameComponent* gcmp : GetComponents<GameComponent>()) {
@@ -21,13 +33,5 @@ namespace MessyCode2D_Engine {
                 
             gcmp->Update(deltaTime);
         }
-    }
-    
-    void GameEntity::Destroy()
-    {
-        for (GameComponent* gcmp : GetComponents<GameComponent>())
-            gcmp->Destroy();
-        
-        RemoveAllComponents();
     }
 }

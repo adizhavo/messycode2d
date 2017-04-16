@@ -1,27 +1,43 @@
-#include "headers/components/transform.hpp"
+#include "transform.hpp"
+#include "messyCode2D.hpp"
+#include "scene.hpp"
 
-#include <iostream>
+using namespace MessyCode2D_Engine;
 
 namespace MessyCode2D_Engine {
-    void Transform::Start() { }
+    Transform::Transform()
+    {
+        this->xPos = 0;
+        this->yPos = 0;
+        this->xAngle = 0;
+        this->yAngle = 0;
+        this->xScale = 0;
+        this->yScale = 0;
+    }
 
-    void Transform::Update(float deltaTime) { }
-    
-    void Transform::Destroy()
+    Transform::~Transform()
     {
         if (this->parent != NULL)
         {
             this->parent->RemoveChild(this);
             this->parent = 0;
         }
-        
+
         for (Transform* tr : this->childs)
         {
-            tr->Destroy();
+            delete tr;
         }
-        
-        this->entity->RemoveComponent<Transform>();
+
+        this->childs.clear();
+        this->entity->RemoveComponent(unique_id());
+
+        Scene* scene = MessyCode2D::instance->GetModule<Scene>();
+        scene->Refresh();
     }
+
+    void Transform::Start() { }
+
+    void Transform::Update(float deltaTime) { }
     
     void Transform::SetParent(Transform* parent)
     {
@@ -32,6 +48,9 @@ namespace MessyCode2D_Engine {
         
         if (this->parent != NULL)
             this->parent->AddChild(this);
+
+        Scene* scene = MessyCode2D::instance->GetModule<Scene>();
+        scene->Refresh();
     }
     
     Transform* Transform::GetParent()

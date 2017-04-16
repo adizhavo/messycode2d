@@ -3,21 +3,27 @@
 
 #include <QApplication>
 #include <QTreeWidget>
-
 #include "filter.hpp"
+#include "messyModule.hpp"
 
 namespace MessyCode2D_Engine {
-    class SceneHierarchy
+    class SceneHierarchy : public QObject, public MessyModule
     {
+        Q_OBJECT
+
     public:
-        SceneHierarchy();
+        void Boot();
+        void Start();
+        void Update(float deltaTime) { }
         ~SceneHierarchy();
-        void Update(float deltaTime);
     private:
         QTreeWidget *treeWidget;
         ECS::Filter* gameEntityFilter;
 
         QTreeWidgetItem* BuildTree(ECS::Entity* entity, bool blockIfParented);
+
+    public slots:
+        void Refresh();
     };
 }
 

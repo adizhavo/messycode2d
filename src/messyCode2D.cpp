@@ -1,32 +1,59 @@
-#include "headers/editor/messyCode2DEditor.hpp"
-#include "headers/messyCode2DConfig.hpp"
-#include "headers/scene.hpp"
-#include "headers/messyCode2D.hpp"
+#include "messyCode2D.hpp"
+#include "scene.hpp"
+#include "messyCode2DConfig.hpp"
+#if MESSY_LOGS
+#include <iostream>
+#endif
 
 namespace MessyCode2D_Engine {
-    void MessyCode2D::Boot(MessyCodeConfig* config, Scene* scene, MessyCode2DEditor* editor)
-    {
-        this->config = config;
-        this->scene = scene;
-        this->editor = editor;
-        this->elapseTimer = new QElapsedTimer();
-        this->timer = new QTimer();
-        this->connect(timer, SIGNAL(timeout()), this, SLOT(Loop()));
+    MessyCode2D*MessyCode2D::instance;
 
-        scene->Build();
-        timer->start((1.0 /config->framePerSec));
-        elapseTimer->start();
+    MessyCode2D::MessyCode2D()
+    {
+        instance = this;
+        this->timer = new QTimer();
+        this->elapseTimer = new QElapsedTimer();
+        AddService(new MessyCodeConfig());
+    }
+
+    void MessyCode2D::AddService(MessyModule *module)
+    {
+        this->modules.push_back(module);
+#if MESSY_LOGS
+        std::cout << "Module added : " << module->log ;
+#endif
+    }
+
+    MessyCode2D::~MessyCode2D()
+    {
+        for (MessyModule* module : modules)
+            delete module;
+        modules.clear();
+
+        delete timer;
+        delete elapseTimer;
+    }
+
+    void MessyCode2D::Boot()
+    {
+        for (MessyModule* module : modules)
+            module->Boot();
     }
     
     void MessyCode2D::Start()
     {
-        this->scene->Start();
+        for (MessyModule* module : modules)
+            module->Start();
+
+        this->connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
+        timer->start((1.0 / GetModule<MessyCodeConfig>()->framePerSec));
+        elapseTimer->start();
     }
     
-    void MessyCode2D::Loop()
+    void MessyCode2D::Update()
     {
-        this->scene->Update(elapseTimer->elapsed());
-        this->editor->Update(elapseTimer->elapsed());
+        for (MessyModule* module : modules)
+            module->Update(elapseTimer->elapsed());
         elapseTimer->restart();
     }
 }
