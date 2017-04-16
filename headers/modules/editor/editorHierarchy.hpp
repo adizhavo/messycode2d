@@ -1,7 +1,6 @@
 #ifndef SCENEHIERARCHY_HPP
 #define SCENEHIERARCHY_HPP
 
-#include <QApplication>
 #include <QTreeWidget>
 #include "filter.hpp"
 #include "messyModule.hpp"
@@ -16,8 +15,9 @@ namespace MessyCode2D_Engine {
         void Start();
         void Update(float deltaTime) { }
         ~EditorHierarchy();
-    private:
         QTreeWidget *treeWidget;
+
+    private:
         ECS::Filter* messyEntityFilter;
 
         QTreeWidgetItem* BuildTree(ECS::Entity* entity, bool blockIfParented);

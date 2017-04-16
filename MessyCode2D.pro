@@ -29,7 +29,8 @@ SOURCES += \
     main.cpp \
     src/modules/editor/editorHierarchy.cpp \
     src/modules/hierarchy.cpp \
-    src/messyEntity.cpp
+    src/messyEntity.cpp \
+    src/modules/editor/editorinspector.cpp
 
 HEADERS  += \
     headers/components/transform.hpp\
