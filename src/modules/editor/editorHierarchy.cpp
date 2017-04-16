@@ -8,6 +8,7 @@ namespace MessyCode2D_Engine {
     void EditorHierarchy::Boot()
     {
         this->treeWidget = new QTreeWidget();
+        this->treeWidget->setHeaderLabel("Hierarchy");
         this->messyEntityFilter = new Filter();
         this->messyEntityFilter->AnyOf(1, COMP_ID(Transform));
     }
@@ -51,7 +52,8 @@ namespace MessyCode2D_Engine {
         if (blockIfParented && tr->GetParent() != NULL)
             return NULL;
 
-        QTreeWidgetItem* item = new QTreeWidgetItem(   (QTreeWidget*)0,      QStringList(QString("entity"))     );
+        QString entityName = QString::fromStdString(static_cast<MessyEntity*>(entity)->name);
+        QTreeWidgetItem* item = new QTreeWidgetItem((QTreeWidget*)0, QStringList(entityName));
 
         for (Transform* children : tr->GetChildren())
         {
