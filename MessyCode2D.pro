@@ -39,7 +39,8 @@ HEADERS  += \
     headers/components/messyComponent.hpp \
     headers/messyEntity.hpp \
     headers/modules/hierarchy.hpp \
-    headers/modules/editor/editorHierarchy.hpp
+    headers/modules/editor/editorHierarchy.hpp \
+    headers/modules/editor/editorinspector.hpp
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/ecs/release/ -lecs
