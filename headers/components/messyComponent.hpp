@@ -1,22 +1,28 @@
 #ifndef gameComponent_hpp
 #define gameComponent_hpp
 
-#include "gameEntity.hpp"
+#include "component.hpp"
+#include "editorinspector.hpp"
 
 namespace MessyCode2D_Engine {
-    CREATE_ABSTRACT_COMPONENT(GameComponent)
+    CREATE_ABSTRACT_COMPONENT(MessyComponent)
 public:
-    bool isEnabled;
+
+    EDITOR_SERIALIZABLE
+    SERIALIZE_BOOL(isEnabled, true)
+
     bool hasStarted;
 
-    GameComponent() {
+    MessyComponent() {
+        SerializeisEnabled();
+
         isEnabled = true;
         hasStarted = true;
     }
 
     virtual void Start() = 0;
     virtual void Update(float deltaTime) = 0;
-    virtual ~GameComponent() { }
+    virtual ~MessyComponent() { }
     ENDCOMP
 }
 

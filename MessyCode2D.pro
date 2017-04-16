@@ -25,21 +25,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/components/transform.cpp \
-    src/gameEntity.cpp \
     src/messyCode2D.cpp \
     main.cpp \
-    src/modules/scene.cpp \
-    src/modules/editor/scenehierarchy.cpp
+    src/modules/editor/editorHierarchy.cpp \
+    src/modules/hierarchy.cpp \
+    src/messyEntity.cpp \
+    src/modules/editor/editorinspector.cpp
 
 HEADERS  += \
-    headers/components/gameComponent.hpp\
     headers/components/transform.hpp\
-    headers/gameEntity.hpp\
     headers/messyCode2D.hpp \
-    headers/modules/scene.hpp \
     headers/modules/messyCode2DConfig.hpp \
     headers/modules/messyModule.hpp \
-    headers/modules/editor/scenehierarchy.hpp
+    headers/components/messyComponent.hpp \
+    headers/messyEntity.hpp \
+    headers/modules/hierarchy.hpp \
+    headers/modules/editor/editorHierarchy.hpp \
+    headers/modules/editor/editorinspector.hpp
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/ecs/release/ -lecs

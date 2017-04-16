@@ -1,27 +1,20 @@
 #include "messyCode2D.hpp"
-#include "scene.hpp"
+#include "hierarchy.hpp"
 #include "messyCode2DConfig.hpp"
-#if MESSY_LOGS
-#include <iostream>
-#endif
 
 namespace MessyCode2D_Engine {
-    MessyCode2D*MessyCode2D::instance;
+    std::vector<MessyModule*>MessyCode2D::modules;
 
     MessyCode2D::MessyCode2D()
     {
-        instance = this;
         this->timer = new QTimer();
         this->elapseTimer = new QElapsedTimer();
-        AddService(new MessyCodeConfig());
+        AddModule(new MessyCodeConfig());
     }
 
-    void MessyCode2D::AddService(MessyModule *module)
+    void MessyCode2D::AddModule(MessyModule *module)
     {
-        this->modules.push_back(module);
-#if MESSY_LOGS
-        std::cout << "Module added : " << module->log ;
-#endif
+        modules.push_back(module);
     }
 
     MessyCode2D::~MessyCode2D()
