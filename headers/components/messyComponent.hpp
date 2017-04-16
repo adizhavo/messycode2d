@@ -1,22 +1,22 @@
 #ifndef gameComponent_hpp
 #define gameComponent_hpp
 
-#include "gameEntity.hpp"
+#include "messyEntity.hpp"
 
 namespace MessyCode2D_Engine {
-    CREATE_ABSTRACT_COMPONENT(GameComponent)
+    CREATE_ABSTRACT_COMPONENT(MessyComponent)
 public:
     bool isEnabled;
     bool hasStarted;
 
-    GameComponent() {
+    MessyComponent() {
         isEnabled = true;
         hasStarted = true;
     }
 
     virtual void Start() = 0;
     virtual void Update(float deltaTime) = 0;
-    virtual ~GameComponent() { }
+    virtual ~MessyComponent() { }
     ENDCOMP
 }
 

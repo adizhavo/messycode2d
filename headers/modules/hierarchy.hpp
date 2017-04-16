@@ -6,9 +6,9 @@
 #include "messyModule.hpp"
 
 namespace MessyCode2D_Engine {
-    class GameEntity;
+    class MessyEntity;
     
-    class Scene : public QObject, public MessyModule
+    class Hierarchy : public QObject, public MessyModule
     {
         Q_OBJECT
 
@@ -17,12 +17,12 @@ namespace MessyCode2D_Engine {
         void Start();
         void Update(float deltaTime);
         void Refresh();
-        void AddGameEntity(GameEntity* ge);
-        void RemoveGameEntity(GameEntity* ge);
-        ~Scene();
+        void AddMessyEntity(MessyEntity* ge);
+        void RemoveMessyEntity(MessyEntity* ge);
+        ~Hierarchy();
 
     private:
-        std::vector<GameEntity*> gameEntities;
+        std::vector<MessyEntity*> messyEntities;
         int lastEntityId;
 
     signals:

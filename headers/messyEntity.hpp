@@ -5,13 +5,13 @@
 #include <string>
 
 namespace MessyCode2D_Engine {
-    class GameEntity : public ECS::Entity {
+    class MessyEntity : public ECS::Entity {
     public:
         int id;
         std::string name = "anonymous_game_entity";
 
-        GameEntity();
-        GameEntity(std::string name);
+        MessyEntity();
+        MessyEntity(std::string name);
 
         void Start();
         void Update(float deltaTime);

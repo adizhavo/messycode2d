@@ -1,6 +1,6 @@
 #include "messyCode2D.hpp"
-#include "scene.hpp"
-#include "scenehierarchy.hpp"
+#include "hierarchy.hpp"
+#include "editorHierarchy.hpp"
 #include <QApplication>
 #include <QObject>
 
@@ -9,17 +9,17 @@ using namespace MessyCode2D_Engine;
 int main(int argc, char * argv[]) {
     QApplication a(argc, argv);
 
-    Scene scene;
-    SceneHierarchy hierarchy;
+    Hierarchy hierarchy;
+    EditorHierarchy editorHierarchy;
 
     MessyCode2D engine;
-    engine.AddService(&scene);
-    engine.AddService(&hierarchy);
+    engine.AddModule(&hierarchy);
+    engine.AddModule(&editorHierarchy);
 
     engine.Boot();
     engine.Start();
 
-    QObject::connect(&scene, SIGNAL(UpdateSignal()), &hierarchy, SLOT(Refresh()));
+    QObject::connect(&hierarchy, SIGNAL(UpdateSignal()), &editorHierarchy, SLOT(Refresh()));
 
     return a.exec();
 }

@@ -1,8 +1,6 @@
 #include "transform.hpp"
 #include "messyCode2D.hpp"
-#include "scene.hpp"
-
-using namespace MessyCode2D_Engine;
+#include "hierarchy.hpp"
 
 namespace MessyCode2D_Engine {
     Transform::Transform()
@@ -31,8 +29,7 @@ namespace MessyCode2D_Engine {
         this->childs.clear();
         this->entity->RemoveComponent(unique_id());
 
-        Scene* scene = MessyCode2D::instance->GetModule<Scene>();
-        scene->Refresh();
+        MessyCode2D::instance->GetModule<Hierarchy>()->Refresh();
     }
 
     void Transform::Start() { }
@@ -49,8 +46,7 @@ namespace MessyCode2D_Engine {
         if (this->parent != NULL)
             this->parent->AddChild(this);
 
-        Scene* scene = MessyCode2D::instance->GetModule<Scene>();
-        scene->Refresh();
+        MessyCode2D::instance->GetModule<Hierarchy>()->Refresh();
     }
     
     Transform* Transform::GetParent()

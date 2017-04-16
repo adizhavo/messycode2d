@@ -7,7 +7,7 @@
 #include "messyModule.hpp"
 
 namespace MessyCode2D_Engine {
-    class SceneHierarchy : public QObject, public MessyModule
+    class EditorHierarchy : public QObject, public MessyModule
     {
         Q_OBJECT
 
@@ -15,10 +15,10 @@ namespace MessyCode2D_Engine {
         void Boot();
         void Start();
         void Update(float deltaTime) { }
-        ~SceneHierarchy();
+        ~EditorHierarchy();
     private:
         QTreeWidget *treeWidget;
-        ECS::Filter* gameEntityFilter;
+        ECS::Filter* messyEntityFilter;
 
         QTreeWidgetItem* BuildTree(ECS::Entity* entity, bool blockIfParented);
 
