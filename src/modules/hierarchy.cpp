@@ -18,9 +18,9 @@ namespace MessyCode2D_Engine {
         this->lastEntityId = 0;
         // Temp code
         // Load sample entities to get the system started
-        MessyEntity* ent1 = new MessyEntity();
-        MessyEntity* ent2 = new MessyEntity();
-        MessyEntity* ent3 = new MessyEntity();
+        MessyEntity* ent1 = new MessyEntity("ent 1");
+        MessyEntity* ent2 = new MessyEntity("ent 2");
+        MessyEntity* ent3 = new MessyEntity("ent 3");
 
         Transform* tr1 = new Transform();
         Transform* tr2 = new Transform();
