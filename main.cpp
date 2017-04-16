@@ -1,7 +1,6 @@
 #include "messyCode2D.hpp"
 #include "scene.hpp"
 #include "scenehierarchy.hpp"
-#include "messyCode2DConfig.hpp"
 #include <QApplication>
 #include <QObject>
 

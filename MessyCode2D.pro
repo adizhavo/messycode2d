@@ -36,8 +36,8 @@ HEADERS  += \
     headers/components/transform.hpp\
     headers/gameEntity.hpp\
     headers/messyCode2D.hpp \
-    headers/messyCode2DConfig.hpp \
     headers/modules/scene.hpp \
+    headers/modules/messyCode2DConfig.hpp \
     headers/modules/messyModule.hpp \
     headers/modules/editor/scenehierarchy.hpp
 
