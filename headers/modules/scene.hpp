@@ -3,24 +3,22 @@
 
 #include <vector>
 #include <QObject>
+#include "messyModule.hpp"
 
 namespace MessyCode2D_Engine {
     class GameEntity;
     
-    class Scene : public QObject
+    class Scene : public QObject, public MessyModule
     {
         Q_OBJECT
 
     public:
-        static Scene* instance;
-        
-        void Build();
+        void Boot();
         void Start();
-        void Refresh();
         void Update(float deltaTime);
+        void Refresh();
         void AddGameEntity(GameEntity* ge);
         void RemoveGameEntity(GameEntity* ge);
-        Scene();
         ~Scene();
 
     private:
@@ -28,7 +26,7 @@ namespace MessyCode2D_Engine {
         int lastEntityId;
 
     signals:
-        void UpdateScene();
+        void UpdateSignal();
     };
 }
 #endif

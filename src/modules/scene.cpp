@@ -5,13 +5,6 @@
 #include "gameEntity.hpp"
 
 namespace MessyCode2D_Engine {
-    Scene*Scene::instance;
-
-    Scene::Scene()
-    {
-        Scene::instance = this;
-    }
-
     Scene::~Scene()
     {
         for (GameEntity* ge : this->gameEntities)
@@ -19,15 +12,16 @@ namespace MessyCode2D_Engine {
 
         this->gameEntities.clear();
     }
-    
-    void Scene::Build()
+
+    void Scene::Boot()
     {
+        this->lastEntityId = 0;
         // Temp code
         // Load sample entities to get the system started
         GameEntity* ent1 = new GameEntity();
         GameEntity* ent2 = new GameEntity();
         GameEntity* ent3 = new GameEntity();
-        
+
         Transform* tr1 = new Transform();
         Transform* tr2 = new Transform();
         Transform* tr3 = new Transform();
@@ -37,7 +31,7 @@ namespace MessyCode2D_Engine {
 
         tr3->SetParent(tr2);
         tr2->SetParent(tr1);
-        
+
         AddGameEntity(ent1);
         AddGameEntity(ent2);
         AddGameEntity(ent3);
@@ -48,24 +42,18 @@ namespace MessyCode2D_Engine {
         for (GameEntity* ge : this->gameEntities)
             ge->Start();
     }
-    
-    void Scene::Refresh()
-    {
-        emit UpdateScene();
-    }
 
     void Scene::Update(float deltaTime)
     {
         for (GameEntity* ge : this->gameEntities)
             ge->Update(deltaTime);
     }
-    
+
     void Scene::AddGameEntity(GameEntity* ge)
     {
         this->gameEntities.push_back(ge);
         this->lastEntityId ++;
         ge->id = this->lastEntityId;
-
         Refresh();
     }
     
@@ -73,7 +61,11 @@ namespace MessyCode2D_Engine {
     {
         this->gameEntities.erase(std::remove(this->gameEntities.begin(), this->gameEntities.end(), ge), this->gameEntities.end());
         delete ge;
-
         Refresh();
+    }
+
+    void Scene::Refresh()
+    {
+        emit UpdateSignal();
     }
 }
