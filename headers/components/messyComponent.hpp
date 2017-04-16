@@ -2,14 +2,20 @@
 #define gameComponent_hpp
 
 #include "component.hpp"
+#include "editorinspector.hpp"
 
 namespace MessyCode2D_Engine {
     CREATE_ABSTRACT_COMPONENT(MessyComponent)
 public:
-    bool isEnabled;
+
+    EDITOR_SERIALIZABLE
+    SERIALIZE_BOOL(isEnabled, true)
+
     bool hasStarted;
 
     MessyComponent() {
+        SerializeisEnabled();
+
         isEnabled = true;
         hasStarted = true;
     }
