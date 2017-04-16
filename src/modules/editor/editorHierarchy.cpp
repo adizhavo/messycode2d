@@ -10,6 +10,8 @@ namespace MessyCode2D_Engine {
     {
         this->treeWidget = new QTreeWidget();
         this->treeWidget->setHeaderLabel("Hierarchy");
+        this->treeWidget->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint );
+
         this->messyEntityFilter = new Filter();
         this->messyEntityFilter->AnyOf(1, COMP_ID(Transform));
     }
