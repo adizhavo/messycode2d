@@ -7,15 +7,10 @@
 namespace MessyCode2D_Engine {
     CREATE_ABSTRACT_COMPONENT(MessyComponent)
 public:
-
-    EDITOR_SERIALIZABLE
-    SERIALIZE_BOOL(isEnabled, true)
-
+    bool isEnabled;
     bool hasStarted;
 
     MessyComponent() {
-        SerializeisEnabled();
-
         isEnabled = true;
         hasStarted = true;
     }

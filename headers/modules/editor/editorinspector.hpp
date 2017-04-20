@@ -8,70 +8,65 @@
 #include <QLabel>
 #include "messyModule.hpp"
 
-#define EDITOR_SERIALIZABLE                     \
-public:                                         \
-    InspectorData inspectorData;                \
-    InspectorData* GetInspectorData()           \
-    {                                           \
-        return &inspectorData;                  \
-    }                                           \
+#define STARTSERIALIZE(s)                       \
+    public :                                    \
+        InspectorData* data[s] {                \
 
+#define SERIALIZE(t, n)                         \
+    new InspectorData("##t" ,"##n" ,&n )        \
 
-#define SERIALIZE_BOOL(name, default)           \
-public:                                         \
-    bool name;                                  \
-    void Serialize##name()                      \
-    {                                           \
-        name = default;                         \
-        inspectorData.AddBool(&name, "name");   \
-    }                                           \
+#define AND ,
 
-#define SERIALIZE_FLOAT(name, default)          \
-public:                                         \
-    float name;                                 \
-    void Serialize##name()                      \
-    {                                           \
-        name = default;                         \
-        inspectorData.AddFloat(&name, "name");  \
-    }                                           \
-
-#define SERIALIZE_STRING(name, default)         \
-public:                                         \
-    std::string name;                           \
-    void Serialize##name()                      \
-    {                                           \
-        name = default;                         \
-        inspectorData.AddString(&name, "name"); \
+#define ENDSERIALIZATION                        \
+    };                                          \
+    InspectorData** GetData() {                 \
+        return data;                            \
     }                                           \
 
 namespace MessyCode2D_Engine {
     using namespace std;
 
-    class InspectorData
+    struct InspectorData
     {
-        struct data {
-            map<string, bool*> booleans;
-            map<string, float*> floats;
-            map<string, string*> strings;
-        };
-
     public:
-        data inspectorData;
+        string id;
+        string name;
+        string* s;
+        int* i;
+        float* f;
+        bool* b;
 
-        void AddBool(bool* value, string label)
-        {
-            inspectorData.booleans.insert(pair<string, bool*>(label, value));
+        InspectorData(string id, string name, int* i){
+            this->id = id;
+            this->name = name;
+            this->i = i;
         }
 
-        void AddFloat(float* value, string label)
-        {
-            inspectorData.floats.insert(pair<string, float*>(label, value));
+        InspectorData(string id, string name, bool* b){
+            this->id = id;
+            this->name = name;
+            this->b = b;
         }
 
-        void AddString(string* value, string label)
+        InspectorData(string id, string name, float* f)
         {
-            inspectorData.strings.insert(pair<string, string*>(label, value));
+            this->id = id;
+            this->name = name;
+            this->f = f;
         }
+
+        InspectorData(string id, string name, string* s)
+        {
+            this->id = id;
+            this->name = name;
+            this->s = s;
+        }
+    };
+
+    class InspectorSerialize
+    {
+    public:
+        virtual InspectorData** GetData() = 0;
     };
 
     class EditorInspector : public QObject, public MessyModule
