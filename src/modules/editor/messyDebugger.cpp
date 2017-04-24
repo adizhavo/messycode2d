@@ -23,7 +23,7 @@ namespace MessyCode2D_Engine {
 
     void MessyDebugger::Boot()
     {
-        debugger->setWindowTitle(QString("Debugger"));
+        debugger->setWindowTitle(QString("Messy Console"));
         debugger->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     }
 
