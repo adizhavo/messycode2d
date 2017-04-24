@@ -4,8 +4,8 @@
 namespace MessyCode2D_Engine {
     MessyEntity::MessyEntity()
     {
-        this->id = 0;
-        this->name = "anonymous_messy_entity";
+        // Is not added yet to the hierarchy
+        this->id = -1;
     }
 
     MessyEntity::MessyEntity(std::string name)

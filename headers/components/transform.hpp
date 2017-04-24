@@ -5,8 +5,11 @@
 #include "editorinspector.hpp"
 #include <vector>
 
+// Transform component of the engine
+// Used to locate an entity in space
+
 namespace MessyCode2D_Engine {
-    class Transform : public MessyComponent, public InspectorSerialize
+    class Transform : public MessyComponent, public InspectorSerializer
     {
     public:
         float xPos, yPos, xAngle, yAngle, xScale, yScale;

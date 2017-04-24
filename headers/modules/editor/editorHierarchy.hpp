@@ -7,6 +7,8 @@
 #include "messyModule.hpp"
 #include "messyEntity.hpp"
 
+// Hierarchy GUI with a QTreeWidget
+
 namespace MessyCode2D_Engine {
     class EditorHierarchy : public QObject, public MessyModule
     {

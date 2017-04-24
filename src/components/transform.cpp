@@ -12,6 +12,7 @@ namespace MessyCode2D_Engine {
         this->yAngle = 0;
         this->xScale = 0;
         this->yScale = 0;
+        this->parent = NULL;
     }
 
     Transform::~Transform()

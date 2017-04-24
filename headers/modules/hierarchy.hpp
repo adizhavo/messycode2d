@@ -5,6 +5,9 @@
 #include <QObject>
 #include "messyModule.hpp"
 
+// Holds all the entity with hierarchies in the scene
+// Can be considered as the world of the engine
+
 namespace MessyCode2D_Engine {
     class MessyEntity;
     

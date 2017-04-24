@@ -7,6 +7,8 @@
 #include <vector>
 #include "messyModule.hpp"
 
+// Game Loop, updates all the the services, game entities and game components
+
 namespace MessyCode2D_Engine {
     class MessyCode2D : public QObject
     {

@@ -7,9 +7,10 @@ using namespace ECS;
 namespace MessyCode2D_Engine {
     void EditorHierarchy::Boot()
     {
+        // Create GUI elements and the entity filter
         this->treeWidget = new QTreeWidget();
         this->treeWidget->setHeaderLabel("Hierarchy");
-        this->treeWidget->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint );
+        this->treeWidget->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
         this->messyEntityFilter = new Filter();
         this->messyEntityFilter->AnyOf(1, COMP_ID(Transform));
@@ -35,6 +36,7 @@ namespace MessyCode2D_Engine {
         this->treeWidget->setColumnCount(1);
 
         QList<QTreeWidgetItem *> items;
+        // Get all the entity by the filter
         std::vector<Entity*> messyEntities = EntityMatcher::FilterGroup(*messyEntityFilter);
         for (Entity* entity : messyEntities)
         {
@@ -47,6 +49,7 @@ namespace MessyCode2D_Engine {
         this->treeWidget->show();
     }
 
+    // The additional boolean is to stop the recursion for the first entity without a parent
     QTreeWidgetItem* EditorHierarchy::BuildTree(Entity* entity, bool blockIfParented)
     {
         Transform* tr = entity->GetComponent<Transform>();
