@@ -2,6 +2,7 @@
 #include "hierarchy.hpp"
 #include "editorHierarchy.hpp"
 #include "editorinspector.hpp"
+#include "messydebugger.hpp"
 #include <QApplication>
 #include <QObject>
 
@@ -13,11 +14,13 @@ int main(int argc, char * argv[]) {
     Hierarchy hierarchy;
     EditorHierarchy editorHierarchy;
     EditorInspector editorInspector;
+    MessyDebugger editorDebugger;
 
     MessyCode2D engine;
     MessyCode2D::AddModule(&hierarchy);
     MessyCode2D::AddModule(&editorHierarchy);
     MessyCode2D::AddModule(&editorInspector);
+    MessyCode2D::AddModule(&editorDebugger);
 
     engine.Boot();
     engine.Start();
