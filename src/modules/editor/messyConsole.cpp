@@ -1,56 +1,56 @@
-#include "messyDebugger.hpp"
+#include "messyConsole.hpp"
 #include "messyCode2D.hpp"
 #include "messyCommandReceiver.hpp"
 
 namespace MessyCode2D_Engine {
-    MessyDebugger::MessyDebugger()
+    MessyConsole::MessyConsole()
     {
-        debugger = new QWidget();
-        debugger->resize(300, 200);
-        lineEdit = new QLineEdit(debugger);
+        console = new QWidget();
+        console->resize(300, 200);
+        lineEdit = new QLineEdit(console);
         lineEdit->installEventFilter(this);
         QObject::connect(lineEdit, SIGNAL(textEdited(QString)),this, SLOT(CommandEdited(QString)));
     }
 
-    MessyDebugger::~MessyDebugger()
+    MessyConsole::~MessyConsole()
     {
-        delete debugger;
+        delete console;
         delete lineEdit;
 
-        debugger = NULL;
+        console = NULL;
         lineEdit = NULL;
     }
 
-    void MessyDebugger::Boot()
+    void MessyConsole::Boot()
     {
-        debugger->setWindowTitle(QString("Messy Console"));
-        debugger->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+        console->setWindowTitle(QString("Messy Console"));
+        console->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     }
 
-    void MessyDebugger::Start()
+    void MessyConsole::Start()
     {
-        debugger->show();
+        console->show();
     }
 
-    void MessyDebugger::Update(float elapseTime) { }
+    void MessyConsole::Update(float elapseTime) { }
 
-    void MessyDebugger::AddReceiver(MessyCommandReceiver* receiver)
+    void MessyConsole::AddReceiver(MessyCommandReceiver* receiver)
     {
         receivers.push_back(receiver);
     }
 
-    void MessyDebugger::RemoveReceiver(MessyCommandReceiver* receiver)
+    void MessyConsole::RemoveReceiver(MessyCommandReceiver* receiver)
     {
         this->receivers.erase(std::remove(this->receivers.begin(), this->receivers.end(), receiver), this->receivers.end());
     }
 
-    void MessyDebugger::NotifyReceivers()
+    void MessyConsole::NotifyReceivers()
     {
         for (MessyCommandReceiver* receiver : receivers)
             receiver->ReceiveCommand(lastCommand.toStdString());
     }
 
-    bool MessyDebugger::eventFilter(QObject *obj, QEvent *event)
+    bool MessyConsole::eventFilter(QObject *obj, QEvent *event)
     {
         if (event->type() == QEvent::KeyPress) {
                QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
@@ -64,7 +64,7 @@ namespace MessyCode2D_Engine {
         return false;
     }
 
-    void MessyDebugger::CommandEdited(const QString &text)
+    void MessyConsole::CommandEdited(const QString &text)
     {
         lastCommand = text;
     }

@@ -13,13 +13,13 @@ namespace MessyCode2D_Engine {
 
     class MessyCommandReceiver;
 
-    class MessyDebugger : public QObject, public MessyModule
+    class MessyConsole : public QObject, public MessyModule
     {
         Q_OBJECT
 
     public:
-        MessyDebugger();
-        ~MessyDebugger();
+        MessyConsole();
+        ~MessyConsole();
 
         void Boot();
         void Start();

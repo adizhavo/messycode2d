@@ -31,8 +31,8 @@ SOURCES += \
     src/modules/hierarchy.cpp \
     src/messyEntity.cpp \
     src/modules/editor/editorinspector.cpp \
-    src/modules/editor/messyDebugger.cpp \
     src/modules/editor/messyCommandReceiver.cpp \
+    src/modules/editor/messyConsole.cpp
 
 HEADERS  += \
     headers/components/transform.hpp\
@@ -44,8 +44,8 @@ HEADERS  += \
     headers/modules/hierarchy.hpp \
     headers/modules/editor/editorHierarchy.hpp \
     headers/modules/editor/editorinspector.hpp \
-    headers/modules/editor/messyDebugger.hpp \
     headers/modules/editor/messyCommandReceiver.hpp \
+    headers/modules/editor/messyConsole.hpp
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/ecs/release/ -lecs

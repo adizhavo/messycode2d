@@ -2,13 +2,13 @@
 
 namespace MessyCode2D_Engine {
     MessyCommandReceiver::MessyCommandReceiver() {
-    debugger = MessyCode2D::GetModule<MessyDebugger>();
-        if (debugger != NULL)
-            debugger->AddReceiver(this);
+    console = MessyCode2D::GetModule<MessyConsole>();
+        if (console != NULL)
+            console->AddReceiver(this);
     }
 
     MessyCommandReceiver::~MessyCommandReceiver() {
-        if (debugger != NULL)
-            debugger->RemoveReceiver(this);
+        if (console != NULL)
+            console->RemoveReceiver(this);
     }
 }
