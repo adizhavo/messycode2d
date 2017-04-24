@@ -23,7 +23,7 @@ namespace MessyCode2D_Engine {
     void EditorInspector::Boot()
     {
         inspector->setWindowTitle(QString("Inspector"));
-        inspector->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint );
+        inspector->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     }
 
     void EditorInspector::Start()

@@ -24,7 +24,7 @@ namespace MessyCode2D_Engine {
     private:
         ECS::Filter* messyEntityFilter;
 
-        QTreeWidgetItem* BuildTree(ECS::Entity* entity);
+        QTreeWidgetItem* BuildTree(ECS::Entity* entity, bool blockIfParented);
 
     public slots:
         void Refresh();

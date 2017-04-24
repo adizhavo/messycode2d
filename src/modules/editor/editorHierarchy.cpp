@@ -10,7 +10,7 @@ namespace MessyCode2D_Engine {
         // Create GUI elements and the entity filter
         this->treeWidget = new QTreeWidget();
         this->treeWidget->setHeaderLabel("Hierarchy");
-        this->treeWidget->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint );
+        this->treeWidget->setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 
         this->messyEntityFilter = new Filter();
         this->messyEntityFilter->AnyOf(1, COMP_ID(Transform));
@@ -54,7 +54,7 @@ namespace MessyCode2D_Engine {
     {
         Transform* tr = entity->GetComponent<Transform>();
 
-        if (tr->GetParent() != NULL)
+        if (blockIfParented && tr->GetParent() != NULL)
             return NULL;
 
         MessyEntity* messyEntity = static_cast<MessyEntity*>(entity);
