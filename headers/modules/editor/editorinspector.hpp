@@ -2,18 +2,17 @@
 #define EDITORINSPECTOR_H
 
 #include <string>
-#include <map>
 #include <QTreeWidget>
-#include <QHBoxLayout>
-#include <QLabel>
+#include <QVBoxLayout>
 #include "messyModule.hpp"
 
 #define STARTSERIALIZE(s)                       \
     public :                                    \
+        int size = s;                           \
         InspectorData* data[s] {                \
 
 #define SERIALIZE(t, n)                         \
-    new InspectorData("##t" ,"##n" ,&n )        \
+    new InspectorData( #t , #n, &n )            \
 
 #define AND ,
 
@@ -22,6 +21,7 @@
     InspectorData** GetData() {                 \
         return data;                            \
     }                                           \
+    int Size() { return size; }                 \
 
 namespace MessyCode2D_Engine {
     using namespace std;
@@ -67,6 +67,7 @@ namespace MessyCode2D_Engine {
     {
     public:
         virtual InspectorData** GetData() = 0;
+        virtual int Size() = 0;
     };
 
     class EditorInspector : public QObject, public MessyModule
@@ -86,8 +87,11 @@ namespace MessyCode2D_Engine {
 
     private:
         QWidget* inspector;
-        QLabel* header;
-        QHBoxLayout* layout;
+        QVBoxLayout *inspectorLayout;
+        vector<QWidget*> widgets;
+
+        QWidget* GetFieldWidget(InspectorData* data);
+        void ClearWidgets();
     };
 }
 
