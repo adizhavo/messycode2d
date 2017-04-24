@@ -28,7 +28,7 @@ namespace MessyCode2D_Engine {
         void RemoveReceiver(MessyCommandReceiver* receiver);
 
     private:
-        QWidget* debugger;
+        QWidget* console;
         std::vector<MessyCommandReceiver*> receivers;
         QLineEdit* lineEdit;
         QString lastCommand;

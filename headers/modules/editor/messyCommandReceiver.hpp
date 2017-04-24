@@ -2,7 +2,7 @@
 #define MESSYCOMMANDRECEIVER_H
 
 #include "messyCode2D.hpp"
-#include "messyDebugger.hpp"
+#include "messyConsole.hpp"
 
 namespace MessyCode2D_Engine {
     // Inherit to receive commands form the Editor console
@@ -10,7 +10,7 @@ namespace MessyCode2D_Engine {
     class MessyCommandReceiver
     {
     private:
-        MessyDebugger* debugger = 0;
+        MessyConsole* console = 0;
 
     public:
         MessyCommandReceiver();

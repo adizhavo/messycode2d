@@ -2,7 +2,7 @@
 #include "hierarchy.hpp"
 #include "editorHierarchy.hpp"
 #include "editorinspector.hpp"
-#include "messydebugger.hpp"
+#include "messyConsole.hpp"
 #include <QApplication>
 #include <QObject>
 
@@ -14,7 +14,7 @@ int main(int argc, char * argv[]) {
     Hierarchy hierarchy;
     EditorHierarchy editorHierarchy;
     EditorInspector editorInspector;
-    MessyDebugger editorDebugger;
+    MessyConsole editorDebugger;
 
     MessyCode2D engine;
     MessyCode2D::AddModule(&hierarchy);
