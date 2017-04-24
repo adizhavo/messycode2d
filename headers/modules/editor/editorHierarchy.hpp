@@ -7,6 +7,8 @@
 #include "messyModule.hpp"
 #include "messyEntity.hpp"
 
+// Hierarchy GUI with a QTreeWidget
+
 namespace MessyCode2D_Engine {
     class EditorHierarchy : public QObject, public MessyModule
     {
@@ -22,7 +24,7 @@ namespace MessyCode2D_Engine {
     private:
         ECS::Filter* messyEntityFilter;
 
-        QTreeWidgetItem* BuildTree(ECS::Entity* entity, bool blockIfParented);
+        QTreeWidgetItem* BuildTree(ECS::Entity* entity);
 
     public slots:
         void Refresh();

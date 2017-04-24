@@ -1,6 +1,8 @@
 #ifndef MESSY_MODULE
 #define MESSY_MODULE
 
+// Every module that wants to use the ServiceLocator of the engine
+
 namespace MessyCode2D_Engine {
     class MessyModule {
       public:

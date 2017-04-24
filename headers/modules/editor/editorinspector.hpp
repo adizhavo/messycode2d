@@ -6,6 +6,8 @@
 #include <QVBoxLayout>
 #include "messyModule.hpp"
 
+// Macro to define to serialize a variable and see it in the editor
+
 #define STARTSERIALIZE(s)                       \
     public :                                    \
         int size = s;                           \
@@ -25,6 +27,8 @@
 
 namespace MessyCode2D_Engine {
     using namespace std;
+
+    // Data strucure used by the macro to point and serialize components variables
 
     struct InspectorData
     {
@@ -63,12 +67,16 @@ namespace MessyCode2D_Engine {
         }
     };
 
+    // Wrapper to return the data structure, should be inheret from a component
+
     class InspectorSerializer
     {
     public:
         virtual InspectorData** GetData() = 0;
         virtual int Size() = 0;
     };
+
+    // Editor inspector GUI
 
     class EditorInspector : public QObject, public MessyModule
     {

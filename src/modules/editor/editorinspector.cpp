@@ -1,5 +1,5 @@
 #include "editorinspector.hpp"
-#include "entityMatcher.hpp"
+#include "editorHierarchy.hpp"
 #include <QString>
 #include <QLabel>
 
@@ -55,6 +55,7 @@ namespace MessyCode2D_Engine {
         }
     }
 
+    // Get a widget for each serialized field
     QWidget* EditorInspector::GetFieldWidget(InspectorData* data)
     {
         QString s;

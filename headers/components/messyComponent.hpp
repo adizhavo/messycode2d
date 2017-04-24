@@ -4,6 +4,8 @@
 #include "component.hpp"
 #include "editorinspector.hpp"
 
+// Base component of the engine
+
 namespace MessyCode2D_Engine {
     CREATE_ABSTRACT_COMPONENT(MessyComponent)
 public:
