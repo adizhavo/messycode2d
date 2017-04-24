@@ -1,5 +1,4 @@
 #include "editorinspector.hpp"
-#include "editorHierarchy.hpp"
 #include "entityMatcher.hpp"
 #include <QString>
 #include <QLabel>
@@ -39,23 +38,19 @@ namespace MessyCode2D_Engine {
         ClearWidgets();
 
         // Get all the serializable components from the entity
-        HierarchyTreeWidget* hierarchyWidget = static_cast<HierarchyTreeWidget*>(item);
-        vector<InspectorSerialize*> serialized = hierarchyWidget->messyEntity->GetComponents<InspectorSerialize>();
+        HierarchyTreeWidget* hierarchyTree = static_cast<HierarchyTreeWidget*>(item);
+        vector<InspectorSerializer*> serializable = hierarchyTree->messyEntity->GetComponents<InspectorSerializer>();
 
-        for (InspectorSerialize* scmp : serialized)
+        for (InspectorSerializer* is : serializable)
         {
-            InspectorData** data = scmp->GetData();
-            for (int i = 0; i < scmp->Size(); i ++)
+            InspectorData** data = is->GetData();
+            for (int i = 0; i < is->Size(); i ++)
             {
                 // Get the widget displaying the data
                 QWidget* widget = GetFieldWidget(data[i]);
-                if (widget != NULL)
-                {
-                    // Create the parent widget with height
-                    widgets.push_back(widget);
-                    inspectorLayout->addWidget(widget);
-                    widget->show();
-                }
+                widgets.push_back(widget);
+                inspectorLayout->addWidget(widget);
+                widget->show();
             }
         }
     }

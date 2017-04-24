@@ -63,7 +63,7 @@ namespace MessyCode2D_Engine {
         }
     };
 
-    class InspectorSerialize
+    class InspectorSerializer
     {
     public:
         virtual InspectorData** GetData() = 0;

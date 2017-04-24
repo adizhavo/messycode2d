@@ -6,7 +6,7 @@
 #include <vector>
 
 namespace MessyCode2D_Engine {
-    class Transform : public MessyComponent, public InspectorSerialize
+    class Transform : public MessyComponent, public InspectorSerializer
     {
     public:
         float xPos, yPos, xAngle, yAngle, xScale, yScale;
