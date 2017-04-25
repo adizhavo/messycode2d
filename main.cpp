@@ -14,13 +14,13 @@ int main(int argc, char * argv[]) {
     Hierarchy hierarchy;
     EditorHierarchy editorHierarchy;
     EditorInspector editorInspector;
-    MessyConsole editorDebugger;
+    MessyConsole editorConsole;
 
     MessyCode2D engine;
     MessyCode2D::AddModule(&hierarchy);
     MessyCode2D::AddModule(&editorHierarchy);
     MessyCode2D::AddModule(&editorInspector);
-    MessyCode2D::AddModule(&editorDebugger);
+    MessyCode2D::AddModule(&editorConsole);
 
     engine.Boot();
     engine.Start();
