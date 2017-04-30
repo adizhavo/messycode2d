@@ -20,7 +20,8 @@ namespace MessyCode2D_Engine {
     MessyCode2D::~MessyCode2D()
     {
         for (MessyModule* module : modules)
-            delete module;
+            if (module != NULL)
+                delete module;
         modules.clear();
 
         delete timer;
