@@ -9,7 +9,7 @@
 #include <vector>
 
 namespace MessyCode2D_Engine {
-    // Debugger GUI, input handler and logs
+    // Console GUI, input handler and logs
 
     class MessyCommandReceiver;
 

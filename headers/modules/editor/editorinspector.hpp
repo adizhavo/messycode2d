@@ -6,7 +6,7 @@
 #include <QVBoxLayout>
 #include "messyModule.hpp"
 
-// Macro to define to serialize a variable and see it in the editor
+// Macros to expose a variable to the editor
 
 #define STARTSERIALIZE(s)                       \
     public :                                    \

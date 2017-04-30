@@ -15,10 +15,7 @@ namespace MessyCode2D_Engine {
     MessyConsole::~MessyConsole()
     {
         delete console;
-        delete lineEdit;
-
         console = NULL;
-        lineEdit = NULL;
     }
 
     void MessyConsole::Boot()

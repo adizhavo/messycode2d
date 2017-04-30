@@ -30,6 +30,9 @@ namespace MessyCode2D_Engine {
         void Refresh();
     };
 
+    // Element in the hierarchy that holds a game entity
+    // is used form the inspector to access the entity's components
+
     class HierarchyTreeWidget : public QTreeWidgetItem
     {
     public :
