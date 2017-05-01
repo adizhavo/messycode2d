@@ -2,14 +2,14 @@
 #define transform_hpp
 
 #include "messyComponent.hpp"
-#include "editorinspector.hpp"
+#include "messySerializer.hpp"
 #include <vector>
 
 // Transform component of the engine
 // Used to locate an entity in space
 
 namespace MessyCode2D_Engine {
-    class Transform : public MessyComponent, public InspectorSerializer
+    class Transform : public MessyComponent, public MessySerializer
     {
     public:
         float xPos, yPos, xAngle, yAngle, xScale, yScale;

@@ -1,5 +1,4 @@
 #include "messyCode2D.hpp"
-#include "hierarchy.hpp"
 #include "messyCode2DConfig.hpp"
 
 namespace MessyCode2D_Engine {
@@ -10,6 +9,9 @@ namespace MessyCode2D_Engine {
         this->timer = new QTimer();
         this->elapseTimer = new QElapsedTimer();
         AddModule(new MessyCodeConfig());
+
+        hierarchy = new Hierarchy();
+        AddModule(hierarchy);
     }
 
     void MessyCode2D::AddModule(MessyModule *module)
@@ -26,6 +28,7 @@ namespace MessyCode2D_Engine {
 
         delete timer;
         delete elapseTimer;
+        delete hierarchy;
     }
 
     void MessyCode2D::Boot()

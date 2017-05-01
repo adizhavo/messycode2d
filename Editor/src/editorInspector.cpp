@@ -1,5 +1,6 @@
-#include "editorinspector.hpp"
+#include "editorInspector.hpp"
 #include "editorHierarchy.hpp"
+#include "messySerializer.hpp"
 #include <QString>
 #include <QLabel>
 
@@ -39,11 +40,11 @@ namespace MessyCode2D_Engine {
 
         // Get all the serializable components from the entity
         HierarchyTreeWidget* hierarchyTree = static_cast<HierarchyTreeWidget*>(item);
-        vector<InspectorSerializer*> serializable = hierarchyTree->messyEntity->GetComponents<InspectorSerializer>();
+        vector<MessySerializer*> serializable = hierarchyTree->messyEntity->GetComponents<MessySerializer>();
 
-        for (InspectorSerializer* is : serializable)
+        for (MessySerializer* is : serializable)
         {
-            InspectorData** data = is->GetData();
+            SerializerData** data = is->GetData();
             for (int i = 0; i < is->Size(); i ++)
             {
                 // Get the widget displaying the data
@@ -56,7 +57,7 @@ namespace MessyCode2D_Engine {
     }
 
     // Get a widget for each serialized field
-    QWidget* EditorInspector::GetFieldWidget(InspectorData* data)
+    QWidget* EditorInspector::GetFieldWidget(SerializerData* data)
     {
         QString s;
         QLabel* label = new QLabel();

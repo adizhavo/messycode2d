@@ -1,26 +1,23 @@
-#ifndef EDITORINSPECTOR_H
-#define EDITORINSPECTOR_H
+#ifndef messySerializer_hpp
+#define messySerializer_hpp
 
 #include <string>
-#include <QTreeWidget>
-#include <QVBoxLayout>
-#include "messyModule.hpp"
 
 // Macros to expose a variable to the editor
 
-#define START_SERIALIZER(s)                       \
+#define START_SERIALIZER(s)                     \
     public :                                    \
         int size = s;                           \
-        InspectorData* data[s] {                \
+        SerializerData* data[s] {               \
 
 #define SERIALIZE(t, n)                         \
-    new InspectorData( #t , #n, &n )            \
+    new SerializerData( #t , #n, &n )           \
 
 #define AND ,
 
-#define END_SERIALIZER                        \
+#define END_SERIALIZER                          \
     };                                          \
-    InspectorData** GetData() {                 \
+    SerializerData** GetData() {                \
         return data;                            \
     }                                           \
     int Size() { return size; }                 \
@@ -30,7 +27,7 @@ namespace MessyCode2D_Engine {
 
     // Data strucure used by the macro to point and serialize components variables
 
-    struct InspectorData
+    struct SerializerData
     {
     public:
         string id;
@@ -40,26 +37,26 @@ namespace MessyCode2D_Engine {
         float* f;
         bool* b;
 
-        InspectorData(string id, string name, int* i){
+        SerializerData(string id, string name, int* i){
             this->id = id;
             this->name = name;
             this->i = i;
         }
 
-        InspectorData(string id, string name, bool* b){
+        SerializerData(string id, string name, bool* b){
             this->id = id;
             this->name = name;
             this->b = b;
         }
 
-        InspectorData(string id, string name, float* f)
+        SerializerData(string id, string name, float* f)
         {
             this->id = id;
             this->name = name;
             this->f = f;
         }
 
-        InspectorData(string id, string name, string* s)
+        SerializerData(string id, string name, string* s)
         {
             this->id = id;
             this->name = name;
@@ -69,37 +66,11 @@ namespace MessyCode2D_Engine {
 
     // Wrapper to return the data structure, should be inheret from a component
 
-    class InspectorSerializer
+    class MessySerializer
     {
     public:
-        virtual InspectorData** GetData() = 0;
+        virtual SerializerData** GetData() = 0;
         virtual int Size() = 0;
-    };
-
-    // Editor inspector GUI
-
-    class EditorInspector : public QObject, public MessyModule
-    {
-        Q_OBJECT
-
-    public:
-        void Boot();
-        void Start();
-        void Update(float deltaTime);
-
-        EditorInspector();
-        ~EditorInspector();
-
-    public slots:
-        void Refresh(QTreeWidgetItem *item, int column);
-
-    private:
-        QWidget* inspector;
-        QVBoxLayout *inspectorLayout;
-        vector<QWidget*> widgets;
-
-        QWidget* GetFieldWidget(InspectorData* data);
-        void ClearWidgets();
     };
 }
 

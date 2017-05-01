@@ -6,6 +6,7 @@
 #include <QElapsedTimer>
 #include <vector>
 #include "messyModule.hpp"
+#include "hierarchy.hpp"
 
 // Game Loop, updates all the the services, game entities and game components
 
@@ -18,6 +19,8 @@ namespace MessyCode2D_Engine {
         static std::vector<MessyModule*> modules;
         QElapsedTimer* elapseTimer;
         QTimer* timer;
+
+        Hierarchy* hierarchy;
 
     public:
         void Boot();
