@@ -26,17 +26,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     src/editorHierarchy.cpp \
-    src/editorinspector.cpp \
     src/messyCommandReceiver.cpp \
     src/messyConsole.cpp \
-    src/transform.cpp
+    src/editorInspector.cpp
 
 HEADERS  += \
-    headers/transform.hpp\
     headers/editorHierarchy.hpp \
-    headers/editorinspector.hpp \
     headers/messyCommandReceiver.hpp \
-    headers/messyConsole.hpp
+    headers/messyConsole.hpp \
+    headers/editorInspector.hpp
 
 INCLUDEPATH += headers\
 

@@ -24,15 +24,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += src/messycode2d.cpp\
            src/hierarchy.cpp\
-           src/messyEntity.cpp
+           src/messyEntity.cpp \
+    src/transform.cpp
 
 HEADERS += headers/messycode2d.hpp\
-           headers/messycode2d_global.h\
            headers/messyCode2DConfig.hpp\
            headers/messyComponent.hpp\
            headers/messyEntity.hpp\
            headers/messyModule.hpp\
-           headers/hierarchy.hpp
+           headers/hierarchy.hpp \
+    headers/messySerializer.hpp \
+    headers/transform.hpp
 
 
 unix {
