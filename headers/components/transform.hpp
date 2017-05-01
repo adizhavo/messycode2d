@@ -14,11 +14,11 @@ namespace MessyCode2D_Engine {
     public:
         float xPos, yPos, xAngle, yAngle, xScale, yScale;
 
-        STARTSERIALIZE(3)
+        START_SERIALIZER(3)
         SERIALIZE(bool, isEnabled) AND
         SERIALIZE(float, xPos) AND
         SERIALIZE(float, yPos)
-        ENDSERIALIZATION
+        END_SERIALIZER
 
         Transform();
         ~Transform();

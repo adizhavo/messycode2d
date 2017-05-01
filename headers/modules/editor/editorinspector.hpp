@@ -8,7 +8,7 @@
 
 // Macros to expose a variable to the editor
 
-#define STARTSERIALIZE(s)                       \
+#define START_SERIALIZER(s)                       \
     public :                                    \
         int size = s;                           \
         InspectorData* data[s] {                \
@@ -18,7 +18,7 @@
 
 #define AND ,
 
-#define ENDSERIALIZATION                        \
+#define END_SERIALIZER                        \
     };                                          \
     InspectorData** GetData() {                 \
         return data;                            \
