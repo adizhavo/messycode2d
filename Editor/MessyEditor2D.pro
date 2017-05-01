@@ -24,13 +24,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    src/components/transform.cpp \
     main.cpp \
     src/editorHierarchy.cpp \
     src/editorinspector.cpp \
     src/messyCommandReceiver.cpp \
     src/messyConsole.cpp \
-    src/assets.cpp
+    src/transform.cpp
 
 HEADERS  += \
     headers/transform.hpp\
