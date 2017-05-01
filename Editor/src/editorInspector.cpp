@@ -1,5 +1,6 @@
-#include "editorinspector.hpp"
+#include "editorInspector.hpp"
 #include "editorHierarchy.hpp"
+#include "messySerializer.hpp"
 #include <QString>
 #include <QLabel>
 

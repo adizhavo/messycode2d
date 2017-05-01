@@ -1,14 +1,12 @@
 #ifndef EDITORINSPECTOR_H
 #define EDITORINSPECTOR_H
 
-#include <string>
 #include <QTreeWidget>
 #include <QVBoxLayout>
 #include "messyModule.hpp"
+#include "messySerializer.hpp"
 
 namespace MessyCode2D_Engine {
-    using namespace std;
-
     // Editor inspector GUI
 
     class EditorInspector : public QObject, public MessyModule

@@ -1,6 +1,6 @@
 #include "messyCode2D.hpp"
 #include "editorHierarchy.hpp"
-#include "editorinspector.hpp"
+#include "editorInspector.hpp"
 #include "messyConsole.hpp"
 #include <QApplication>
 #include <QObject>
