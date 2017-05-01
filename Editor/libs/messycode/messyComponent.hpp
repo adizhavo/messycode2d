@@ -2,7 +2,6 @@
 #define gameComponent_hpp
 
 #include "component.hpp"
-#include "editorinspector.hpp"
 
 // Base component of the engine
 
