@@ -27,7 +27,6 @@ namespace MessyCode2D_Engine {
 
         delete timer;
         delete elapseTimer;
-        delete hierarchy;
     }
 
     void MessyCode2D::Boot()
