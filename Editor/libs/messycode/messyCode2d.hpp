@@ -20,8 +20,6 @@ namespace MessyCode2D_Engine {
         QElapsedTimer* elapseTimer;
         QTimer* timer;
 
-        Hierarchy* hierarchy;
-
     public:
         void Boot();
         void Start();
