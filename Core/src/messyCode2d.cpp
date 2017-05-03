@@ -8,10 +8,9 @@ namespace MessyCode2D_Engine {
     {
         this->timer = new QTimer();
         this->elapseTimer = new QElapsedTimer();
-        AddModule(new MessyCodeConfig());
 
-        hierarchy = new Hierarchy();
-        AddModule(hierarchy);
+        AddModule(new MessyCodeConfig());
+        AddModule(new Hierarchy());
     }
 
     void MessyCode2D::AddModule(MessyModule *module)

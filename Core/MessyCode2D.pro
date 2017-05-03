@@ -22,19 +22,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-SOURCES += src/messycode2d.cpp\
+SOURCES +=\
            src/hierarchy.cpp\
            src/messyEntity.cpp \
-    src/transform.cpp
+    src/transform.cpp \
+    src/messyLibraryImporter.cpp \
+    src/messyCode2d.cpp
 
-HEADERS += headers/messycode2d.hpp\
-           headers/messyCode2DConfig.hpp\
+HEADERS +=\
            headers/messyComponent.hpp\
            headers/messyEntity.hpp\
            headers/messyModule.hpp\
            headers/hierarchy.hpp \
     headers/messySerializer.hpp \
-    headers/transform.hpp
+    headers/transform.hpp \
+    headers/messyLibraryImporter.hpp \
+    headers/messyCode2d.hpp \
+    headers/messyConfig.hpp
 
 
 unix {
