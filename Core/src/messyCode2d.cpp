@@ -1,5 +1,5 @@
 #include "messyCode2D.hpp"
-#include "messyCode2DConfig.hpp"
+#include "messyConfig.hpp"
 
 namespace MessyCode2D_Engine {
     std::vector<MessyModule*>MessyCode2D::modules;
