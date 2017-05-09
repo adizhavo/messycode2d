@@ -6,8 +6,7 @@ namespace MessyCode2D_Engine {
 
     MessyCode2D::MessyCode2D()
     {
-        this->timer = new QTimer();
-        this->elapseTimer = new QElapsedTimer();
+        elapseTimer = new QElapsedTimer();
 
         AddModule(new MessyCodeConfig());
         AddModule(new Hierarchy());
@@ -23,9 +22,8 @@ namespace MessyCode2D_Engine {
         for (MessyModule* module : modules)
             if (module != NULL)
                 delete module;
-        modules.clear();
 
-        delete timer;
+        modules.clear();
         delete elapseTimer;
     }
 
@@ -40,15 +38,21 @@ namespace MessyCode2D_Engine {
         for (MessyModule* module : modules)
             module->Start();
 
-        this->connect(timer, SIGNAL(timeout()), this, SLOT(Update()));
-        timer->start((1.0 / GetModule<MessyCodeConfig>()->framePerSec));
         elapseTimer->start();
+        Next();
     }
     
     void MessyCode2D::Update()
     {
         for (MessyModule* module : modules)
             module->Update(elapseTimer->elapsed());
+
         elapseTimer->restart();
+        Next();
+    }
+
+    void MessyCode2D::Next()
+    {
+        QMetaObject::invokeMethod(this, "Update", Qt::QueuedConnection);
     }
 }

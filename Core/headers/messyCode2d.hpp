@@ -2,7 +2,6 @@
 #define messyCode2D_hpp
 
 #include <QObject>
-#include <QTimer>
 #include <QElapsedTimer>
 #include <vector>
 #include "messyModule.hpp"
@@ -18,7 +17,8 @@ namespace MessyCode2D_Engine {
     private:
         static std::vector<MessyModule*> modules;
         QElapsedTimer* elapseTimer;
-        QTimer* timer;
+
+        void Next();
 
     public:
         void Boot();
