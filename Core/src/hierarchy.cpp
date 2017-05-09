@@ -7,13 +7,11 @@
 namespace MessyCode2D_Engine {
     Hierarchy::~Hierarchy()
     {
-        this->messyEntities;
-
-        for (MessyEntity* me : this->messyEntities)
+        for (MessyEntity* me : messyEntities)
             if (me != NULL)
                 delete me;
 
-        this->messyEntities.clear();
+        messyEntities.clear();
     }
 
     void Hierarchy::Boot()
@@ -42,27 +40,27 @@ namespace MessyCode2D_Engine {
     
     void Hierarchy::Start()
     {
-        for (MessyEntity* me : this->messyEntities)
+        for (MessyEntity* me : messyEntities)
             me->Start();
     }
 
     void Hierarchy::Update(float deltaTime)
     {
-        for (MessyEntity* me : this->messyEntities)
+        for (MessyEntity* me : messyEntities)
             me->Update(deltaTime);
     }
 
     void Hierarchy::AddMessyEntity(MessyEntity* me)
     {
-        this->messyEntities.push_back(me);
-        this->lastEntityId ++;
-        me->id = this->lastEntityId;
+        messyEntities.push_back(me);
+        lastEntityId ++;
+        me->id = lastEntityId;
         Refresh();
     }
     
     void Hierarchy::RemoveMessyEntity(MessyEntity* me)
     {
-        this->messyEntities.erase(std::remove(this->messyEntities.begin(), this->messyEntities.end(), me), this->messyEntities.end());
+        messyEntities.erase(std::remove(messyEntities.begin(), messyEntities.end(), me), messyEntities.end());
         delete me;
         Refresh();
     }
