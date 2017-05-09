@@ -4,8 +4,8 @@
 #include <QTreeWidget>
 #include <string>
 #include "filter.hpp"
-#include "messyModule.hpp"
-#include "messyEntity.hpp"
+#include <messyModule.hpp>
+#include <messyEntity.hpp>
 
 // Hierarchy GUI with a QTreeWidget
 

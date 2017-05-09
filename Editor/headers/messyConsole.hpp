@@ -1,7 +1,7 @@
 #ifndef MESSYDEBUGGER_H
 #define MESSYDEBUGGER_H
 
-#include "messyModule.hpp"
+#include <messyModule.hpp>
 #include <QWidget>
 #include <QLineEdit>
 #include <QKeyEvent>

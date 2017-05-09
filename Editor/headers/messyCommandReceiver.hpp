@@ -1,7 +1,7 @@
 #ifndef MESSYCOMMANDRECEIVER_H
 #define MESSYCOMMANDRECEIVER_H
 
-#include "messyCode2D.hpp"
+#include <messyCode2d.hpp>
 #include "messyConsole.hpp"
 
 namespace MessyCode2D_Engine {
