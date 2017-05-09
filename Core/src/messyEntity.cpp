@@ -2,17 +2,9 @@
 #include "messyComponent.hpp"
 
 namespace MessyCode2D_Engine {
-    MessyEntity::MessyEntity()
-    {
-        // Is not added yet to the hierarchy
-        this->id = -1;
-    }
+    MessyEntity::MessyEntity() : id(0) { }
 
-    MessyEntity::MessyEntity(std::string name)
-    {
-        this->id = 0;
-        this->name = name;
-    }
+    MessyEntity::MessyEntity(std::string name) : name(name), id(0) { }
 
     void MessyEntity::Start()
     {
