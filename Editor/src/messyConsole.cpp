@@ -1,6 +1,7 @@
 #include "messyConsole.hpp"
 #include "messyCode2D.hpp"
 #include "messyCommandReceiver.hpp"
+#include <cstddef>
 
 namespace MessyCode2D_Engine {
     MessyConsole::MessyConsole()

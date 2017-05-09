@@ -1,5 +1,6 @@
 #include "hierarchy.hpp"
 #include "messyEntity.hpp"
+#include <cstddef>
 
 // Temp code
 // #include "transform.hpp"

@@ -1,4 +1,5 @@
 #include "messyCommandReceiver.hpp"
+#include <cstddef>
 
 namespace MessyCode2D_Engine {
     MessyCommandReceiver::MessyCommandReceiver() {

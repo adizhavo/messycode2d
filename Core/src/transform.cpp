@@ -2,6 +2,7 @@
 #include "messyCode2D.hpp"
 #include "hierarchy.hpp"
 #include "entity.hpp"
+#include <cstddef>
 
 namespace MessyCode2D_Engine {
     Transform::Transform() :
