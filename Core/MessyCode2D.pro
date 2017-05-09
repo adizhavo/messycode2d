@@ -4,6 +4,7 @@
 #
 #-------------------------------------------------
 QT       -= gui
+CONFIG   +=c++11
 
 TARGET = MessyCode2D
 TEMPLATE = lib
