@@ -1,4 +1,4 @@
-#include "messyCode2D.hpp"
+#include "messyCode2d.hpp"
 #include "messyConfig.hpp"
 
 namespace MessyCode2D_Engine {

@@ -6,12 +6,9 @@
 *.slo
 *.lo
 *.o
-*.a
 *.la
 *.lai
 *.so
-*.dll
-*.dylib
 
 # Qt-es
 
@@ -84,8 +81,6 @@ CMakeLists.txt.user*
 
 # Compiled Dynamic libraries
 *.so
-*.dylib
-*.dll
 
 # Fortran module files
 *.mod

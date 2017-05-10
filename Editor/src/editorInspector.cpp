@@ -3,6 +3,7 @@
 #include "messySerializer.hpp"
 #include <QString>
 #include <QLabel>
+#include <cstddef>
 
 namespace MessyCode2D_Engine {
     EditorInspector::EditorInspector()

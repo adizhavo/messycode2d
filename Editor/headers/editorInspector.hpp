@@ -3,7 +3,7 @@
 
 #include <QTreeWidget>
 #include <QVBoxLayout>
-#include "messyModule.hpp"
+#include <messyModule.hpp>
 #include "messySerializer.hpp"
 
 namespace MessyCode2D_Engine {
