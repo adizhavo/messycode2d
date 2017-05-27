@@ -53,6 +53,34 @@ namespace MessyCode2D_Engine {
         Refresh();
     }
 
+    MessyEntity* Hierarchy::GetMessyEntity(int id)
+    {
+        for (MessyEntity* me : messyEntities)
+            if (me->id == id)
+                return me;
+
+        return NULL;
+    }
+
+    MessyEntity* Hierarchy::GetMessyEntity(const std::string name)
+    {
+        for (MessyEntity* me : messyEntities)
+            if (me->name == name)
+                return me;
+
+        return NULL;
+    }
+
+    std::vector<MessyEntity*> Hierarchy::GetMessyEntities(const std::string name)
+    {
+        std::vector<MessyEntity*> result;
+        for (MessyEntity* me : messyEntities)
+            if (me->name == name)
+                result.push_back(me);
+
+        return result;
+    }
+
     void Hierarchy::RemoveMessyEntity(int id)
     {
         for (MessyEntity* me : messyEntities)

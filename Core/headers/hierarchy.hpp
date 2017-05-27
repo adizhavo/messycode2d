@@ -5,6 +5,7 @@
 #include <QObject>
 #include "messyModule.hpp"
 #include "hierarchyLoader.hpp"
+#include <string>
 
 // Holds all the entity with hierarchies in the scene
 // Can be considered as the world of the engine
@@ -20,12 +21,16 @@ namespace MessyCode2D_Engine {
         void Boot();
         void Start();
         void Update(float deltaTime);
+        Hierarchy();
+        ~Hierarchy();
+
         void Refresh();
         void AddMessyEntity(MessyEntity* ge);
         void RemoveMessyEntity(MessyEntity* ge);
         void RemoveMessyEntity(int id);
-        Hierarchy();
-        ~Hierarchy();
+        MessyEntity* GetMessyEntity(int id);
+        MessyEntity* GetMessyEntity(const std::string name);
+        std::vector<MessyEntity*> GetMessyEntities(const std::string name);
 
     private:
         std::vector<MessyEntity*> messyEntities;
