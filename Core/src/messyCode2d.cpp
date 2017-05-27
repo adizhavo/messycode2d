@@ -1,5 +1,7 @@
 #include "messyCode2d.hpp"
 #include "messyConfig.hpp"
+#include "hierarchy.hpp"
+#include "hierarchyLoader.hpp"
 
 namespace MessyCode2D_Engine {
     std::vector<MessyModule*>MessyCode2D::modules;
@@ -9,6 +11,7 @@ namespace MessyCode2D_Engine {
         elapseTimer = new QElapsedTimer();
 
         AddModule(new MessyCodeConfig());
+        AddModule(new HierarchyLoader());
         AddModule(new Hierarchy());
     }
 
