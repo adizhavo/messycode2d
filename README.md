@@ -3,3 +3,8 @@
 # MessyCode 2D
 
 2D game engine armed with GUI and entity component architecture
+
+### Dependencies
+
+- [ECS](https://github.com/adizhavo/ECS)
+- [json](https://github.com/nlohmann/json)
