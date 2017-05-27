@@ -1,11 +1,15 @@
 #include "hierarchy.hpp"
+#include "messyCode2d.hpp"
+#include "hierarchyLoader.hpp"
 #include "messyEntity.hpp"
 #include <cstddef>
 
-// Temp code
-// #include "transform.hpp"
-
 namespace MessyCode2D_Engine {
+    Hierarchy::Hierarchy()
+    {
+        h_loader = new HierarchyLoader();
+    }
+
     Hierarchy::~Hierarchy()
     {
         for (MessyEntity* me : messyEntities)
@@ -13,30 +17,13 @@ namespace MessyCode2D_Engine {
                 delete me;
 
         messyEntities.clear();
+        delete h_loader;
     }
 
     void Hierarchy::Boot()
     {
         this->lastEntityId = 0;
-        // Temp code
-        // Load sample entities to get the system started
-        // MessyEntity* ent1 = new MessyEntity("ent 1");
-        // MessyEntity* ent2 = new MessyEntity("ent 2");
-        // MessyEntity* ent3 = new MessyEntity("ent 3");
-        //
-        // Transform* tr1 = new Transform();
-        // Transform* tr2 = new Transform();
-        // Transform* tr3 = new Transform();
-        // ent1->AddComponent(tr1);
-        // ent2->AddComponent(tr2);
-        // ent3->AddComponent(tr3);
-        //
-        // tr3->SetParent(tr2);
-        // tr2->SetParent(tr1);
-        //
-        // AddMessyEntity(ent1);
-        // AddMessyEntity(ent2);
-        // AddMessyEntity(ent3);
+        h_loader->LoadHierarchy();
     }
     
     void Hierarchy::Start()
@@ -64,6 +51,34 @@ namespace MessyCode2D_Engine {
         messyEntities.erase(std::remove(messyEntities.begin(), messyEntities.end(), me), messyEntities.end());
         delete me;
         Refresh();
+    }
+
+    MessyEntity* Hierarchy::GetMessyEntity(int id)
+    {
+        for (MessyEntity* me : messyEntities)
+            if (me->id == id)
+                return me;
+
+        return NULL;
+    }
+
+    MessyEntity* Hierarchy::GetMessyEntity(const std::string name)
+    {
+        for (MessyEntity* me : messyEntities)
+            if (me->name == name)
+                return me;
+
+        return NULL;
+    }
+
+    std::vector<MessyEntity*> Hierarchy::GetMessyEntities(const std::string name)
+    {
+        std::vector<MessyEntity*> result;
+        for (MessyEntity* me : messyEntities)
+            if (me->name == name)
+                result.push_back(me);
+
+        return result;
     }
 
     void Hierarchy::RemoveMessyEntity(int id)

@@ -1,11 +1,10 @@
-#ifndef messyCode2D_hpp
-#define messyCode2D_hpp
+#ifndef messyCode2d_hpp
+#define messyCode2d_hpp
 
 #include <QObject>
 #include <QElapsedTimer>
 #include <vector>
 #include "messyModule.hpp"
-#include "hierarchy.hpp"
 
 // Game Loop, updates all the the services, game entities and game components
 

@@ -43,9 +43,11 @@ INCLUDEPATH += $$PWD/../libs/ecs  \
 DEPENDPATH += $$PWD/../libs/ecs   \
               $$PWD/../libs/json  \
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../bin/core/release/ -lMessyCode2D.1.0.0
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../bin/core/debug/ -lMessyCode2D.1.0.0
-else:unix: LIBS += -L$$PWD/../bin/core/ -lMessyCode2D.1.0.0
+win32:: LIBS += $$PWD/../libs/ecs/ecs.lib
+else:unix: LIBS += $$PWD/../libs/ecs/libecs.a
+
+win32: LIBS += -L$$PWD/../bin/core// -lMessyCode2D
+else:unix: LIBS += -L$$PWD/../bin/core/ -lMessyCode2D
 
 release: DESTDIR = $$PWD/../bin/editor
 debug:   DESTDIR = $$PWD/../bin/editor

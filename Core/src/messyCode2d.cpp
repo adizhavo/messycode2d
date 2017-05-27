@@ -1,5 +1,6 @@
 #include "messyCode2d.hpp"
 #include "messyConfig.hpp"
+#include "hierarchy.hpp"
 
 namespace MessyCode2D_Engine {
     std::vector<MessyModule*>MessyCode2D::modules;
