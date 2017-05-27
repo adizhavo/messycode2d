@@ -6,5 +6,5 @@
 
 ### Dependencies
 
-- [ECS](https://github.com/adizhavo/ECS)
+- [ECS](https://github.com/adizhavo/ECS_Cpp)
 - [json](https://github.com/nlohmann/json)
