@@ -1,7 +1,7 @@
 #ifndef gameComponent_hpp
 #define gameComponent_hpp
 
-#include "component.hpp"
+#include <component.hpp>
 
 // Base component of the engine
 
