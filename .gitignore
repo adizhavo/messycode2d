@@ -9,6 +9,9 @@
 *.la
 *.lai
 *.so
+*.dll
+*.dylib
+
 
 # Qt-es
 
@@ -121,3 +124,5 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+bin
+.qmake.stash
