@@ -1,5 +1,5 @@
-#ifndef messyCode2D_hpp
-#define messyCode2D_hpp
+#ifndef messyCode2d_hpp
+#define messyCode2d_hpp
 
 #include <QObject>
 #include <QElapsedTimer>
