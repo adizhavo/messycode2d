@@ -13,8 +13,8 @@ namespace MessyCode2D_Engine {
         int id;
         std::string name = "anonymous_game_entity";
 
-        MessyEntity();
-        MessyEntity(std::string name);
+        MessyEntity() : ECS::Entity(), id(0) { }
+        MessyEntity(std::string name) : ECS::Entity(), name(name), id(0) { }
 
         void Start();
         void Update(float deltaTime);
