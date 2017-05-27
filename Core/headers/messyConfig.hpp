@@ -16,7 +16,7 @@ namespace MessyCode2D_Engine {
         {
             framePerSec = 30;
             componentManifestPath = "./manifest.cpp";
-            hierarchyFilePath = "./hierarchy.json";
+            hierarchyFilePath = "../../../hierarchy.json";
         }
 
         void Start() { }
