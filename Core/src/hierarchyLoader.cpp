@@ -10,6 +10,8 @@ namespace MessyCode2D_Engine {
     using namespace std;
     using namespace nlohmann;
 
+    void HierarchyLoader::SaveHierarchy() { }
+
     void HierarchyLoader::LoadHierarchy()
     {
         MessyCodeConfig* config = MessyCode2D::GetModule<MessyCodeConfig>();
@@ -28,7 +30,7 @@ namespace MessyCode2D_Engine {
                     EntityData e;
                     e.id = entity.at("id").get<int>();
                     e.parentId = entity.at("parentId").get<int>();
-                    e.name = entity.at("name").get<std::string>();
+                    e.name = entity.at("name").get<string>();
                     e.componentsId = entity.at("componentsId").get<vector<string>>();
                 }
             }

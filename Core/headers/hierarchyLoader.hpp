@@ -10,6 +10,7 @@ namespace MessyCode2D_Engine {
     class HierarchyLoader
     {
     public:
+        void SaveHierarchy();
         void LoadHierarchy();
     };
 
