@@ -125,3 +125,4 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 bin
+.qmake.stash
