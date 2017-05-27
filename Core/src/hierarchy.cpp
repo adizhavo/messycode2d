@@ -5,6 +5,11 @@
 #include <cstddef>
 
 namespace MessyCode2D_Engine {
+    Hierarchy::Hierarchy()
+    {
+        h_loader = new HierarchyLoader();
+    }
+
     Hierarchy::~Hierarchy()
     {
         for (MessyEntity* me : messyEntities)
@@ -12,13 +17,13 @@ namespace MessyCode2D_Engine {
                 delete me;
 
         messyEntities.clear();
+        delete h_loader;
     }
 
     void Hierarchy::Boot()
     {
         this->lastEntityId = 0;
-
-//        MessyCode2D::GetModule<HierarchyLoader>()->LoadHierarchy();
+        h_loader->LoadHierarchy();
     }
     
     void Hierarchy::Start()
