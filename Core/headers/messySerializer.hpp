@@ -37,6 +37,13 @@ namespace MessyCode2D_Engine {
         float* f;
         bool* b;
 
+        SerializerData() {
+            s = 0;
+            i = 0;
+            f = 0;
+            b = 0;
+        }
+
         SerializerData(string id, string name, int* i){
             this->id = id;
             this->name = name;
