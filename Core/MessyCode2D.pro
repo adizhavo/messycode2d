@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 QT       -= gui
-CONFIG   +=c++11
+CONFIG   += c++11
 
 TARGET = MessyCode2D
 TEMPLATE = lib
@@ -45,17 +45,21 @@ unix {
     INSTALLS += target
 }
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/libs/ecs/release/ -lecs
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/libs/ecs/debug/ -lecs
-else:unix: LIBS += -L$$PWD/libs/ecs/ -lecs
+unix|win32: LIBS += -L$$PWD/../libs/ecs/ -lecs
 
-INCLUDEPATH += \
-    $$PWD/libs/ecs\
-    headers\
-DEPENDPATH += $$PWD/libs/ecs
+INCLUDEPATH += $$PWD/../libs/ecs  \
+               $$PWD/../libs/json \
+               $$PWD/headers      \
+DEPENDPATH += $$PWD/../libs/ecs   \
+              $$PWD/../libs/json  \
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/libs/ecs/release/libecs.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/libs/ecs/debug/libecs.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/libs/ecs/release/ecs.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/libs/ecs/debug/ecs.lib
-else:unix: PRE_TARGETDEPS += $$PWD/libs/ecs/libecs.a
+win32:!win32-g++: PRE_TARGETDEPS += $$PWD/../libs/ecs/ecs.lib
+else:unix|win32-g++: PRE_TARGETDEPS += $$PWD/../libs/ecs/libecs.a
+
+release: DESTDIR = $$PWD/../bin/core
+debug:   DESTDIR = $$PWD/../bin/core
+
+OBJECTS_DIR = $$DESTDIR/.obj
+MOC_DIR = $$DESTDIR/.moc
+RCC_DIR = $$DESTDIR/.qrc
+UI_DIR = $$DESTDIR/.ui
