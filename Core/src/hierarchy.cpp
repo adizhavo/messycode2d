@@ -3,6 +3,7 @@
 #include "messyEntity.hpp"
 #include "hierarchyLoader.hpp"
 #include <cstddef>
+#include <QDebug>
 
 namespace MessyCode2D_Engine {
     using namespace ECS;
@@ -26,12 +27,16 @@ namespace MessyCode2D_Engine {
     {
         this->lastEntityId = 0;
         h_loader->LoadHierarchy();
+
+        qDebug() << "[Hierarchy] finished boot";
     }
     
     void Hierarchy::Start()
     {
         for (MessyEntity* me : messyEntities)
             me->Start();
+
+        qDebug() << "[Hierarchy] finished start";
     }
 
     void Hierarchy::Update(float deltaTime)

@@ -1,6 +1,6 @@
 #include "messyCode2d.hpp"
-#include "messyConfig.hpp"
 #include "hierarchy.hpp"
+#include "QDebug"
 
 namespace MessyCode2D_Engine {
     std::vector<MessyModule*>MessyCode2D::modules;
@@ -8,8 +8,9 @@ namespace MessyCode2D_Engine {
     MessyCode2D::MessyCode2D()
     {
         elapseTimer = new QElapsedTimer();
+        config = new MessyCodeConfig();
 
-        AddModule(new MessyCodeConfig());
+        AddModule(config);
         AddModule(new Hierarchy());
     }
 
@@ -30,25 +31,37 @@ namespace MessyCode2D_Engine {
 
     void MessyCode2D::Boot()
     {
+        qDebug() << "[MessyCode2D] invoking boot";
+
         for (MessyModule* module : modules)
             module->Boot();
+
+        qDebug() << "[MessyCode2D] finished boot";
     }
     
     void MessyCode2D::Start()
     {
+        qDebug() << "[MessyCode2D] invoking start";
+
         for (MessyModule* module : modules)
             module->Start();
 
         elapseTimer->start();
         Next();
+
+        qDebug() << "[MessyCode2D] finished start, target framerate:" << config->framePerSec;
     }
     
     void MessyCode2D::Update()
     {
-        for (MessyModule* module : modules)
-            module->Update(elapseTimer->elapsed());
+        if (elapseTimer->elapsed() > 1 / config->framePerSec)
+        {
+            for (MessyModule* module : modules)
+                module->Update(elapseTimer->elapsed());
 
-        elapseTimer->restart();
+            elapseTimer->restart();
+        }
+
         Next();
     }
 
