@@ -1,18 +1,21 @@
-#ifndef scene_hpp
-#define scene_hpp
+#ifndef hierarchy_hpp
+#define hierarchy_hpp
 
 #include <vector>
 #include <QObject>
 #include "messyModule.hpp"
-#include "hierarchyLoader.hpp"
+#include <filter.hpp>
 #include <string>
 
 // Holds all the entity with hierarchies in the scene
 // Can be considered as the world of the engine
 
 namespace MessyCode2D_Engine {
+    using namespace ECS;
+
+    class HierarchyLoader;
     class MessyEntity;
-    
+
     class Hierarchy : public QObject, public MessyModule
     {
         Q_OBJECT
@@ -31,6 +34,7 @@ namespace MessyCode2D_Engine {
         MessyEntity* GetMessyEntity(int id);
         MessyEntity* GetMessyEntity(const std::string name);
         std::vector<MessyEntity*> GetMessyEntities(const std::string name);
+        std::vector<MessyEntity*> GetMessyEntities(Filter f);
 
     private:
         std::vector<MessyEntity*> messyEntities;
