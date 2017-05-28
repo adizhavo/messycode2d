@@ -2,6 +2,10 @@
 #include "messyComponent.hpp"
 
 namespace MessyCode2D_Engine {
+    MessyEntity::MessyEntity() : Entity(), id(0) { }
+
+    MessyEntity::MessyEntity(std::string name) : Entity(), name(name), id(0) { }
+
     void MessyEntity::Start()
     {
         for (MessyComponent* mc : GetComponents<MessyComponent>()) {

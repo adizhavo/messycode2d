@@ -1,10 +1,14 @@
 #include "hierarchy.hpp"
 #include "messyCode2d.hpp"
-#include "hierarchyLoader.hpp"
 #include "messyEntity.hpp"
+#include "hierarchyLoader.hpp"
+#include "entityMatcher.hpp"
 #include <cstddef>
+#include <QDebug>
 
 namespace MessyCode2D_Engine {
+    using namespace ECS;
+
     Hierarchy::Hierarchy()
     {
         h_loader = new HierarchyLoader();
@@ -24,12 +28,16 @@ namespace MessyCode2D_Engine {
     {
         this->lastEntityId = 0;
         h_loader->LoadHierarchy();
+
+        qDebug() << "[Hierarchy] finished boot";
     }
     
     void Hierarchy::Start()
     {
         for (MessyEntity* me : messyEntities)
             me->Start();
+
+        qDebug() << "[Hierarchy] finished start";
     }
 
     void Hierarchy::Update(float deltaTime)
@@ -79,6 +87,22 @@ namespace MessyCode2D_Engine {
                 result.push_back(me);
 
         return result;
+    }
+
+    std::vector<MessyEntity*> Hierarchy::GetMessyEntities(Filter f)
+    {
+        std::vector<MessyEntity*> matched;
+
+        for(MessyEntity* ent : messyEntities)
+            if (f.DoesMatch(static_cast<Entity*>(ent)))
+                matched.push_back(ent);
+
+        return matched;
+    }
+
+    std::vector<Entity*> Hierarchy::GetEntities(Filter f)
+    {
+        return EntityMatcher::FilterGroup(f);
     }
 
     void Hierarchy::RemoveMessyEntity(int id)

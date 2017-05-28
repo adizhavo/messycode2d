@@ -17,14 +17,14 @@ namespace MessyCode2D_Engine {
     public:
         void Boot();
         void Start();
-        void Update(float deltaTime) { }
+        void Update(float deltaTime);
         ~EditorHierarchy();
         QTreeWidget *treeWidget;
 
     private:
         ECS::Filter* messyEntityFilter;
 
-        QTreeWidgetItem* BuildTree(ECS::Entity* entity, bool blockIfParented);
+        QTreeWidgetItem* BuildTree(MessyEntity* messyEntity, bool blockIfParented);
 
     public slots:
         void Refresh();
