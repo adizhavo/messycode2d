@@ -1,11 +1,12 @@
 #include "editorHierarchy.hpp"
 #include <transform.hpp>
-#include <entityMatcher.hpp>
+#include <messyCode2D.hpp>
+#include <hierarchy.hpp>
 #include <cstddef>
 
-using namespace ECS;
-
 namespace MessyCode2D_Engine {
+    using namespace ECS;
+
     void EditorHierarchy::Boot()
     {
         // Create GUI elements and the entity filter
@@ -21,6 +22,8 @@ namespace MessyCode2D_Engine {
     {
         Refresh();
     }
+
+    void EditorHierarchy::Update(float deltaTime) { }
 
     EditorHierarchy::~EditorHierarchy()
     {
@@ -38,8 +41,9 @@ namespace MessyCode2D_Engine {
 
         QList<QTreeWidgetItem *> items;
         // Get all the entity by the filter
-        std::vector<Entity*> messyEntities = EntityMatcher::FilterGroup(*messyEntityFilter);
-        for (Entity* entity : messyEntities)
+        std::vector<MessyEntity*> messyEntities = MessyCode2D::GetModule<Hierarchy>()->GetMessyEntities(*messyEntityFilter);
+
+        for (MessyEntity* entity : messyEntities)
         {
             QTreeWidgetItem* item = BuildTree(entity, true);
             if (item != NULL)
@@ -51,20 +55,19 @@ namespace MessyCode2D_Engine {
     }
 
     // The additional boolean is to stop the recursion for the first entity without a parent
-    QTreeWidgetItem* EditorHierarchy::BuildTree(Entity* entity, bool blockIfParented)
+    QTreeWidgetItem* EditorHierarchy::BuildTree(MessyEntity* messyEntity, bool blockIfParented)
     {
-        Transform* tr = entity->GetComponent<Transform>();
+        Transform* tr = messyEntity->GetComponent<Transform>();
 
         if (blockIfParented && tr->GetParent() != NULL)
             return NULL;
 
-        MessyEntity* messyEntity = static_cast<MessyEntity*>(entity);
         QString entityName = QString::fromStdString(messyEntity->name);
         HierarchyTreeWidget* item = new HierarchyTreeWidget(messyEntity, entityName);
 
         for (Transform* children : tr->GetChildren())
         {
-            QTreeWidgetItem* child = BuildTree(children->entity, false);
+            QTreeWidgetItem* child = BuildTree(static_cast<MessyEntity*>(children->entity), false);
             if (child != NULL)
                 item->addChild(child);
         }
