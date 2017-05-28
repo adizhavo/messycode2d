@@ -35,6 +35,7 @@ namespace MessyCode2D_Engine {
         MessyEntity* GetMessyEntity(const std::string name);
         std::vector<MessyEntity*> GetMessyEntities(const std::string name);
         std::vector<MessyEntity*> GetMessyEntities(Filter f);
+        std::vector<Entity*> GetEntities(Filter f);
 
     private:
         std::vector<MessyEntity*> messyEntities;

@@ -2,6 +2,7 @@
 #include "messyCode2d.hpp"
 #include "messyEntity.hpp"
 #include "hierarchyLoader.hpp"
+#include "entityMatcher.hpp"
 #include <cstddef>
 #include <QDebug>
 
@@ -97,6 +98,11 @@ namespace MessyCode2D_Engine {
                 matched.push_back(ent);
 
         return matched;
+    }
+
+    std::vector<Entity*> Hierarchy::GetEntities(Filter f)
+    {
+        return EntityMatcher::FilterGroup(f);
     }
 
     void Hierarchy::RemoveMessyEntity(int id)
