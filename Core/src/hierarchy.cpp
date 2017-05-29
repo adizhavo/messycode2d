@@ -65,7 +65,7 @@ namespace MessyCode2D_Engine {
     
     void Hierarchy::RemoveMessyEntity(MessyEntity* me)
     {
-        messyEntities.erase(std::remove(messyEntities.begin(), messyEntities.end(), me), messyEntities.end());
+        messyEntities.erase(remove(messyEntities.begin(), messyEntities.end(), me), messyEntities.end());
         delete me;
         Refresh();
     }
@@ -143,7 +143,6 @@ namespace MessyCode2D_Engine {
         ifstream reader(path);
         if (reader.good())
         {
-            qDebug() << "[HierarchyLoader] Loaded prefab:" << QString::fromStdString(path);
             json h_data;
             reader >> h_data;
             json e_data = h_data["entities"];
@@ -181,6 +180,8 @@ namespace MessyCode2D_Engine {
                     child->GetComponent<Transform>()->SetParent(parent->GetComponent<Transform>());
                 }
             }
+
+            qDebug() << "[HierarchyLoader] Loaded prefab:" << QString::fromStdString(path);
         }
         else
         qCritical() << "[HierarchyLoader] Could not load prefab, file is missing" << QString::fromStdString(path);
