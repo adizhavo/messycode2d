@@ -16,6 +16,7 @@ namespace MessyCode2D_Engine {
         ~HierarchyLoader();
         void SaveHierarchy();
         void LoadHierarchy();
+        void LoadPrefab(const std::string path);
     private:
         ComponentLoader* componentLoader;
     };

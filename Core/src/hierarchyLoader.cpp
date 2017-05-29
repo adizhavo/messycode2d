@@ -1,6 +1,6 @@
 #include "hierarchyLoader.hpp"
 #include "componentLoader.hpp"
-#include "component.hpp"
+#include "transform.hpp"
 #include "messyEntity.hpp"
 #include "messyCode2d.hpp"
 #include "messyConfig.hpp"
@@ -30,46 +30,56 @@ namespace MessyCode2D_Engine {
     {
         MessyCodeConfig* config = MessyCode2D::GetModule<MessyCodeConfig>();
         if (config != NULL)
+            LoadPrefab(config->hierarchyFilePath);
+        else
+            qCritical() << "[HierarchyLoader] Could find engine config module";
+    }
+
+    void HierarchyLoader::LoadPrefab(string path)
+    {
+        ifstream reader(path);
+        if (reader.good())
         {
-            ifstream reader(config->hierarchyFilePath);
-            if (reader.good())
+            qDebug() << "[HierarchyLoader] Loaded prefab:" << QString::fromStdString(path);
+            json h_data;
+            reader >> h_data;
+            json e_data = h_data["entities"];
+
+            // Get the hierarchy
+            Hierarchy* hierarchy = MessyCode2D::GetModule<Hierarchy>();
+            if (hierarchy == NULL)
             {
-                qDebug() << "[HierarchyLoader] Loaded hierarchy data file";
-                json h_data;
-                reader >> h_data;
-                json e_data = h_data["entities"];
-
-                // Get the hierarchy
-                Hierarchy* hierarchy = MessyCode2D::GetModule<Hierarchy>();
-                if (hierarchy == NULL)
-                {
-                    qDebug() << "[HierarchyLoader] could not find hierarchy module, process will stop";
-                    return;
-                }
-
-                // Load entity data
-                for (auto& entity : e_data) {
-                    string name = entity.at("name").get<string>();
-                    MessyEntity* newEnt = new MessyEntity(name);
-
-                    for (string componentId : entity.at("componentsId").get<vector<string>>())
-                    {
-                        ECS::Component* component = componentLoader->GetComponent(componentId);
-                        if (component != NULL)
-                            newEnt->AddComponent(component, false);
-                    }
-
-                    hierarchy->AddMessyEntity(newEnt);
-                }
-
-                // for (auto& entity : e_data) {
-                // Build parent hierarchy
-                // Add them in the hierarchy
-                // e.parentId = entity.at("parentId").get<int>();
-                // }
+                qDebug() << "[HierarchyLoader] could not find hierarchy module, process will stop";
+                return;
             }
-            else
-            qCritical() << "[HierarchyLoader] Could not load hierarchy, specified file is missing " << QString::fromStdString(config->hierarchyFilePath) ;
+
+            // Load entity data
+            for (auto& entity : e_data) {
+                string name = entity.at("name").get<string>();
+                MessyEntity* newEnt = new MessyEntity(name);
+
+                for (string componentId : entity.at("componentsId").get<vector<string>>())
+                {
+                    ECS::Component* component = componentLoader->GetComponent(componentId);
+                    if (component != NULL)
+                        newEnt->AddComponent(component, false);
+                }
+
+                hierarchy->AddMessyEntity(newEnt);
+            }
+
+            // Build parent hierarchy
+            for (auto& entity : e_data) {
+                int parentId = entity.at("parentId").get<int>();
+                if (parentId != -1) {
+                    int id = entity.at("id").get<int>();
+                    MessyEntity* child = hierarchy->GetMessyEntity(id);
+                    MessyEntity* parent = hierarchy->GetMessyEntity(parentId);
+                    child->GetComponent<Transform>()->SetParent(parent->GetComponent<Transform>());
+                }
+            }
         }
+        else
+        qCritical() << "[HierarchyLoader] Could not load prefab, file is missing" << QString::fromStdString(path);
     }
 }
