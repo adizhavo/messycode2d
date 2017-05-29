@@ -189,10 +189,10 @@ namespace MessyCode2D_Engine {
                 }
             }
 
-            qDebug() << "[HierarchyLoader] Loaded prefab:" << QString::fromStdString(path);
+            qDebug() << "[Hierarchy] loaded prefab:" << QString::fromStdString(path);
         }
         catch (ios_base::failure& e) {
-            qCritical() << "[HierarchyLoader] Could not load prefab" << QString::fromStdString(path) << QString::fromStdString(e.what());
+            qCritical() << "[Hierarchy] could not load prefab" << QString::fromStdString(path) << QString::fromStdString(e.what());
         }
     }
 
@@ -202,7 +202,7 @@ namespace MessyCode2D_Engine {
         json hierarchy;
         json entities;
 
-        qDebug() << "[Hierarchy] Building entity json";
+        qDebug() << "[Hierarchy] building entity json";
 
         for(MessyEntity* ent : messyEntities)
             if (ent != NULL) {
@@ -225,7 +225,7 @@ namespace MessyCode2D_Engine {
             }
 
         // Save also components
-        // qDebug() << "[Hierarchy] Building component json";
+        // qDebug() << "[Hierarchy] building component json";
         // here
 
         hierarchy["entities"] = entities;
@@ -241,10 +241,10 @@ namespace MessyCode2D_Engine {
             //MessyCode2D::get_config().hierarchy()
             string j_output = hierarchy.dump();
             writer.write(j_output.c_str(), j_output.size());
-            qDebug() << "[Hierarchy] scene saved successfully in" << QString::fromStdString(path);
+            qDebug() << "[Hierarchy] saved successfully in" << QString::fromStdString(path);
         }
         catch (ios_base::failure& e) {
-            qCritical() << "[HierarchyLoader] Could save scene" << QString::fromStdString(path) << QString::fromStdString(e.what());
+            qCritical() << "[HierarchyLoader] could not save" << QString::fromStdString(path) << QString::fromStdString(e.what());
         }
     }
 }
