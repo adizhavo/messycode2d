@@ -1,6 +1,6 @@
 #include "hierarchyLoader.hpp"
 #include "componentLoader.hpp"
-#include "component.hpp"
+#include "transform.hpp"
 #include "messyEntity.hpp"
 #include "messyCode2d.hpp"
 #include "messyConfig.hpp"
@@ -62,11 +62,16 @@ namespace MessyCode2D_Engine {
                     hierarchy->AddMessyEntity(newEnt);
                 }
 
-                // for (auto& entity : e_data) {
                 // Build parent hierarchy
-                // Add them in the hierarchy
-                // e.parentId = entity.at("parentId").get<int>();
-                // }
+                for (auto& entity : e_data) {
+                    int parentId = entity.at("parentId").get<int>();
+                    if (parentId != -1) {
+                        int id = entity.at("id").get<int>();
+                        MessyEntity* child = hierarchy->GetMessyEntity(id);
+                        MessyEntity* parent = hierarchy->GetMessyEntity(parentId);
+                        child->GetComponent<Transform>()->SetParent(parent->GetComponent<Transform>());
+                    }
+                }
             }
             else
             qCritical() << "[HierarchyLoader] Could not load hierarchy, specified file is missing " << QString::fromStdString(config->hierarchyFilePath) ;
