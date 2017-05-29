@@ -211,7 +211,15 @@ namespace MessyCode2D_Engine {
                 Transform* tr = ent->GetComponent<Transform>();
                 j_object["parentId"] =  tr->GetParent() != NULL ? tr->GetParent()->GetEntity()->id : -1;
                 j_object["name"] = ent->name;
-                j_object["componentsId"] = json::array({"TRANSFORM"});
+
+                // Load components id
+                vector<string> componentsId;
+                for (Component* comp : ent->GetComponents()) {
+                    string id = comp_loader->GetJsonComponentId(comp->unique_id());
+                    componentsId.push_back(id);
+                }
+
+                j_object["componentsId"] = componentsId;
 
                 entities.push_back(j_object);
             }
