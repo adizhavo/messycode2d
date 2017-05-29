@@ -21,6 +21,7 @@ namespace MessyCode2D_Engine {
             {
                 mc->Start();
                 mc->hasStarted = true;
+                return;
             }
                 
             mc->Update(deltaTime);

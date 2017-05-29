@@ -17,7 +17,7 @@ namespace MessyCode2D_Engine {
 
     Hierarchy::Hierarchy()
     {
-        c_loader = new ComponentLoader();
+        comp_loader = new ComponentLoader();
     }
 
     Hierarchy::~Hierarchy()
@@ -29,8 +29,8 @@ namespace MessyCode2D_Engine {
                 delete me;
 
         messyEntities.clear();
-        delete   c_loader;
-        c_loader = NULL;
+        delete   comp_loader;
+        comp_loader = NULL;
     }
 
     void Hierarchy::Boot()
@@ -55,12 +55,15 @@ namespace MessyCode2D_Engine {
             me->Update(deltaTime);
     }
 
-    void Hierarchy::AddMessyEntity(MessyEntity* me)
+    MessyEntity* Hierarchy::AddMessyEntity(string name)
     {
-        messyEntities.push_back(me);
         lastEntityId ++;
-        me->id = lastEntityId;
+        MessyEntity* entity = new MessyEntity(name);
+        entity->id = lastEntityId;
+        messyEntities.push_back(entity);
         Refresh();
+
+        return entity;
     }
     
     void Hierarchy::RemoveMessyEntity(MessyEntity* me)
@@ -139,9 +142,9 @@ namespace MessyCode2D_Engine {
         ifstream reader(path);
         if (reader.good())
         {
-            json h_data;
-            reader >> h_data;
-            json e_data = h_data["entities"];
+            json hierarchy_data;
+            reader >> hierarchy_data;
+            json entities_data = hierarchy_data["entities"];
 
             // Get the hierarchy
             Hierarchy* hierarchy = MessyCode2D::GetModule<Hierarchy>();
@@ -152,24 +155,22 @@ namespace MessyCode2D_Engine {
             }
 
             // Load entity data
-            for (auto& entity : e_data) {
-                string name = entity.at("name").get<string>();
-                MessyEntity* newEnt = new MessyEntity(name);
+            for (auto& entity_data : entities_data) {
+                string name = entity_data.at("name").get<string>();
+                MessyEntity* entity = hierarchy->AddMessyEntity(name);
 
-                for (string componentId : entity.at("componentsId").get<vector<string>>()) {
-                    ECS::Component* component = c_loader->GetComponent(componentId);
+                for (string componentId : entity_data.at("componentsId").get<vector<string>>()) {
+                    ECS::Component* component = comp_loader->GetComponent(componentId);
                     if (component != NULL)
-                        newEnt->AddComponent(component, false);
+                        entity->AddComponent(component, false);
                 }
-
-                hierarchy->AddMessyEntity(newEnt);
             }
 
             // Build parent hierarchy
-            for (auto& entity : e_data) {
-                int parentId = entity.at("parentId").get<int>();
+            for (auto& entity_data : entities_data) {
+                int parentId = entity_data.at("parentId").get<int>();
                 if (parentId != -1) {
-                    int id = entity.at("id").get<int>();
+                    int id = entity_data.at("id").get<int>();
                     MessyEntity* child = hierarchy->GetMessyEntity(id);
                     MessyEntity* parent = hierarchy->GetMessyEntity(parentId);
                     child->GetComponent<Transform>()->SetParent(parent->GetComponent<Transform>());

@@ -29,7 +29,12 @@ namespace MessyCode2D_Engine {
         ~Hierarchy();
 
         void Refresh();
-        void AddMessyEntity(MessyEntity* ge);
+
+        // Use only this method to add entities in the engine
+        // ECS is a shared library and holds a static variable used for the entity matching
+        // the matching system should be moved in the engine
+        MessyEntity* AddMessyEntity(std::string name = "messyEntity");
+
         void RemoveMessyEntity(MessyEntity* ge);
         void RemoveMessyEntity(int id);
         MessyEntity* GetMessyEntity(int id);
@@ -43,7 +48,7 @@ namespace MessyCode2D_Engine {
     private:
         std::vector<MessyEntity*> messyEntities;
         int lastEntityId;
-        ComponentLoader* c_loader;
+        ComponentLoader* comp_loader;
 
         void SaveHierarchy();
         void LoadHierarchy();
