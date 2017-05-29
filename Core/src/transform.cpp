@@ -48,6 +48,11 @@ namespace MessyCode2D_Engine {
     {
         return parent;
     }
+
+    MessyEntity* Transform::GetEntity()
+    {
+        return static_cast<MessyEntity*>(entity);
+    }
     
     void Transform::AddChild(Transform* child)
     {

@@ -24,6 +24,8 @@ namespace MessyCode2D_Engine {
     {
         SaveHierarchy();
 
+        qDebug() << "[Hierarchy] cleaning";
+
         for (MessyEntity* me : messyEntities)
             if (me != NULL)
                 delete me;
@@ -139,9 +141,14 @@ namespace MessyCode2D_Engine {
 
     void Hierarchy::LoadPrefab(string path)
     {
-        ifstream reader(path);
-        if (reader.good())
+        ifstream reader;
+        //prepare reader to throw if failbit gets set
+        ios_base::iostate exceptionMask = reader.exceptions() | ios::failbit;
+        reader.exceptions(exceptionMask);
+
+        try
         {
+            reader.open(path);
             json hierarchy_data;
             reader >> hierarchy_data;
             json entities_data = hierarchy_data["entities"];
@@ -179,12 +186,54 @@ namespace MessyCode2D_Engine {
 
             qDebug() << "[HierarchyLoader] Loaded prefab:" << QString::fromStdString(path);
         }
-        else
-        qCritical() << "[HierarchyLoader] Could not load prefab, file is missing" << QString::fromStdString(path);
+        catch (ios_base::failure& e) {
+            qCritical() << "[HierarchyLoader] Could not load prefab" << QString::fromStdString(path) << QString::fromStdString(e.what());
+        }
     }
 
     void Hierarchy::SaveHierarchy() {
+        qDebug() << "[Hierarchy] starting saving of hierarchy";
 
+        json hierarchy;
+        json entities;
+
+        qDebug() << "[Hierarchy] Building entity json";
+
+        for(MessyEntity* ent : messyEntities)
+            if (ent != NULL) {
+                json j_object;
+                j_object["id"] = ent->id;
+                Transform* tr = ent->GetComponent<Transform>();
+                j_object["parentId"] =  tr->GetParent() != NULL ? tr->GetParent()->GetEntity()->id : -1;
+                j_object["name"] = ent->name;
+                j_object["componentsId"] = json::array({"TRANSFORM"});
+
+                entities.push_back(j_object);
+                qDebug() << "[Hierarchy] Deserialized entity:" << QString::fromStdString(ent->name) << " id:" << ent->id;
+            }
+
+        // Save also components
+        // qDebug() << "[Hierarchy] Building component json";
+        // here
+
+        hierarchy["entities"] = entities;
+
+        string path = MessyCode2D::get_config().hierarchy();
+        ofstream writer(path);
+        //prepare reader to throw if failbit gets set
+        ios_base::iostate exceptionMask = writer.exceptions() | ios::failbit;
+        writer.exceptions(exceptionMask);
+
+        try
+        {
+            //MessyCode2D::get_config().hierarchy()
+            string j_output = hierarchy.dump();
+            writer.write(j_output.c_str(), j_output.size());
+            qDebug() << "[Hierarchy] scene saved successfully in" << QString::fromStdString(path);
+        }
+        catch (ios_base::failure& e) {
+            qCritical() << "[HierarchyLoader] Could save scene" << QString::fromStdString(path) << QString::fromStdString(e.what());
+        }
     }
 }
 
