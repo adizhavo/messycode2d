@@ -8,15 +8,22 @@ namespace MessyCode2D_Engine {
     MessyCode2D::MessyCode2D()
     {
         elapseTimer = new QElapsedTimer();
-        config = new MessyCodeConfig();
 
-        AddModule(config);
         AddModule(new Hierarchy());
+    }
+
+    MessyCodeConfig MessyCode2D::get_config()
+    {
+        MessyCodeConfig config;
+        return config;
     }
 
     void MessyCode2D::AddModule(MessyModule *module)
     {
-        modules.push_back(module);
+        if (module != NULL)
+            modules.push_back(module);
+        else
+            qDebug() << "[MessyCode2D] cannot add null objects";
     }
 
     MessyCode2D::~MessyCode2D()
@@ -49,12 +56,12 @@ namespace MessyCode2D_Engine {
         elapseTimer->start();
         Next();
 
-        qDebug() << "[MessyCode2D] finished start, target framerate:" << config->framePerSec;
+        qDebug() << "[MessyCode2D] finished start, target framerate:" << get_config().fps();
     }
     
     void MessyCode2D::Update()
     {
-        if (elapseTimer->elapsed() > 1 / config->framePerSec)
+        if (elapseTimer->elapsed() > 1 / get_config().fps())
         {
             for (MessyModule* module : modules)
                 module->Update(elapseTimer->elapsed());

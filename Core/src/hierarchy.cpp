@@ -131,11 +131,7 @@ namespace MessyCode2D_Engine {
 
     void Hierarchy::LoadHierarchy()
     {
-        MessyCodeConfig* config = MessyCode2D::GetModule<MessyCodeConfig>();
-        if (config != NULL)
-            LoadPrefab(config->hierarchyFilePath);
-        else
-            qCritical() << "[HierarchyLoader] Could find engine config module";
+        LoadPrefab(MessyCode2D::get_config().hierarchy());
     }
 
     void Hierarchy::LoadPrefab(string path)
@@ -160,8 +156,7 @@ namespace MessyCode2D_Engine {
                 string name = entity.at("name").get<string>();
                 MessyEntity* newEnt = new MessyEntity(name);
 
-                for (string componentId : entity.at("componentsId").get<vector<string>>())
-                {
+                for (string componentId : entity.at("componentsId").get<vector<string>>()) {
                     ECS::Component* component = c_loader->GetComponent(componentId);
                     if (component != NULL)
                         newEnt->AddComponent(component, false);
@@ -187,5 +182,28 @@ namespace MessyCode2D_Engine {
         qCritical() << "[HierarchyLoader] Could not load prefab, file is missing" << QString::fromStdString(path);
     }
 
-    void Hierarchy::SaveHierarchy() { }
+    void Hierarchy::SaveHierarchy() {
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

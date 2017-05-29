@@ -17,7 +17,6 @@ namespace MessyCode2D_Engine {
     private:
         static std::vector<MessyModule*> modules;
         QElapsedTimer* elapseTimer;
-        MessyCodeConfig* config;
 
         void Next();
 
@@ -27,6 +26,8 @@ namespace MessyCode2D_Engine {
 
         MessyCode2D();
         ~MessyCode2D();
+
+        static MessyCodeConfig get_config();
 
         static void AddModule(MessyModule* module);
         template<typename T> static T* GetModule() {
