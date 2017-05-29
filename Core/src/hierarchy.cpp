@@ -24,15 +24,18 @@ namespace MessyCode2D_Engine {
     {
         SaveHierarchy();
 
-        qDebug() << "[Hierarchy] cleaning";
+        qDebug() << "[Hierarchy] cleaning entities";
 
         for (MessyEntity* me : messyEntities)
             if (me != NULL)
                 delete me;
 
-        messyEntities.clear();
-        delete   comp_loader;
+        qDebug() << "[Hierarchy] cleaning component loader";
+
+        delete comp_loader;
         comp_loader = NULL;
+
+        qDebug() << "[Hierarchy] cleaning end";
     }
 
     void Hierarchy::Boot()
@@ -46,7 +49,8 @@ namespace MessyCode2D_Engine {
     void Hierarchy::Start()
     {
         for (MessyEntity* me : messyEntities)
-            me->Start();
+            if (me != NULL)
+                me->Start();
 
         qDebug() << "[Hierarchy] finished start";
     }
@@ -54,7 +58,8 @@ namespace MessyCode2D_Engine {
     void Hierarchy::Update(float deltaTime)
     {
         for (MessyEntity* me : messyEntities)
-            me->Update(deltaTime);
+            if (me != NULL)
+                me->Update(deltaTime);
     }
 
     MessyEntity* Hierarchy::AddMessyEntity(string name)
@@ -78,7 +83,7 @@ namespace MessyCode2D_Engine {
     MessyEntity* Hierarchy::GetMessyEntity(int id)
     {
         for (MessyEntity* me : messyEntities)
-            if (me->id == id)
+            if (me != NULL && me->id == id)
                 return me;
 
         return NULL;
@@ -87,7 +92,7 @@ namespace MessyCode2D_Engine {
     MessyEntity* Hierarchy::GetMessyEntity(const std::string name)
     {
         for (MessyEntity* me : messyEntities)
-            if (me->name == name)
+            if (me != NULL && me->name == name)
                 return me;
 
         return NULL;
@@ -97,7 +102,7 @@ namespace MessyCode2D_Engine {
     {
         std::vector<MessyEntity*> result;
         for (MessyEntity* me : messyEntities)
-            if (me->name == name)
+            if (me != NULL && me->name == name)
                 result.push_back(me);
 
         return result;
@@ -108,7 +113,7 @@ namespace MessyCode2D_Engine {
         std::vector<MessyEntity*> matched;
 
         for(MessyEntity* ent : messyEntities)
-            if (f.DoesMatch(static_cast<Entity*>(ent)))
+            if (ent != NULL && f.DoesMatch(static_cast<Entity*>(ent)))
                 matched.push_back(ent);
 
         return matched;
@@ -122,7 +127,7 @@ namespace MessyCode2D_Engine {
     void Hierarchy::RemoveMessyEntity(int id)
     {
         for (MessyEntity* me : messyEntities)
-            if (me->id == id)
+            if (me != NULL && me->id == id)
             {
                 RemoveMessyEntity(me);
                 break;
@@ -209,7 +214,6 @@ namespace MessyCode2D_Engine {
                 j_object["componentsId"] = json::array({"TRANSFORM"});
 
                 entities.push_back(j_object);
-                qDebug() << "[Hierarchy] Deserialized entity:" << QString::fromStdString(ent->name) << " id:" << ent->id;
             }
 
         // Save also components

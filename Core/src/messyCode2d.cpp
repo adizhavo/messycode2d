@@ -28,14 +28,14 @@ namespace MessyCode2D_Engine {
 
     MessyCode2D::~MessyCode2D()
     {
-        qDebug() << "[MessyCode2D] cleaning";
-
         for (MessyModule* module : modules)
             if (module != NULL)
                 delete module;
 
         modules.clear();
         delete elapseTimer;
+
+        qDebug() << "[MessyCode2D] cleaning end";
     }
 
     void MessyCode2D::Boot()
