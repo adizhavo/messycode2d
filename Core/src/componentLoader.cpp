@@ -31,7 +31,7 @@ namespace MessyCode2D_Engine {
         return NULL;
     }
 
-    string ComponentLoader::GetJsonComponentId(long compId)
+    string ComponentLoader::GetJsonComponentId(unsigned long compId)
     {
         // Check if the component is default of engine
         if (compId == COMP_ID(Transform))

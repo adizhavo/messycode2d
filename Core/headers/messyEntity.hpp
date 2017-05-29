@@ -11,7 +11,7 @@ namespace MessyCode2D_Engine {
     class MessyEntity : public ECS::Entity {
     public:
         int id;
-        std::string name = "messyEntity";
+        std::string name;
 
         MessyEntity();
         MessyEntity(std::string name);

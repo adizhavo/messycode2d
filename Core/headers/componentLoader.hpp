@@ -15,7 +15,7 @@ namespace MessyCode2D_Engine {
         Component* GetComponent(const std::string componentId);
         Component* GetEngineComponent(const std::string componentId);
         // Insert the COMP_Id from the ECS library
-        std::string GetJsonComponentId(long compId);
+        std::string GetJsonComponentId(unsigned long compId);
     };
 }
 
