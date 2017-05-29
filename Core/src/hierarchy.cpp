@@ -1,35 +1,44 @@
 #include "hierarchy.hpp"
 #include "messyCode2d.hpp"
 #include "messyEntity.hpp"
-#include "hierarchyLoader.hpp"
+#include "componentLoader.hpp"
 #include "entityMatcher.hpp"
 #include <cstddef>
+#include <iostream>
+#include <fstream>
+#include <json.hpp>
+#include <transform.hpp>
 #include <QDebug>
 
 namespace MessyCode2D_Engine {
+    using namespace std;
+    using namespace nlohmann;
     using namespace ECS;
 
     Hierarchy::Hierarchy()
     {
-        h_loader = new HierarchyLoader();
+        c_loader = new ComponentLoader();
     }
 
     Hierarchy::~Hierarchy()
     {
+        SaveHierarchy();
+
         for (MessyEntity* me : messyEntities)
             if (me != NULL)
                 delete me;
 
         messyEntities.clear();
-        delete h_loader;
+        delete   c_loader;
+        c_loader = NULL;
     }
 
     void Hierarchy::Boot()
     {
         this->lastEntityId = 0;
-        h_loader->LoadHierarchy();
 
         qDebug() << "[Hierarchy] finished boot";
+        LoadHierarchy();
     }
     
     void Hierarchy::Start()
@@ -119,4 +128,63 @@ namespace MessyCode2D_Engine {
     {
         emit UpdateSignal();
     }
+
+    void Hierarchy::LoadHierarchy()
+    {
+        MessyCodeConfig* config = MessyCode2D::GetModule<MessyCodeConfig>();
+        if (config != NULL)
+            LoadPrefab(config->hierarchyFilePath);
+        else
+            qCritical() << "[HierarchyLoader] Could find engine config module";
+    }
+
+    void Hierarchy::LoadPrefab(string path)
+    {
+        ifstream reader(path);
+        if (reader.good())
+        {
+            qDebug() << "[HierarchyLoader] Loaded prefab:" << QString::fromStdString(path);
+            json h_data;
+            reader >> h_data;
+            json e_data = h_data["entities"];
+
+            // Get the hierarchy
+            Hierarchy* hierarchy = MessyCode2D::GetModule<Hierarchy>();
+            if (hierarchy == NULL)
+            {
+                qDebug() << "[HierarchyLoader] could not find hierarchy module, process will stop";
+                return;
+            }
+
+            // Load entity data
+            for (auto& entity : e_data) {
+                string name = entity.at("name").get<string>();
+                MessyEntity* newEnt = new MessyEntity(name);
+
+                for (string componentId : entity.at("componentsId").get<vector<string>>())
+                {
+                    ECS::Component* component = c_loader->GetComponent(componentId);
+                    if (component != NULL)
+                        newEnt->AddComponent(component, false);
+                }
+
+                hierarchy->AddMessyEntity(newEnt);
+            }
+
+            // Build parent hierarchy
+            for (auto& entity : e_data) {
+                int parentId = entity.at("parentId").get<int>();
+                if (parentId != -1) {
+                    int id = entity.at("id").get<int>();
+                    MessyEntity* child = hierarchy->GetMessyEntity(id);
+                    MessyEntity* parent = hierarchy->GetMessyEntity(parentId);
+                    child->GetComponent<Transform>()->SetParent(parent->GetComponent<Transform>());
+                }
+            }
+        }
+        else
+        qCritical() << "[HierarchyLoader] Could not load prefab, file is missing" << QString::fromStdString(path);
+    }
+
+    void Hierarchy::SaveHierarchy() { }
 }

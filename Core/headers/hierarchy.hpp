@@ -4,6 +4,7 @@
 #include <vector>
 #include <QObject>
 #include "messyModule.hpp"
+#include "componentLoader.hpp"
 #include <filter.hpp>
 #include <string>
 
@@ -37,10 +38,15 @@ namespace MessyCode2D_Engine {
         std::vector<MessyEntity*> GetMessyEntities(Filter f);
         std::vector<Entity*> GetEntities(Filter f);
 
+        void LoadPrefab(const std::string path);
+
     private:
         std::vector<MessyEntity*> messyEntities;
         int lastEntityId;
-        HierarchyLoader* h_loader;
+        ComponentLoader* c_loader;
+
+        void SaveHierarchy();
+        void LoadHierarchy();
 
     signals:
         void UpdateSignal();
