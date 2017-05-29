@@ -28,7 +28,6 @@ SOURCES +=\
     src/messyEntity.cpp \
     src/transform.cpp \
     src/messyCode2d.cpp \
-    src/hierarchyLoader.cpp \
     src/componentLoader.cpp
 
 HEADERS +=\
@@ -40,7 +39,6 @@ HEADERS +=\
     headers/transform.hpp \
     headers/messyCode2d.hpp \
     headers/messyConfig.hpp \
-    headers/hierarchyLoader.hpp \
     headers/componentLoader.hpp
 
 

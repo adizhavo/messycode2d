@@ -1,41 +1,56 @@
 #include "hierarchy.hpp"
 #include "messyCode2d.hpp"
 #include "messyEntity.hpp"
-#include "hierarchyLoader.hpp"
+#include "componentLoader.hpp"
 #include "entityMatcher.hpp"
 #include <cstddef>
+#include <iostream>
+#include <fstream>
+#include <json.hpp>
+#include <transform.hpp>
 #include <QDebug>
 
 namespace MessyCode2D_Engine {
+    using namespace std;
+    using namespace nlohmann;
     using namespace ECS;
 
     Hierarchy::Hierarchy()
     {
-        h_loader = new HierarchyLoader();
+        comp_loader = new ComponentLoader();
     }
 
     Hierarchy::~Hierarchy()
     {
+        SaveHierarchy();
+
+        qDebug() << "[Hierarchy] cleaning entities";
+
         for (MessyEntity* me : messyEntities)
             if (me != NULL)
                 delete me;
 
-        messyEntities.clear();
-        delete h_loader;
+        qDebug() << "[Hierarchy] cleaning component loader";
+
+        delete comp_loader;
+        comp_loader = NULL;
+
+        qDebug() << "[Hierarchy] cleaning end";
     }
 
     void Hierarchy::Boot()
     {
         this->lastEntityId = 0;
-        h_loader->LoadHierarchy();
 
         qDebug() << "[Hierarchy] finished boot";
+        LoadHierarchy();
     }
     
     void Hierarchy::Start()
     {
         for (MessyEntity* me : messyEntities)
-            me->Start();
+            if (me != NULL)
+                me->Start();
 
         qDebug() << "[Hierarchy] finished start";
     }
@@ -43,20 +58,24 @@ namespace MessyCode2D_Engine {
     void Hierarchy::Update(float deltaTime)
     {
         for (MessyEntity* me : messyEntities)
-            me->Update(deltaTime);
+            if (me != NULL)
+                me->Update(deltaTime);
     }
 
-    void Hierarchy::AddMessyEntity(MessyEntity* me)
+    MessyEntity* Hierarchy::AddMessyEntity(string name)
     {
-        messyEntities.push_back(me);
         lastEntityId ++;
-        me->id = lastEntityId;
+        MessyEntity* entity = new MessyEntity(name);
+        entity->id = lastEntityId;
+        messyEntities.push_back(entity);
         Refresh();
+
+        return entity;
     }
     
     void Hierarchy::RemoveMessyEntity(MessyEntity* me)
     {
-        messyEntities.erase(std::remove(messyEntities.begin(), messyEntities.end(), me), messyEntities.end());
+        messyEntities.erase(remove(messyEntities.begin(), messyEntities.end(), me), messyEntities.end());
         delete me;
         Refresh();
     }
@@ -64,7 +83,7 @@ namespace MessyCode2D_Engine {
     MessyEntity* Hierarchy::GetMessyEntity(int id)
     {
         for (MessyEntity* me : messyEntities)
-            if (me->id == id)
+            if (me != NULL && me->id == id)
                 return me;
 
         return NULL;
@@ -73,7 +92,7 @@ namespace MessyCode2D_Engine {
     MessyEntity* Hierarchy::GetMessyEntity(const std::string name)
     {
         for (MessyEntity* me : messyEntities)
-            if (me->name == name)
+            if (me != NULL && me->name == name)
                 return me;
 
         return NULL;
@@ -83,7 +102,7 @@ namespace MessyCode2D_Engine {
     {
         std::vector<MessyEntity*> result;
         for (MessyEntity* me : messyEntities)
-            if (me->name == name)
+            if (me != NULL && me->name == name)
                 result.push_back(me);
 
         return result;
@@ -94,7 +113,7 @@ namespace MessyCode2D_Engine {
         std::vector<MessyEntity*> matched;
 
         for(MessyEntity* ent : messyEntities)
-            if (f.DoesMatch(static_cast<Entity*>(ent)))
+            if (ent != NULL && f.DoesMatch(static_cast<Entity*>(ent)))
                 matched.push_back(ent);
 
         return matched;
@@ -108,7 +127,7 @@ namespace MessyCode2D_Engine {
     void Hierarchy::RemoveMessyEntity(int id)
     {
         for (MessyEntity* me : messyEntities)
-            if (me->id == id)
+            if (me != NULL && me->id == id)
             {
                 RemoveMessyEntity(me);
                 break;
@@ -118,5 +137,114 @@ namespace MessyCode2D_Engine {
     void Hierarchy::Refresh()
     {
         emit UpdateSignal();
+    }
+
+    void Hierarchy::LoadHierarchy()
+    {
+        LoadPrefab(MessyCode2D::get_config().hierarchy());
+    }
+
+    void Hierarchy::LoadPrefab(string path)
+    {
+        ifstream reader;
+        //prepare reader to throw if failbit gets set
+        ios_base::iostate exceptionMask = reader.exceptions() | ios::failbit;
+        reader.exceptions(exceptionMask);
+
+        try
+        {
+            reader.open(path);
+            json hierarchy_data;
+            reader >> hierarchy_data;
+            json entities_data = hierarchy_data["entities"];
+
+            // Get the hierarchy
+            Hierarchy* hierarchy = MessyCode2D::GetModule<Hierarchy>();
+            if (hierarchy == NULL)
+            {
+                qDebug() << "[HierarchyLoader] could not find hierarchy module, process will stop";
+                return;
+            }
+
+            // Load entity data
+            for (auto& entity_data : entities_data) {
+                string name = entity_data.at("name").get<string>();
+                MessyEntity* entity = hierarchy->AddMessyEntity(name);
+
+                for (string componentId : entity_data.at("componentsId").get<vector<string>>()) {
+                    ECS::Component* component = comp_loader->GetComponent(componentId);
+                    if (component != NULL)
+                        entity->AddComponent(component, false);
+                }
+            }
+
+            // Build parent hierarchy
+            for (auto& entity_data : entities_data) {
+                int parentId = entity_data.at("parentId").get<int>();
+                if (parentId != -1) {
+                    int id = entity_data.at("id").get<int>();
+                    MessyEntity* child = hierarchy->GetMessyEntity(id);
+                    MessyEntity* parent = hierarchy->GetMessyEntity(parentId);
+                    child->GetComponent<Transform>()->SetParent(parent->GetComponent<Transform>());
+                }
+            }
+
+            qDebug() << "[Hierarchy] loaded prefab:" << QString::fromStdString(path);
+        }
+        catch (ios_base::failure& e) {
+            qCritical() << "[Hierarchy] could not load prefab" << QString::fromStdString(path) << QString::fromStdString(e.what());
+        }
+    }
+
+    void Hierarchy::SaveHierarchy() {
+        qDebug() << "[Hierarchy] starting saving of hierarchy";
+
+        json hierarchy;
+        json entities;
+
+        qDebug() << "[Hierarchy] building entity json";
+
+        for(MessyEntity* ent : messyEntities)
+            if (ent != NULL) {
+                json j_object;
+                j_object["id"] = ent->id;
+                Transform* tr = ent->GetComponent<Transform>();
+                j_object["parentId"] =  tr->GetParent() != NULL ? tr->GetParent()->GetEntity()->id : -1;
+                j_object["name"] = ent->name;
+
+                // Load components id
+                vector<string> componentsId;
+                for (Component* comp : ent->GetComponents()) {
+                    string id = comp_loader->GetJsonComponentId(comp->unique_id());
+                    componentsId.push_back(id);
+                }
+
+                j_object["componentsId"] = componentsId;
+
+                entities.push_back(j_object);
+            }
+
+        // Save also components
+        // qDebug() << "[Hierarchy] building component json";
+        // here
+
+        hierarchy["entities"] = entities;
+
+        string path = MessyCode2D::get_config().hierarchy();
+        ofstream writer(path);
+        //prepare reader to throw if failbit gets set
+        ios_base::iostate exceptionMask = writer.exceptions() | ios::failbit;
+        writer.exceptions(exceptionMask);
+
+        try
+        {
+            //MessyCode2D::get_config().hierarchy()
+            string j_output = hierarchy.dump();
+            writer.write(j_output.c_str(), j_output.size());
+            qDebug() << "[Hierarchy] saved successfully in" << QString::fromStdString(path);
+        }
+        catch (ios_base::failure& e) {
+            qCritical() << "[HierarchyLoader] could not save" << QString::fromStdString(path) << QString::fromStdString(e.what());
+        }
     }
 }

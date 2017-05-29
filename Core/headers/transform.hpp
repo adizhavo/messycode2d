@@ -3,6 +3,7 @@
 
 #include "messyComponent.hpp"
 #include "messySerializer.hpp"
+#include "messyEntity.hpp"
 #include <vector>
 
 // Transform component of the engine
@@ -26,9 +27,10 @@ namespace MessyCode2D_Engine {
         void Start();
         void Update(float deltaTime);
         void SetParent(Transform* parent);
-        Transform* GetParent();
         void AddChild(Transform* child);
         void RemoveChild(Transform* child);
+        Transform* GetParent();
+        MessyEntity* GetEntity();
         std::vector<Transform*> GetChildren();
         RETURN_ID(Transform)
     private:

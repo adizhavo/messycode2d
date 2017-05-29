@@ -4,6 +4,7 @@
 #include <vector>
 #include <QObject>
 #include "messyModule.hpp"
+#include "componentLoader.hpp"
 #include <filter.hpp>
 #include <string>
 
@@ -28,7 +29,12 @@ namespace MessyCode2D_Engine {
         ~Hierarchy();
 
         void Refresh();
-        void AddMessyEntity(MessyEntity* ge);
+
+        // Use only this method to add entities in the engine
+        // ECS is a shared library and holds a static variable used for the entity matching
+        // the matching system should be moved in the engine
+        MessyEntity* AddMessyEntity(std::string name = "messyEntity");
+
         void RemoveMessyEntity(MessyEntity* ge);
         void RemoveMessyEntity(int id);
         MessyEntity* GetMessyEntity(int id);
@@ -37,10 +43,15 @@ namespace MessyCode2D_Engine {
         std::vector<MessyEntity*> GetMessyEntities(Filter f);
         std::vector<Entity*> GetEntities(Filter f);
 
+        void LoadPrefab(const std::string path);
+
     private:
         std::vector<MessyEntity*> messyEntities;
         int lastEntityId;
-        HierarchyLoader* h_loader;
+        ComponentLoader* comp_loader;
+
+        void SaveHierarchy();
+        void LoadHierarchy();
 
     signals:
         void UpdateSignal();

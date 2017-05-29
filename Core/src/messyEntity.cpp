@@ -4,7 +4,7 @@
 namespace MessyCode2D_Engine {
     MessyEntity::MessyEntity() : Entity(), id(0) { }
 
-    MessyEntity::MessyEntity(std::string name) : Entity(), name(name), id(0) { }
+    MessyEntity::MessyEntity(std::string name) : Entity(), id(0), name(name) { }
 
     void MessyEntity::Start()
     {
@@ -21,6 +21,7 @@ namespace MessyCode2D_Engine {
             {
                 mc->Start();
                 mc->hasStarted = true;
+                return;
             }
                 
             mc->Update(deltaTime);

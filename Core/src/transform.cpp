@@ -10,21 +10,9 @@ namespace MessyCode2D_Engine {
 
     Transform::~Transform()
     {
-        if (parent != NULL)
-        {
-            parent->RemoveChild(this);
-            parent = 0;
-        }
-
         for (Transform* tr : childs)
-        {
-            delete tr;
-        }
-
-        childs.clear();
-        entity->RemoveComponent(unique_id());
-
-        MessyCode2D::GetModule<Hierarchy>()->Refresh();
+            if (tr != NULL)
+                tr->entity->RemoveComponent<Transform>();
     }
 
     void Transform::Start() { }
@@ -47,6 +35,11 @@ namespace MessyCode2D_Engine {
     Transform* Transform::GetParent()
     {
         return parent;
+    }
+
+    MessyEntity* Transform::GetEntity()
+    {
+        return static_cast<MessyEntity*>(entity);
     }
     
     void Transform::AddChild(Transform* child)
