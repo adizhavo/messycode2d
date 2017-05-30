@@ -11,11 +11,7 @@ public:
     bool isEnabled;
     bool hasStarted;
 
-    MessyComponent() {
-        isEnabled = true;
-        hasStarted = true;
-    }
-
+    MessyComponent() : isEnabled(true), hasStarted(false) { }
     virtual void Start() = 0;
     virtual void Update(float deltaTime) = 0;
     virtual ~MessyComponent() { }

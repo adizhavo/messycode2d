@@ -29,7 +29,7 @@ namespace MessyCode2D_Engine {
         QVBoxLayout *inspectorLayout;
         vector<QWidget*> widgets;
 
-        QWidget* GetFieldWidget(SerializerData* data);
+        QWidget* GetFieldWidget(SerializedData* data);
         void ClearWidgets();
     };
 }

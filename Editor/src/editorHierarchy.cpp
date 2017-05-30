@@ -43,31 +43,28 @@ namespace MessyCode2D_Engine {
         // Get all the entity by the filter
         std::vector<MessyEntity*> messyEntities = MessyCode2D::GetModule<Hierarchy>()->GetMessyEntities(*messyEntityFilter);
 
-        for (MessyEntity* entity : messyEntities)
-        {
-            QTreeWidgetItem* item = BuildTree(entity, true);
-            if (item != NULL)
+        for (MessyEntity* entity : messyEntities) {
+            Transform* tr = entity->GetComponent<Transform>();
+            // build hierarchy from the root entity
+            if (tr->GetParent() == NULL) {
+                QTreeWidgetItem* item = BuildTree(entity);
                 items.append(item);
+            }
         }
 
         treeWidget->insertTopLevelItems(0, items);
         treeWidget->show();
     }
 
-    // The additional boolean is to stop the recursion for the first entity without a parent
-    QTreeWidgetItem* EditorHierarchy::BuildTree(MessyEntity* messyEntity, bool blockIfParented)
+
+    QTreeWidgetItem* EditorHierarchy::BuildTree(MessyEntity* messyEntity)
     {
         Transform* tr = messyEntity->GetComponent<Transform>();
-
-        if (blockIfParented && tr->GetParent() != NULL)
-            return NULL;
-
         QString entityName = QString::fromStdString(messyEntity->name);
         HierarchyTreeWidget* item = new HierarchyTreeWidget(messyEntity, entityName);
 
-        for (Transform* children : tr->GetChildren())
-        {
-            QTreeWidgetItem* child = BuildTree(static_cast<MessyEntity*>(children->entity), false);
+        for (Transform* children : tr->GetChildren()) {
+            QTreeWidgetItem* child = BuildTree(static_cast<MessyEntity*>(children->entity));
             if (child != NULL)
                 item->addChild(child);
         }
