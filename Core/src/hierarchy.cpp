@@ -250,7 +250,6 @@ namespace MessyCode2D_Engine {
                             variables.push_back(s_data);
                         }
 
-                        qDebug() << QString::fromStdString(variables.dump());
                         component["data"] = variables;
                     }
 
