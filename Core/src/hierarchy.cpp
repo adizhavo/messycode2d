@@ -229,27 +229,46 @@ namespace MessyCode2D_Engine {
 
         for(MessyEntity* ent : messyEntities)
             if (ent != NULL) {
-                json j_object;
-                j_object["id"] = ent->id;
+                json j_entity;
+                j_entity["id"] = ent->id;
                 Transform* tr = ent->GetComponent<Transform>();
-                j_object["parentId"] =  tr->GetParent() != NULL ? tr->GetParent()->GetEntity()->id : -1;
-                j_object["name"] = ent->name;
+                j_entity["parentId"] =  tr->GetParent() != NULL ? tr->GetParent()->GetEntity()->id : -1;
+                j_entity["name"] = ent->name;
 
-                // Load components id
-                vector<string> componentsId;
+                // Start save components
+                json components;
+
                 for (Component* comp : ent->GetComponents()) {
-                    string id = comp_loader->GetJsonComponentId(comp->unique_id());
-                    componentsId.push_back(id);
+                    json c_json;
+                    c_json["id"] = comp_loader->GetJsonComponentId(comp->unique_id());
+
+                    // Save component data
+                    MessySerializer* ms = dynamic_cast<MessySerializer*>(comp);
+                    if (ms != NULL && ms->Size() > 0) {
+                        json sd_json;
+                        // Get the serialzer data and save each field
+                        SerializerData** data = ms->GetSData();
+                        for (int i = 0; i < ms->Size(); i ++) {
+                            json s_json;
+                            s_json["name"] = data[i]->name;
+                            s_json["id"] = data[i]->id;
+                            if (data[i]->s != NULL) s_json["s"] = *(data[i]->s);
+                            if (data[i]->f != NULL) s_json["f"] = *(data[i]->f);
+                            if (data[i]->b != NULL) s_json["b"] = *(data[i]->b);
+                            if (data[i]->i != NULL) s_json["i"] = *(data[i]->i);
+                            sd_json.push_back(s_json);
+                        }
+
+                        qDebug() << QString::fromStdString(sd_json.dump());
+                        c_json["data"] = sd_json;
+                    }
+
+                    components.push_back(c_json);
                 }
 
-                j_object["componentsId"] = componentsId;
-
-                entities.push_back(j_object);
+                j_entity["components"] = components;
+                entities.push_back(j_entity);
             }
-
-        // Save also components
-        // qDebug() << "[Hierarchy] building component json";
-        // here
 
         hierarchy["entities"] = entities;
 
@@ -261,7 +280,6 @@ namespace MessyCode2D_Engine {
 
         try
         {
-            //MessyCode2D::get_config().hierarchy()
             string j_output = hierarchy.dump();
             writer.write(j_output.c_str(), j_output.size());
             qDebug() << "[Hierarchy] saved successfully in" << QString::fromStdString(path);
