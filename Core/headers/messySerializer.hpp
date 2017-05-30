@@ -32,7 +32,7 @@
 namespace MessyCode2D_Engine {
     using namespace std;
 
-    // Data strucure used by the above macros macro to hold serializable variables;
+    // Data strucure used by the above macros to hold serializable variables;
     // supports only strings, flaots, int, bool data type
 
     struct SerializedData
