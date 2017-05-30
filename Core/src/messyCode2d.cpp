@@ -43,7 +43,8 @@ namespace MessyCode2D_Engine {
         qDebug() << "[MessyCode2D] invoking boot";
 
         for (MessyModule* module : modules)
-            module->Boot();
+            if (module != NULL)
+                module->Boot();
 
         qDebug() << "[MessyCode2D] finished boot";
     }
@@ -53,7 +54,8 @@ namespace MessyCode2D_Engine {
         qDebug() << "[MessyCode2D] invoking start";
 
         for (MessyModule* module : modules)
-            module->Start();
+            if (module != NULL)
+                module->Start();
 
         elapseTimer->start();
         Next();
@@ -66,7 +68,8 @@ namespace MessyCode2D_Engine {
         if (elapseTimer->elapsed() > 1 / get_config().fps())
         {
             for (MessyModule* module : modules)
-                module->Update(elapseTimer->elapsed());
+                if (module != NULL)
+                    module->Update(elapseTimer->elapsed());
 
             elapseTimer->restart();
         }
