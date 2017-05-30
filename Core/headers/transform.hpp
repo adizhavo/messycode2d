@@ -15,6 +15,8 @@ namespace MessyCode2D_Engine {
     public:
         float xPos, yPos, xAngle, yAngle, xScale, yScale;
 
+        // Serializeable variables must be public
+
         START_SERIALIZER(3)
         SERIALIZE(bool, isEnabled) AND
         SERIALIZE(float, xPos) AND

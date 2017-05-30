@@ -45,7 +45,7 @@ namespace MessyCode2D_Engine {
 
         for (MessySerializer* is : serializable)
         {
-            SerializerData** data = is->GetSData();
+            SerializedData** data = is->GetSerializedData();
             for (int i = 0; i < is->Size(); i ++)
             {
                 // Get the widget displaying the data
@@ -58,21 +58,21 @@ namespace MessyCode2D_Engine {
     }
 
     // Get a widget for each serialized field
-    QWidget* EditorInspector::GetFieldWidget(SerializerData* data)
+    QWidget* EditorInspector::GetFieldWidget(SerializedData* data)
     {
         QString s;
         QLabel* label = new QLabel();
 
         if (data->id == "float")
-            s.sprintf("%s: %f", data->name.c_str(), *(data->f));
+            s.sprintf("%s: %f", data->type.c_str(), *(data->f));
         else if (data->id == "string")
-            s.sprintf("%s: %f", data->name.c_str(), *(data->f));
+            s.sprintf("%s: %f", data->type.c_str(), *(data->f));
         else if (data->id == "bool")
-            s.sprintf("%s: %s", data->name.c_str(), *(data->b) ? "true" : "false");
+            s.sprintf("%s: %s", data->type.c_str(), *(data->b) ? "true" : "false");
         else if (data->id == "int")
-            s.sprintf("%s: %d", data->name.c_str(), *(data->i));
+            s.sprintf("%s: %d", data->type.c_str(), *(data->i));
         else
-            s.sprintf("%s, could not display property, unknown type", data->name.c_str());
+            s.sprintf("%s, could not display property, unknown type", data->type.c_str());
 
         label->setAlignment(Qt::AlignTop | Qt::AlignLeft);
         label->setText(s);

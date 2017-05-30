@@ -155,59 +155,50 @@ namespace MessyCode2D_Engine {
         {
             // open file
             reader.open(path);
-            json hierarchy_data;
-            reader >> hierarchy_data;
-
-            // Get the hierarchy
-            Hierarchy* hierarchy = MessyCode2D::GetModule<Hierarchy>();
-            if (hierarchy == NULL)
-            {
-                qDebug() << "[HierarchyLoader] could not find hierarchy module, process will stop";
-                return;
-            }
+            json hierarchy;
+            reader >> hierarchy;
 
             // Load entity data
-            json entities_data = hierarchy_data["entities"];
+            json entities = hierarchy["entities"];
 
-            for (auto& entity_data : entities_data) {
-                string name = entity_data.at("name").get<string>();
-                MessyEntity* entity = hierarchy->AddMessyEntity(name);
+            for (auto& entity : entities) {
+                string name = entity.at("name").get<string>();
+                MessyEntity* new_entity = AddMessyEntity(name);
 
                 // Load components
-                json comps_data = entity_data["components"];
+                json components = entity["components"];
 
-                for (auto& comp_data : comps_data) {
-                    string id = comp_data.at("id").get<string>();
-                    ECS::Component* component = comp_loader->GetComponent(id);
-                    if (component != NULL)
-                        entity->AddComponent(component, false);
+                for (auto& component : components) {
+                    string id = component.at("id").get<string>();
+                    ECS::Component* new_component = comp_loader->GetComponent(id);
+                    if (new_component != NULL) {
+                        new_entity->AddComponent(new_component, false);
+                        // Load variables
+                        json variables = component["variables"];
 
-                    // Load component serialized data
-                    json ser_data = comp_data["data"];
+                        for (auto& variable : variables) {
+                            MessySerializer* ms = dynamic_cast<MessySerializer*>(new_component);
+                            SerializedData* s_data = ms->GetSerializedData(variable.at("id").get<string>());
 
-                    for (auto& s_data : ser_data) {
-                        MessySerializer* ms = dynamic_cast<MessySerializer*>(component);
-                        SerializerData* s_d = ms->GetSData(s_data.at("name").get<string>());
-
-                        if (s_d != NULL) {
-                            if (s_data["s"].size() != 0 ) *(s_d->s) = s_data.at("s").get<string>();
-                            if (s_data["f"].size() != 0 ) *(s_d->f) = s_data.at("f").get<float>();
-                            if (s_data["b"].size() != 0 ) *(s_d->b) = s_data.at("b").get<bool>();
-                            if (s_data["i"].size() != 0 ) *(s_d->i) = s_data.at("i").get<int>();
+                            if (s_data != NULL) {
+                                if (variable["s"].size() != 0 ) *(s_data->s) = variable.at("s").get<string>();
+                                if (variable["f"].size() != 0 ) *(s_data->f) = variable.at("f").get<float>();
+                                if (variable["b"].size() != 0 ) *(s_data->b) = variable.at("b").get<bool>();
+                                if (variable["i"].size() != 0 ) *(s_data->i) = variable.at("i").get<int>();
+                            }
                         }
-
-                        qDebug() <<QString::fromStdString(s_data.at("name").get<string>());
                     }
+                    else qDebug() << "[Hierarchy] could not loade component:" << QString::fromStdString(id);
                 }
             }
 
             // Build parent hierarchy
-            for (auto& entity_data : entities_data) {
-                int parentId = entity_data.at("parentId").get<int>();
+            for (auto& entity : entities) {
+                int parentId = entity.at("parentId").get<int>();
                 if (parentId != -1) {
-                    int id = entity_data.at("id").get<int>();
-                    MessyEntity* child = hierarchy->GetMessyEntity(id);
-                    MessyEntity* parent = hierarchy->GetMessyEntity(parentId);
+                    int id = entity.at("id").get<int>();
+                    MessyEntity* child = GetMessyEntity(id);
+                    MessyEntity* parent = GetMessyEntity(parentId);
                     child->GetComponent<Transform>()->SetParent(parent->GetComponent<Transform>());
                 }
             }
@@ -229,45 +220,45 @@ namespace MessyCode2D_Engine {
 
         for(MessyEntity* ent : messyEntities)
             if (ent != NULL) {
-                json j_entity;
-                j_entity["id"] = ent->id;
+                json entity;
+                entity["id"] = ent->id;
+                entity["name"] = ent->name;
                 Transform* tr = ent->GetComponent<Transform>();
-                j_entity["parentId"] =  tr->GetParent() != NULL ? tr->GetParent()->GetEntity()->id : -1;
-                j_entity["name"] = ent->name;
+                entity["parentId"] =  tr->GetParent() != NULL ? tr->GetParent()->GetEntity()->id : -1;
 
                 // Start save components
                 json components;
 
                 for (Component* comp : ent->GetComponents()) {
-                    json c_json;
-                    c_json["id"] = comp_loader->GetJsonComponentId(comp->unique_id());
+                    json component;
+                    component["id"] = comp_loader->GetJsonComponentId(comp->unique_id());
 
                     // Save component data
                     MessySerializer* ms = dynamic_cast<MessySerializer*>(comp);
                     if (ms != NULL && ms->Size() > 0) {
-                        json sd_json;
+                        json variables;
                         // Get the serialzer data and save each field
-                        SerializerData** data = ms->GetSData();
+                        SerializedData** data = ms->GetSerializedData();
                         for (int i = 0; i < ms->Size(); i ++) {
-                            json s_json;
-                            s_json["name"] = data[i]->name;
-                            s_json["id"] = data[i]->id;
-                            if (data[i]->s != NULL) s_json["s"] = *(data[i]->s);
-                            if (data[i]->f != NULL) s_json["f"] = *(data[i]->f);
-                            if (data[i]->b != NULL) s_json["b"] = *(data[i]->b);
-                            if (data[i]->i != NULL) s_json["i"] = *(data[i]->i);
-                            sd_json.push_back(s_json);
+                            json s_data;
+                            s_data["name"] = data[i]->type;
+                            s_data["id"] = data[i]->id;
+                            if (data[i]->s != NULL) s_data["s"] = *(data[i]->s);
+                            if (data[i]->f != NULL) s_data["f"] = *(data[i]->f);
+                            if (data[i]->b != NULL) s_data["b"] = *(data[i]->b);
+                            if (data[i]->i != NULL) s_data["i"] = *(data[i]->i);
+                            variables.push_back(s_data);
                         }
 
-                        qDebug() << QString::fromStdString(sd_json.dump());
-                        c_json["data"] = sd_json;
+                        qDebug() << QString::fromStdString(variables.dump());
+                        component["data"] = variables;
                     }
 
-                    components.push_back(c_json);
+                    components.push_back(component);
                 }
 
-                j_entity["components"] = components;
-                entities.push_back(j_entity);
+                entity["components"] = components;
+                entities.push_back(entity);
             }
 
         hierarchy["entities"] = entities;
