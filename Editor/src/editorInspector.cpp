@@ -45,7 +45,7 @@ namespace MessyCode2D_Engine {
 
         for (MessySerializer* is : serializable)
         {
-            SerializerData** data = is->GetData();
+            SerializerData** data = is->GetSData();
             for (int i = 0; i < is->Size(); i ++)
             {
                 // Get the widget displaying the data
@@ -68,7 +68,7 @@ namespace MessyCode2D_Engine {
         else if (data->id == "string")
             s.sprintf("%s: %f", data->name.c_str(), *(data->f));
         else if (data->id == "bool")
-            s.sprintf("%s: %s", data->name.c_str(), data->b ? "true" : "false");
+            s.sprintf("%s: %s", data->name.c_str(), *(data->b) ? "true" : "false");
         else if (data->id == "int")
             s.sprintf("%s: %d", data->name.c_str(), *(data->i));
         else

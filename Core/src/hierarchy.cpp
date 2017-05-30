@@ -153,10 +153,10 @@ namespace MessyCode2D_Engine {
 
         try
         {
+            // open file
             reader.open(path);
             json hierarchy_data;
             reader >> hierarchy_data;
-            json entities_data = hierarchy_data["entities"];
 
             // Get the hierarchy
             Hierarchy* hierarchy = MessyCode2D::GetModule<Hierarchy>();
@@ -167,14 +167,37 @@ namespace MessyCode2D_Engine {
             }
 
             // Load entity data
+            json entities_data = hierarchy_data["entities"];
+
             for (auto& entity_data : entities_data) {
                 string name = entity_data.at("name").get<string>();
                 MessyEntity* entity = hierarchy->AddMessyEntity(name);
 
-                for (string componentId : entity_data.at("componentsId").get<vector<string>>()) {
-                    ECS::Component* component = comp_loader->GetComponent(componentId);
+                // Load components
+                json comps_data = entity_data["components"];
+
+                for (auto& comp_data : comps_data) {
+                    string id = comp_data.at("id").get<string>();
+                    ECS::Component* component = comp_loader->GetComponent(id);
                     if (component != NULL)
                         entity->AddComponent(component, false);
+
+                    // Load component serialized data
+                    json ser_data = comp_data["data"];
+
+                    for (auto& s_data : ser_data) {
+                        MessySerializer* ms = dynamic_cast<MessySerializer*>(component);
+                        SerializerData* s_d = ms->GetSData(s_data.at("name").get<string>());
+
+                        if (s_d != NULL) {
+                            if (s_data["s"].size() != 0 ) *(s_d->s) = s_data.at("s").get<string>();
+                            if (s_data["f"].size() != 0 ) *(s_d->f) = s_data.at("f").get<float>();
+                            if (s_data["b"].size() != 0 ) *(s_d->b) = s_data.at("b").get<bool>();
+                            if (s_data["i"].size() != 0 ) *(s_d->i) = s_data.at("i").get<int>();
+                        }
+
+                        qDebug() <<QString::fromStdString(s_data.at("name").get<string>());
+                    }
                 }
             }
 

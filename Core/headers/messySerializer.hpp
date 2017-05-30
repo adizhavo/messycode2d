@@ -7,8 +7,8 @@
 
 #define START_SERIALIZER(s)                     \
     public :                                    \
-        int size = s;                           \
-        SerializerData* data[s] {               \
+        int s_size = s;                         \
+        SerializerData* s_data[s] {             \
 
 #define SERIALIZE(t, n)                         \
     new SerializerData( #t , #n, &n )           \
@@ -17,10 +17,17 @@
 
 #define END_SERIALIZER                          \
     };                                          \
-    SerializerData** GetData() {                \
-        return data;                            \
+    SerializerData* GetSData(string name) {     \
+        for (int i=0;i<Size();i++)              \
+        if (name.compare(s_data[i]->name) == 0) \
+            return s_data[i];                   \
+        return 0;                               \
     }                                           \
-    int Size() { return size; }                 \
+    SerializerData** GetSData() {               \
+        return s_data;                          \
+    }                                           \
+    int Size() { return s_size; }               \
+
 
 namespace MessyCode2D_Engine {
     using namespace std;
@@ -76,7 +83,8 @@ namespace MessyCode2D_Engine {
     class MessySerializer
     {
     public:
-        virtual SerializerData** GetData() = 0;
+        virtual SerializerData* GetSData(string name) = 0;
+        virtual SerializerData** GetSData() = 0;
         virtual int Size() = 0;
     };
 }
