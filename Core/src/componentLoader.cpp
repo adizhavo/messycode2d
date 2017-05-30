@@ -34,8 +34,9 @@ namespace MessyCode2D_Engine {
     string ComponentLoader::GetJsonComponentId(unsigned long compId)
     {
         // Check if the component is default of engine
-        if (compId == COMP_ID(Transform))
+        if (compId == COMP_ID(Transform)) {
             return "TRANSFORM";
+        }
          // add other engine components here
 
         return "NOT_AVAILABLE"; // TODO : try to load from external library

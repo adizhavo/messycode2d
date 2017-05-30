@@ -32,7 +32,7 @@ namespace MessyCode2D_Engine {
 
         // Use only this method to add entities in the engine
         // ECS is a shared library and holds a static variable used for the entity matching
-        // the matching system should be moved in the engine
+        // the matching system will be moved in the engine later
         MessyEntity* AddMessyEntity(std::string name = "messyEntity");
 
         void RemoveMessyEntity(MessyEntity* ge);
